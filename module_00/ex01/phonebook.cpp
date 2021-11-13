@@ -6,20 +6,22 @@
 int main(void)
 {
 	std::string str;
+	Phonebook	phonebook;
 
-	std::cout << "Input a command" << std::endl;
-	std::cout << "Available commands: ADD, SEARCH, EXIT" << std::endl;
+//	std::cout << "Input a command" << std::endl;
+//	std::cout << "Available commands: ADD, SEARCH, EXIT" << std::endl;
 	while (1)
 	{
+		std::cout << "USER : ";
 		std::cin >> str;
 		if (!str.compare("EXIT"))
 			break ;
 		else if (!str.compare("ADD"))
-			std::cout << "ADD" << std::endl;
+			phonebook.add_contact();
 		else if (!str.compare("SEARCH"))
 			std::cout << "SEARCH" << std::endl;
-		else
-			std::cout << "Invalid command" << std::endl;
+//		else
+//			std::cout << "Invalid command" << std::endl;
 	}
 	return (0);
 }

@@ -22,7 +22,7 @@ CC = g++
 
 all: $(NAME)
 
-$(NAME) : $(OBJ)
+$(NAME) :
 	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 
 clean:
@@ -30,4 +30,4 @@ clean:
 
 re: fclean all
 
-.PHONY: all re m clean fclean bonus
+.PHONY: all re clean

@@ -1,24 +1,20 @@
-#ifndef PHONEBOOK_CLASS_H
-# define PHONEBOOK_CLASS_H
+#ifndef PHONEBOOK_CLASS_HPP
+# define PHONEBOOK_CLASS_HPP
+# define MAX_CONTACT 8
 
+# include "phonebook.h"
 class	Phonebook {
+
+	private:
+
+	Contact _contact[MAX_CONTACT];
+	int _max = 0;
 
 	public:
 
-//	Array de contactos
-	std::string str[5];
-
-	void	add_contact(void)
-	{
-		std::cout << "Input new contact information" << std::endl;
-		std::cout << "first name, last name, nickname, phone number, darkest secret" << std::endl;
-		for (int i = 0; i < 5; i++)
-			std::cin >> str[i];
-		for (int i = 0; i < 5; i++)
-			std::cout << str[i] << std::endl;
-	}
-	private:
-
-	const int	_max_contact = 8;
+	void	add_contact(std::string str);
+	void	search_contact(void);
+	void	display_columns(void);
 };
+
 #endif

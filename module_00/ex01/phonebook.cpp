@@ -1,27 +1,35 @@
-#include <iostream>
-#include "phonebook.class.hpp"
+#include "phonebook.h"
 
-// * Declarar constantes las funciones que no cambian las intances de las clases
-
-int main(void)
+void	Phonebook::add_contact(std::string str)
 {
-	std::string str;
-	Phonebook	phonebook;
-
-//	std::cout << "Input a command" << std::endl;
-//	std::cout << "Available commands: ADD, SEARCH, EXIT" << std::endl;
-	while (1)
+	if (_max == MAX_CONTACT)
 	{
-		std::cout << "USER : ";
-		std::cin >> str;
-		if (!str.compare("EXIT"))
-			break ;
-		else if (!str.compare("ADD"))
-			phonebook.add_contact();
-		else if (!str.compare("SEARCH"))
-			std::cout << "SEARCH" << std::endl;
-//		else
-//			std::cout << "Invalid command" << std::endl;
+		std::cout << "Oldest contact will be Overwritten" << std::endl;
+		for (int i = 0; i < MAX_CONTACT - 2; i++)
+			this->_contact[i] = this->_contact[i + 1];
+		this->_contact[this->_max - 1].fill_names(str);
 	}
-	return (0);
+	else
+	{
+		this->_contact[this->_max].fill_names(str);
+		this->_max++;
+	}
+}
+
+void	Phonebook::display_columns(void)
+{
+	std::cout << std::right;
+	std::cout << "|  Index |First Name| Last Name| Nickname |" << std::endl;
+}
+
+void	Phonebook::search_contact(void)
+{
+	if (!this->_max)
+		std::cout << "No contacts added" << std::endl;
+	else
+	{
+		this->display_columns();
+		for (int i = 0; i < this->_max; i++)
+			this->_contact[i].display_available_contacts(i);
+	}	
 }

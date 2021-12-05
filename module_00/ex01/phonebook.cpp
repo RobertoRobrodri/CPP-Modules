@@ -19,7 +19,7 @@ void	Phonebook::add_contact(std::string str)
 void	Phonebook::display_columns(void)
 {
 	std::cout << std::right;
-	std::cout << "|  Index |First Name| Last Name| Nickname |" << std::endl;
+	std::cout << "|  Index   |First Name| Last Name| Nickname |" << std::endl;
 }
 
 void	Phonebook::search_contact(void)

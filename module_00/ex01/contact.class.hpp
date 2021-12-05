@@ -13,5 +13,6 @@ class Contact {
 
 	void	fill_names(std::string str);
 	void	display_available_contacts(int index);
+	void	display_info(void);
 };
 #endif

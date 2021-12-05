@@ -24,6 +24,9 @@ void	Phonebook::display_columns(void)
 
 void	Phonebook::search_contact(void)
 {
+	int	index;
+
+	index = 0;
 	if (!this->_max)
 		std::cout << "No contacts added" << std::endl;
 	else
@@ -31,5 +34,11 @@ void	Phonebook::search_contact(void)
 		this->display_columns();
 		for (int i = this->_max - 1; i >= 0; i--)
 			this->_contact[i].display_available_contacts(i);
-	}	
+		std::cout << "Input desired index: ";
+		std::cin >> index;
+		if ((index < MAX_CONTACT && index >= 0) && index < _max)
+			this->_contact[index].display_info();
+		else
+			std::cout << "Invalid input" << std::endl;
+	}
 }

@@ -29,3 +29,9 @@ void	Contact::display_available_contacts(int index)
 	}
 	std::cout << "|" << std::endl;
 }
+
+void	Contact::display_info(void)
+{
+	for (int i = 0; i < 5; i++)
+		std::cout << this->info[i] << std::endl;
+}

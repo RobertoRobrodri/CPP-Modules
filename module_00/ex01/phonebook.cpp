@@ -29,7 +29,7 @@ void	Phonebook::search_contact(void)
 	else
 	{
 		this->display_columns();
-		for (int i = 0; i < this->_max; i++)
+		for (int i = this->_max - 1; i >= 0; i--)
 			this->_contact[i].display_available_contacts(i);
 	}	
 }

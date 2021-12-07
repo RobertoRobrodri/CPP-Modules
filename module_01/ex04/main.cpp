@@ -2,9 +2,10 @@
 #include <string>
 #include <fstream>
 
-void	write_file(std::fstream	&file, const std::string s1, const std::string s2)
+std::string	write_file(std::fstream	&file, const std::string s1, const std::string s2)
 {
 	std::string					read;
+	std::string					buffer;
 	std::string::size_type		pos;
 
 	while (getline(file, read))
@@ -17,24 +18,30 @@ void	write_file(std::fstream	&file, const std::string s1, const std::string s2)
 			read.insert(pos, s2);
 			pos = read.find(s1, pos);
 		}
-		file << read;
+		buffer.append(read);
+		buffer.append("\n");
 	}
+	buffer.pop_back();
+	return (buffer);
 }	
 
 int	open_file(const char *filename, const std::string s1, const std::string s2)
 {
 	std::fstream	file;
+	std::string		buffer;
 
-	file.open(filename, std::ios::in | std::ios::out);
+	file.open(filename, std::ios::in);
 	if (!file)
 	{
-		std::cout << "File does not exists" << std::endl;
+		std::cerr << "File does not exists" << std::endl;
 		return (0);
 	}
 	else
 	{
-		write_file(file, s1, s2);
+		buffer = write_file(file, s1, s2);
 		file.close();
+		file.open(filename, std::ios::out);
+		file << buffer;
 		return (1);
 	}
 }
@@ -48,15 +55,15 @@ int main(int argc, char **argv)
 	{
 		s1.assign(argv[2]);
 		s2.assign(argv[3]);
-		if (s1.empty() || s2.empty())
+		if (s1.empty() || !s1.compare(s2))
 		{
-			std::cout << "Strings empty" << std::endl;
+			std::cerr << "Strings error" << std::endl;
 			return (0);
 		}
 		if (!open_file(argv[1], s1, s2))
 			return (0);
 	}
 	else
-		std::cout << "Bad arguments" << std::endl;
+		std::cerr << "Bad arguments" << std::endl;
 	return (0);
 }

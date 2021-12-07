@@ -1,8 +1,7 @@
 #include "Weapon.hpp"
 
-Weapon::Weapon (std::string type) {
+Weapon::Weapon (std::string type) : _type(type) {
 	std::cout << "Weapon constructor called" << std::endl;
-	this->_type = type;
 }
 
 Weapon::~Weapon (void) {

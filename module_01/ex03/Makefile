@@ -14,7 +14,7 @@ NAME = Unnecessary_violence
 
 CFLAGS = -Wall -Werror -Wextra
 
-SRCS = main.cpp Weapon.cpp HumanA.cpp HumanB.cp
+SRCS = main.cpp Weapon.cpp HumanA.cpp HumanB.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 

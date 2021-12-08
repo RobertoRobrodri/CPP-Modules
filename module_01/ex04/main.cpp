@@ -42,6 +42,7 @@ int	open_file(const char *filename, const std::string s1, const std::string s2)
 		file.close();
 		file.open(filename, std::ios::out);
 		file << buffer;
+		file.close();
 		return (1);
 	}
 }

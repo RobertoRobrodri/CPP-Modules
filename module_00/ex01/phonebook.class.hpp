@@ -8,11 +8,14 @@ class	Phonebook {
 	private:
 
 	Contact _contact[MAX_CONTACT];
-	int _max = 0;
+	int _max;
 
 	public:
 
-	void	add_contact(std::string str);
+	Phonebook(void);
+	~Phonebook(void);
+
+	void	add_contact(void);
 	void	search_contact(void);
 	void	display_columns(void);
 };

@@ -1,6 +1,6 @@
 #include "HumanA.hpp"
 
-HumanA::HumanA(std::string name, Weapon &weapon_type) : _name(name), _weapon(weapon_type) 
+HumanA::HumanA(std::string name, Weapon &weapon_type) : _weapon(weapon_type) , _name(name)
 {
 	std::cout << "HumanA constructor called" << std::endl;
 }

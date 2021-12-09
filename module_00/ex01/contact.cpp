@@ -1,6 +1,6 @@
 #include "phonebook.h"
 
-void Contact::fill_names(std::string str)
+void Contact::fill_names(void)
 {
 	std::cout << "Insert First Name: ";
 	getline(std::cin, this->info[0]);
@@ -18,7 +18,7 @@ void	Contact::display_available_contacts(int index)
 {
 	std::cout << "|" << std::setw(10) << index;
 	for (int i = 0; i < 3; i++) {
-		
+
 		std::cout << "|";
 		if (this->info[i].length() > 10) {
 			std::cout << this->info[i].substr(0, 9) << '.';

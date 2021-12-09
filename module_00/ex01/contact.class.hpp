@@ -11,7 +11,7 @@ class Contact {
 
 	public:
 
-	void	fill_names(std::string str);
+	void	fill_names(void);
 	void	display_available_contacts(int index);
 	void	display_info(void);
 };

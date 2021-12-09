@@ -1,17 +1,25 @@
 #include "phonebook.h"
 
-void	Phonebook::add_contact(std::string str)
+Phonebook::Phonebook(void) : _max(0) {
+	std::cout << "Constructor called" << std::endl;
+}
+
+Phonebook::~Phonebook(void) {
+	std::cout << "Destructor called" << std::endl;
+}
+
+void	Phonebook::add_contact(void)
 {
 	if (_max == MAX_CONTACT)
 	{
 		std::cout << "Oldest contact will be Overwritten" << std::endl;
 		for (int i = 0; i < MAX_CONTACT - 2; i++)
 			this->_contact[i] = this->_contact[i + 1];
-		this->_contact[this->_max - 1].fill_names(str);
+		this->_contact[this->_max - 1].fill_names();
 	}
 	else
 	{
-		this->_contact[this->_max].fill_names(str);
+		this->_contact[this->_max].fill_names();
 		this->_max++;
 	}
 }

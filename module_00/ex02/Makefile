@@ -5,29 +5,32 @@
 #                                                     +:+ +:+         +:+      #
 #    By: robrodri <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/11/12 13:10:04 by robrodri          #+#    #+#              #
-#    Updated: 2021/11/12 13:10:06 by robrodri         ###   ########.fr        #
+#    Created: 2021/12/07 12:40:49 by robrodri          #+#    #+#              #
+#    Updated: 2021/12/07 12:40:49 by robrodri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = megaphone
+NAME = acount
 
-SRC = megaphone.cpp
+CXXFLAGS = -Wall -Werror -Wextra
 
-OBJ = $(SRC:.c=.o)
+SRCS = account.cpp tests.cpp
 
-CXXFLAGS = -Wall -Wextra -Werror
+OBJS = $(SRCS:.cpp=.o)
 
 CXX = clang++
 
 all: $(NAME)
 
-$(NAME) :
-	$(CXX) $(CXXFLAGS) $(OBJ) -o $(NAME)
+$(NAME): $(OBJS)
+	$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)
 
 clean:
-	rm -rf $(NAME)
+	rm -f $(OBJS)
 
-re: fclean all
+fclean:	clean
+	rm -f $(NAME)
 
-.PHONY: all re clean
+re:	fclean all
+
+.PHONY: all clean fclean re

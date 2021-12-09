@@ -13,7 +13,7 @@ int main(void)
 		if (!str.compare("EXIT"))
 			break ;
 		else if (!str.compare("ADD"))
-			phonebook.add_contact(str);
+			phonebook.add_contact();
 		else if (!str.compare("SEARCH"))
 			phonebook.search_contact();
 		str.clear();

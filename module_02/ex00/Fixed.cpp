@@ -20,3 +20,9 @@ int Fixed::getRawBits( void ) const {
 	std::cout << "getRawBits member function called" << std::endl;
 	return (this->_fixed_point);
 }
+
+Fixed	& Fixed::operator=(Fixed const &f) {
+	std::cout << "Assignation operator called" << std::endl;
+	this->_fixed_point = f.getRawBits();
+	return (*this);
+}

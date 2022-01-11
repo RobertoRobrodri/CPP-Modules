@@ -8,15 +8,16 @@ Fixed::~Fixed(void) {
 	std::cout << "Destructor called" << std::endl;
 }
 
-Fixed::Fixed(const Fixed &f) : _fixed_point(f._fixed_point) {
+Fixed::Fixed(Fixed const &f) {
 	std::cout << "Copy constructor called" << std::endl;
+	*this = f;
 }
 
-Fixed::Fixed(const int i) : _fixed_point(i) {
+Fixed::Fixed(int const i) : _fixed_point(i) {
 	std::cout << "Int constructor called" << std::endl;
 }
 
-Fixed::Fixed(const float f) : {
+Fixed::Fixed(float const f) : _fixed_point(f) {
 	std::cout << "Float constructor called" << std::endl;
 }
 
@@ -29,12 +30,21 @@ int Fixed::getRawBits( void ) const {
 	return (this->_fixed_point);
 }
 
+float Fixed::toFloat( void ) const {
+	return (this->_fixed_point);
+}
+
+int Fixed::toInt( void ) const {
+	return (roundf(this->_fixed_point));
+}
+
 Fixed	& Fixed::operator=(Fixed const &f) {
 	std::cout << "Assignation operator called" << std::endl;
 	this->_fixed_point = f.getRawBits();
 	return (*this);
 }
 
-void	operator<<(std::ostream &os, Fixed &f) {
-	os << f._fixed_point << std::endl;
+std::ostream	& operator<<(std::ostream &os, Fixed const &f) {
+	os << f.toFloat();
+	return (os);
 }

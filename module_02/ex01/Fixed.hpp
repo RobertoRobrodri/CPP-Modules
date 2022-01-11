@@ -13,20 +13,20 @@ class	Fixed {
 
 	public:
 
-		Fixed(const int i);
-		Fixed(const float f);
+		Fixed(int const i);
+		Fixed(float const f);
 		Fixed(void);
-		Fixed(const Fixed &f);
+		Fixed(Fixed const &f);
 		~Fixed(void);
 
 		int getRawBits( void ) const;
 		void setRawBits( int const raw );
 
 		Fixed	& operator=(Fixed const &f);
-		std::ostream	& operator<<(std::ostream &os, Fixed &f);
 
 		float toFloat( void ) const;
 		int toInt( void ) const;
 };
+std::ostream	& operator<<(std::ostream &os, Fixed &f);
 
 #endif

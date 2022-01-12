@@ -31,7 +31,7 @@ int Fixed::getRawBits( void ) const {
 }
 
 float Fixed::toFloat( void ) const {
-	return (this->_fixed_point);
+	return (float)this->_fixed_point / (float)(1 << this->_f_bits);
 }
 
 int Fixed::toInt( void ) const {

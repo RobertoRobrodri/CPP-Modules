@@ -70,45 +70,27 @@ Fixed	Fixed::operator/(Fixed const &f) const {
 
 // Comparison operations
 bool	Fixed::operator>(Fixed const &f) const{
-	if (this->toFloat() > f.toFloat())
-		return 1;
-	else
-		return 0;
+	return (this->_fixed_point > f.getRawBits());
 }
 
 bool	Fixed::operator<(Fixed const &f) const{
-	if (this->toFloat() < f.toFloat())
-		return 1;
-	else
-		return 0;
+	return (this->_fixed_point < f.getRawBits());
 }
 
 bool	Fixed::operator>=(Fixed const &f) const{
-	if (this->toFloat() >= f.toFloat())
-		return 1;
-	else
-		return 0;
+	return (this->_fixed_point >= f.getRawBits());
 }
 
 bool	Fixed::operator<=(Fixed const &f) const{
-	if (this->toFloat() <= f.toFloat())
-		return 1;
-	else
-		return 0;
+	return (this->_fixed_point <= f.getRawBits());
 }
 
 bool	Fixed::operator==(Fixed const &f) const{
-	if (this->toFloat() == f.toFloat())
-		return 1;
-	else
-		return 0;
+	return (this->_fixed_point == f.getRawBits());
 }
 
 bool	Fixed::operator!=(Fixed const &f) const{
-	if (this->toFloat() != f.toFloat())
-		return 1;
-	else
-		return 0;
+	return (this->_fixed_point != f.getRawBits());
 }
 
 // Pre && Pos Increment & Decrement
@@ -141,7 +123,7 @@ Fixed	Fixed::operator--(int) {
 
 Fixed const & Fixed::max(Fixed const &a, Fixed const &b) {
 	if (a > b)
-		return &a;
+		return a;
 	else
-		return &b;
+		return b;
 }

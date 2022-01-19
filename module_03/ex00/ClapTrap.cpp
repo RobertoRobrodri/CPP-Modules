@@ -18,7 +18,7 @@ Clap_trap::~Clap_trap (void) {
 	std::cout << "Destructor called" << std::endl;
 }
 
-/* GETTERS */
+/* GETTERS && SETTERS */
 
 std::string Clap_trap::get_name(void) const {
 	return (this->_name);
@@ -36,14 +36,8 @@ int	Clap_trap::get_energy(void) const {
 	return (this->_energy);
 }
 
-/*	CALCULATIONS */
-
-void	Clap_trap::operator+=(int	ammount) {
-	this->_hp += ammount;
-}
-
-void	Clap_trap::operator-=(int	ammount) {
-	this->_hp -= ammount;
+void	Clap_trap::set_hp(int ammount) {
+	this->_hp = ammount;
 }
 
 /*	ACTION FUNCTIONS  */
@@ -53,12 +47,12 @@ void Clap_trap::attack(std::string const & target) {
 
 void Clap_trap::takeDamage(unsigned int amount) {
 	std::cout << this->get_name() << " takes " << amount << " of damage " << std::endl;
-	this->operator-=(amount);
+	this->set_hp(this->get_hp() - amount);
 	std::cout << this->get_name() << " Current HP " << this->get_hp() << std::endl;
 }
 
 void Clap_trap::beRepaired(unsigned int amount) {
 	std::cout << this->get_name() << " heals " << amount << " HP " << std::endl;
-	this->operator+=(amount);
+	this->set_hp(this->get_hp() + amount);
 	std::cout << this->get_name() << " Current HP " << this->get_hp() << std::endl;
 }

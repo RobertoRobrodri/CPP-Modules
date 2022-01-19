@@ -20,9 +20,10 @@ class Clap_trap {
 		int			get_hp(void) const;
 		int			get_ad(void) const;
 		int			get_energy(void) const;
+		void		set_hp(int ammount);
 
-		void	operator+=(int	ammount);
-		void	operator-=(int	ammount);
+	//	Clap_trap	operator+(int	ammount) const; TO DO REVISAR XQ COJONES NO TIRA ESTO
+	//	Clap_trap	operator-(int	ammount) const;
 
 		void attack(std::string const & target);
 		void takeDamage(unsigned int amount);

@@ -10,11 +10,11 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME =
+NAME = Animal
 
 CXXFLAGS = -Wall -Werror -Wextra
 
-SRCS =
+SRCS = Animal.cpp Dog.cpp Cat.cpp main.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 

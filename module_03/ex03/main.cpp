@@ -1,10 +1,8 @@
-#include "ClapTrap.hpp"
-#include "ScavTrap.hpp"
-#include "FragTrap.hpp"
+#include "DiamondTrap.hpp"
 
 int main(void)
 {
-	Frag_trap paco("Paco");
+	Diamond_trap paco("Paco");
 
 	paco.takeDamage(0);
 	paco.attack("Jhonny");

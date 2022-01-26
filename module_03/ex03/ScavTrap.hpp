@@ -5,7 +5,7 @@
 # define SCAV_AD 20
 # include "ClapTrap.hpp"
 
-class Scav_trap : public Clap_trap {
+class Scav_trap : virtual Clap_trap {
 	public:
 
 		Scav_trap(void);

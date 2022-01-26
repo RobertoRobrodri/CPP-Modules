@@ -17,10 +17,10 @@ class Animal {
 		Animal(const Animal &animal);
 		~Animal(void);
 
-		//Animal & operator=(Animal const &animal);
+		Animal & operator=(Animal const &animal);
 
 		std::string getType(void) const;
 
-		void	makeSound(void);
+		void	makeSound(void) const;
 };
 #endif

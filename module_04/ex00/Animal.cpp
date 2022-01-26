@@ -17,15 +17,15 @@ Animal::~Animal(void) {
 	std::cout << "Animal destructor called" << std::endl;
 }
 
-Animal::Animal & operator=(Animal const &animal) {
-	this->_type = animal->_type;
-	return *this;
-}
-
 std::string Animal::getType(void) const {
 	return this->_type;
 }
 
-void	Animal::makeSound(void) {
-	std::cout << getType() << std::endl;
+Animal & Animal::operator=(Animal const &animal) {
+	this->_type = animal.getType();
+	return *this;
+}
+
+void	Animal::makeSound(void) const {
+	std::cout << this->getType() << std::endl;
 }

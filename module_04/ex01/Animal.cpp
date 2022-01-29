@@ -27,5 +27,5 @@ Animal & Animal::operator=(Animal const &animal) {
 }
 
 void	Animal::makeSound(void) const {
-	std::cout << this->getType() << std::endl;
+	std::cout << "Generic animal sound" << std::endl;
 }

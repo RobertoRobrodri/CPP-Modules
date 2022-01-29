@@ -18,3 +18,7 @@ Dog::Dog(const Dog &pug) {
 Dog::~Dog(void) {
 	std::cout << "Dog destructor called" << std::endl;
 }
+
+void	Dog::makeSound(void) const {
+	std::cout << "Por favor no tiren cuetes" << std::endl;
+}

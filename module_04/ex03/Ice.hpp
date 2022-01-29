@@ -8,12 +8,12 @@ class Ice : public Amateria {
 
 	public:
 
-	Ice(void);
-	Ice(std::string const & type);
-	Ice(const Ice &mater);
-	virtual ~Ice(void);
+		Ice(void);
+		Ice(std::string const & type);
+		Ice(const Ice &mater);
+		virtual ~Ice(void);
 
-	virtual void use(ICharacter& target)
+		virtual void use(ICharacter& target)
 }
 
 #endif

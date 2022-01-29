@@ -14,9 +14,12 @@ class Amateria {
 	public:
 
 		Amateria(void);
-		AMateria(std::string const & type);
+		Amateria(std::string const & type);
 		Amateria(const Amateria &mater);
 		virtual ~Amateria(void);
+
+		std::string	getType(void);
+		void	setType(std::string type);
 
 		std::string const & getType() const; //Returns the materia type
 

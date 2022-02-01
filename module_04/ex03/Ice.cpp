@@ -1,4 +1,4 @@
-#include "Amateria.hpp"
+#include "Ice.hpp"
 
 Ice::Ice(void) {
 	std::cout << "Ice default constructor called" << std::endl;

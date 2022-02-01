@@ -4,15 +4,15 @@
 
 class ICharacter
 {
-	private:
+	protected:
 
-		Amateria[4]		_slots;
+		AMateria		_slots[4];
 		std::string		_name;
 
 	public:
 
-		void	ICharacter(void);
-		void	ICharacter(std::string name);
+		ICharacter(void);
+		ICharacter(std::string name);
 
 		virtual ~ICharacter() {}
 		virtual std::string const & getName() const = 0;

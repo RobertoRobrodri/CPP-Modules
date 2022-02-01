@@ -14,6 +14,6 @@ class Ice : public Amateria {
 		virtual ~Ice(void);
 
 		virtual void use(ICharacter& target)
-}
+};
 
 #endif

@@ -3,9 +3,9 @@
 # include <iostream>
 # include <ostream>
 # include <string>
-# include "ICharacter_hpp"
+# include "ICharacter.hpp"
 
-class Amateria {
+class AMateria {
 
 	protected:
 
@@ -13,18 +13,18 @@ class Amateria {
 
 	public:
 
-		Amateria(void);
-		Amateria(std::string const & type);
-		Amateria(const Amateria &mater);
-		virtual ~Amateria(void);
+		AMateria(void);
+		AMateria(std::string const & type);
+		AMateria(const AMateria &mater);
+		virtual ~AMateria(void);
 
-		std::string	getType(void);
 		void	setType(std::string type);
 
 		std::string const & getType() const; //Returns the materia type
+		AMateria & operator=(AMateria & const materia);
 
 		virtual AMateria* clone() const = 0;
-		virtual void use(ICharacter& target)
-}
+		virtual void use(ICharacter& target);
+};
 
 #endif

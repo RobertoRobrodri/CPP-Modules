@@ -1,4 +1,4 @@
-#include "Amateria.hpp"
+#include "Cure.hpp"
 
 Cure::Cure(void) {
 	std::cout << "Cure default constructor called" << std::endl;

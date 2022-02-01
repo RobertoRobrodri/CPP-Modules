@@ -10,11 +10,11 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME =
+NAME = Materias
 
 CXXFLAGS = -Wall -Werror -Wextra
 
-SRCS =
+SRCS = AMateria.cpp Cure.cpp Ice.cpp ICharacter.cpp IMateriaSource.cpp main.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 

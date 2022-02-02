@@ -20,5 +20,11 @@ Ice::~Ice(void) {
 }
 
 void Ice::use(ICharacter& target) {
-	std::cout << "Shoots ice at" << target << std::endl;
+	std::cout << "Shoots ice at" << target.getName() << std::endl;
+}
+
+AMateria* Ice::clone() const {
+	Ice *tmp;
+	tmp = new Ice();
+	return tmp;
 }

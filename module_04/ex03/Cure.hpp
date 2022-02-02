@@ -14,6 +14,7 @@ class Cure : public Amateria {
 		virtual  Cure(void);
 
 		virtual void use(ICharacter& target)
+		AMateria* Cure::clone() const;
 };
 
 #endif

@@ -13,7 +13,8 @@ class Ice : public Amateria {
 		Ice(const Ice &mater);
 		virtual ~Ice(void);
 
-		virtual void use(ICharacter& target)
+		void use(ICharacter& target)
+		AMateria* clone() const;
 };
 
 #endif

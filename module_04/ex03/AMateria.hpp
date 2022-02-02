@@ -21,7 +21,7 @@ class AMateria {
 		void	setType(std::string type);
 
 		std::string const & getType() const; //Returns the materia type
-		AMateria & operator=(AMateria & const materia);
+		AMateria & operator=(AMateria const &materia);
 
 		virtual AMateria* clone() const = 0;
 		virtual void use(ICharacter& target);

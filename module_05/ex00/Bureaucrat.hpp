@@ -3,6 +3,7 @@
 # include <iostream>
 # include <ostream>
 # include <string>
+# include <stdexcept>
 # include <exception>
 
 class Bureaucrat
@@ -12,20 +13,25 @@ class Bureaucrat
 		std::string	_name;
 		int			_grade;
 
-		void	GradeTooHighException(void) const;
-		void	GradeTooLowException(void) const;
-
 	public:
 
 		class GradeTooHighException : public std::exception
 		{
 			public:
+				virtual const char* what() const throw()
+				{
+					return ("Grade too high");
+				}
 
 		};
 
-		class GradeTooHighException : public std::exception
+		class GradeTooLowException : public std::exception
 		{
 			public:
+				virtual const char* what() const throw()
+				{
+					return ("Grade too low");
+				}
 
 		};
 

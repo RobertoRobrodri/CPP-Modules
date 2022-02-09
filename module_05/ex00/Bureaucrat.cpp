@@ -5,7 +5,10 @@ Bureaucrat::Bureaucrat(void) : _name("Hermes"), _grade(150) {
 	std::cout << "Burro default constructor called" << std::endl;
 }
 
-Bureaucrat::Bureaucrat(std::string const &name, int const &grade) : _name(name), _grade(grade) {
+Bureaucrat::Bureaucrat(std::string const &name, int const &grade){
+	this->check_exceptions();
+	this->_name = name;
+	this->_grade = grade;
 	std::cout << "Burro parameter constructor called" << std::endl;
 }
 
@@ -28,11 +31,11 @@ std::string Bureaucrat::getName(void) const {
 	return this->_name;
 }
 
-Bureaucrat::check_exceptions(void) const {
-	if ((this->_grade + 1) > 150)
-		throw GradeTooHighException();
-	else if ((this->_grade - 1) < 1)
-		throw GradeTooLowException();
+void	Bureaucrat::check_exceptions(void) const {
+	if (this->_grade > 150)
+		throw Bureaucrat::GradeTooHighException();
+	else if (this->_grade < 1)
+		throw Bureaucrat::GradeTooLowException();
 }
 
 int	Bureaucrat::getGrade(void) const {
@@ -40,12 +43,12 @@ int	Bureaucrat::getGrade(void) const {
 }
 
 void	Bureaucrat::IncrementGrade(void) {
-	check_exceptions();
+	this->check_exceptions();
 	this->_grade -= 1;
 }
 
 void	Bureaucrat::DecrementGrade(void) {
-	check_exceptions();
+	this->check_exceptions();
 	this->_grade += 1;
 }
 

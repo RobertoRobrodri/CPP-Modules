@@ -5,6 +5,7 @@
 # include <string>
 # include <stdexcept>
 # include <exception>
+# include "Form.hpp"
 
 class Bureaucrat
 {
@@ -47,6 +48,7 @@ class Bureaucrat
 		void	DecrementGrade(void);
 
 		void	check_exceptions(int grade) const;
+		void	signForm(Form const &form) const;
 
 		Bureaucrat & operator=(Bureaucrat const &bur);
 };

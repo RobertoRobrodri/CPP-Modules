@@ -5,8 +5,11 @@
 # include <string>
 # include <stdexcept>
 # include <exception>
+# include <stdio.h>
+# include <stdbool.h>
 # include "Form.hpp"
 
+class Form;
 class Bureaucrat
 {
 	private:
@@ -48,7 +51,7 @@ class Bureaucrat
 		void	DecrementGrade(void);
 
 		void	check_exceptions(int grade) const;
-		void	signForm(Form const &form) const;
+		void	signForm(Form &form) const;
 
 		Bureaucrat & operator=(Bureaucrat const &bur);
 };

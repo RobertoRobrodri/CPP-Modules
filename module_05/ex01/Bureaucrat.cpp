@@ -1,6 +1,5 @@
 # include "Bureaucrat.hpp"
 
-
 Bureaucrat::Bureaucrat(void) : _name("Hermes"), _grade(150) {
 	std::cout << "Burro default constructor called" << std::endl;
 }
@@ -10,12 +9,6 @@ Bureaucrat::Bureaucrat(std::string const &name, int const &grade){
 	this->_name = name;
 	this->_grade = grade;
 	std::cout << "Burro parameter constructor called" << std::endl;
-}
-
-Bureaucrat & Bureaucrat::operator=(Bureaucrat const &bur) {
-	this->_name = bur._name;
-	this->_grade = bur._grade;
-	return *this;
 }
 
 Bureaucrat::Bureaucrat(Bureaucrat const &bur) {
@@ -57,9 +50,20 @@ std::ostream	& operator<<(std::ostream &os, const Bureaucrat &bur) {
 	return os;
 }
 
-void	Bureaucrat::signForm(Form const &form) const {
+Bureaucrat & Bureaucrat::operator=(Bureaucrat const &bur) {
+	this->_name = bur._name;
+	this->_grade = bur._grade;
+	return *this;
+}
+
+void	Bureaucrat::signForm(Form &form) const {
 	if (form.getSigned() == 1)
+		std::cout << "Already signed" << std::endl;
+	else if (this->getGrade() < form.getGrade())
+	{
+		form.beSigned(*this);
 		std::cout << this->getName() << "  signs " << form.getName() << std::endl;
+	}
 	else
 		std::cout << this->getName() << "  cannot sign " << form.getName() << std::endl;
 }

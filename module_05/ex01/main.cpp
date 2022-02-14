@@ -2,21 +2,42 @@
 
 int main()
 {
-	try
-	{
-		Bureaucrat paco("Paco", 150);
+try {
 
-		std::cout << paco << std::endl;
-		paco.DecrementGrade();
-		std::cout << paco << std::endl;
-		paco.IncrementGrade();
+		Bureaucrat a( "Judge", 1);
+		Bureaucrat b( "Councilman", 50); 
 
-		std::cout << paco << std::endl;
+		Form	c( "Divorce Papers", 0, 20);
+		Form	d( "New Law", 0, 2);
+		//Form	e( "aa", -1, -1); //Form grade too high exception.
+		//Form	e( "aa", 151, 1511); //Form grade too low exception.
 
-		Bureaucrat pepe("Pepe", 100);
+		b.signForm( c ); // Should output that c cannot be signed by b.
+		a.signForm( c );
+
+		a.signForm( c ); // Outputs that the form has already been signed.
+
+		d.beSigned( b ); // Form grade too high exception.
+		std::cout << "/////////////////////////" << std::endl;
+
+//		d.beSigned( a );
+//		d.beSigned( a );
+
 	}
-	catch (const std::exception &e)
-	{
-		std::cerr << e.what() << std::endl;
+	catch (Bureaucrat::GradeTooLowException &e ) {
+
+		std::cout << e.what() << std::endl;
+	}
+	catch (Bureaucrat::GradeTooHighException &e ) {
+
+		std::cout << e.what() << std::endl;
+	}
+	catch (Form::GradeTooLowException &e ) {
+
+		std::cout << e.what() << std::endl;
+	}
+	catch (Form::GradeTooHighException &e ) {
+
+		std::cout << e.what() << std::endl;
 	}
 }

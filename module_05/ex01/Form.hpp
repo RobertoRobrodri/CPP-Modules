@@ -1,7 +1,5 @@
 #ifndef FORM_HPP
 # define FORM_HPP
-# include <stdio.h>
-# include <stdbool.h>
 # include "Bureaucrat.hpp"
 
 class Bureaucrat;
@@ -12,6 +10,7 @@ class Form {
 		std::string	const	_name;
 		bool				_signed;
 		int			const	_required_grade;
+		int			const	_execute_grade;
 
 	public:
 
@@ -34,18 +33,18 @@ class Form {
 		};
 
 		Form(void);
-		Form(std::string const &name, int const &grade);
-		Form(Form const &form);
+		Form(std::string const &name, bool const &is_signed, int const &grade, int const &exec);
+		Form(Form const &f);
 		~Form(void);
 
 		std::string getName(void) const;
 		int	getGrade(void) const;
+		int	getExecGrade(void) const;
 		bool	getSigned(void) const;
 
 		void	check_exceptions(int gradation) const;
 		void	beSigned(Bureaucrat const &bur);
 
-		Form & operator=(Form const &form);
 };
 std::ostream	& operator<<(std::ostream &os, const Form &form);
 

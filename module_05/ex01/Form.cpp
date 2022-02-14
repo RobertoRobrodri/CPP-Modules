@@ -1,30 +1,23 @@
 # include "Form.hpp"
 
 // Constructor
-Form::Form(void) {
+Form::Form(void) : _name("Formulary 0.1"), _signed(0), _required_grade(150), _execute_grade(150) {
 	std::cout << "Form default constructor called" << std::endl;
-	this->_name = "Formulary 0.1"
-	this->_signed = 0;
-	this->_required_grade = 150;
 }
 
-Form::Form(std::string const &name, bool const &is_signed, int const &grade) {
+Form::Form(std::string const &name, bool const &is_signed, int const &grade, int const &exec) : _name(name), _signed(is_signed), _required_grade(grade) , _execute_grade(exec) {
 	this->check_exceptions(grade);
+	this->check_exceptions(exec);
 	std::cout << "Form parameter constructor called" << std::endl;
-	this->_name = name;
-	this->_signed = is_signed;
-	this->_required_grade = grade;
 }
 
-Form::Form(Bureaucrat const &form) {
+Form::Form(Form const &f) : _name(f._name), _signed(f._signed), _required_grade(f._required_grade), _execute_grade(f._execute_grade) {
 	std::cout << "Form copy constructor called" << std::endl;
-	*this = form;
 }
 
 Form::~Form(void){
 	std::cout << "Form destructor called" << std::endl;
 }
-
 
 //Getters
 std::string	Form::getName(void) const {
@@ -39,31 +32,22 @@ bool	Form::getSigned(void) const {
 	return  this->_signed;
 }
 
-//Operators
-Form & operator=(Form const &form) {
-	this->_name = form._name;
-	this->_required_grade = form._required_grade;
-	this->_signed = form._signed;
+int	Form::getExecGrade(void) const {
+	return this->_execute_grade;
 }
 
 std::ostream	& operator<<(std::ostream &os, const Form &form) {
-	os << form.getName() << " | " << form.getGrade() << " | " << form.getSigned();
+	os << form.getName() << " | " << form.getGrade() << " | " << form.getSigned() << " | " << form.getExecGrade();
 	return os;
 }
 
-void	beSigned(Bureaucrat const &bur) {
-	if (this->getSigned == 1)
-	{
+void	Form::beSigned(Bureaucrat const &bur) {
+	if (this->_signed == 1)
 		std::cout << "Already signed" << std::endl;
-		return ;
-	}
-	else if (bur->getGrade() > this->getGrade())
-	{
-		bur->signForm(this);
+	else if (bur.getGrade() > this->getGrade())
 		throw Form::GradeTooLowException();
-	}
-	this->_signed = 1;
-	bur->signForm(this);
+	else
+		this->_signed = 1;
 }
 
 void	Form::check_exceptions(int gradation) const {

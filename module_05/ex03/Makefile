@@ -5,16 +5,16 @@
 #                                                     +:+ +:+         +:+      #
 #    By: robrodri <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/01/29 12:36:43 by robrodri          #+#    #+#              #
-#    Updated: 2022/01/29 12:36:43 by robrodri         ###   ########.fr        #
+#    Created: 2022/02/09 10:57:23 by robrodri          #+#    #+#              #
+#    Updated: 2022/02/09 10:57:23 by robrodri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = Materias
+NAME = Form
 
 CXXFLAGS = -Wall -Werror -Wextra
 
-SRCS = AMateria.cpp Cure.cpp Ice.cpp ICharacter.cpp IMateriaSource.cpp main.cpp
+SRCS = Bureaucrat.cpp main.cpp Form.cpp PresidentialPardonForm.cpp RobotomyRequestForm.cpp ShrubberyCreationForm.cpp Intern.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 

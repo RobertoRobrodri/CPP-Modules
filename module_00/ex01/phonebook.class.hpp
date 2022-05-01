@@ -8,8 +8,10 @@ class	Phonebook {
 	private:
 
 	Contact _contact[MAX_CONTACT];
-	int _max;
+	int 	_max;
 
+	void	display_columns(void);
+	
 	public:
 
 	Phonebook(void);
@@ -17,7 +19,6 @@ class	Phonebook {
 
 	void	add_contact(void);
 	void	search_contact(void);
-	void	display_columns(void);
 };
 
 #endif

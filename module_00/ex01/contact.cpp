@@ -1,5 +1,16 @@
 #include "phonebook.h"
 
+Contact::Contact(void) {
+	std::cout << "Contact Constructor called" << std::endl;
+	for (int i = 0; i < 5; i++) {
+		this->info[i] = "";
+	}
+}
+
+Contact::~Contact(void) {
+	std::cout << "Contact Destructor called" << std::endl;
+}
+
 void Contact::fill_names(void)
 {
 	std::cout << "Insert First Name: ";

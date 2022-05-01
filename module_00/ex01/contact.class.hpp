@@ -11,6 +11,9 @@ class Contact {
 
 	public:
 
+	Contact(void);
+	~Contact(void);
+
 	void	fill_names(void);
 	void	display_available_contacts(int index);
 	void	display_info(void);

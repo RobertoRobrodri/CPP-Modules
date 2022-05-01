@@ -1,11 +1,11 @@
 #include "phonebook.h"
 
 Phonebook::Phonebook(void) : _max(0) {
-	std::cout << "Constructor called" << std::endl;
+	std::cout << "Phonebook Constructor called" << std::endl;
 }
 
 Phonebook::~Phonebook(void) {
-	std::cout << "Destructor called" << std::endl;
+	std::cout << "Phonebook Destructor called" << std::endl;
 }
 
 void	Phonebook::add_contact(void)

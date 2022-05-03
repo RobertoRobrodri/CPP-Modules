@@ -1,4 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Zombie.cpp                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: robrodri <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/02 10:55:50 by robrodri          #+#    #+#             */
+/*   Updated: 2022/03/02 10:55:52 by robrodri         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Zombie.hpp"
+
+Zombie::Zombie (void) : _name("Generic zombie") {
+	std::cout << "Default constructor called" << std::endl;
+}
 
 Zombie::Zombie (std::string name) {
 	std::cout << "Special constructor called" << std::endl;

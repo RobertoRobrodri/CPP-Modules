@@ -38,8 +38,8 @@ class Form {
 		~Form(void);
 
 		std::string getName(void) const;
-		int	getGrade(void) const;
-		int	getExecGrade(void) const;
+		int		getGrade(void) const;
+		int		getExecGrade(void) const;
 		bool	getSigned(void) const;
 
 		void	check_exceptions(int gradation) const;

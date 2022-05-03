@@ -1,14 +1,14 @@
 #include "Bureaucrat.hpp"
 
-int main()
-{
-try {
+int main() {
 
-		Bureaucrat a( "Judge", 1);
-		Bureaucrat b( "Councilman", 50); 
+	try {
 
-		Form	c( "Divorce Papers", 0, 20);
-		Form	d( "New Law", 0, 2);
+		Bureaucrat a( "Judge", 20);
+		Bureaucrat b( "Councilman", 50);
+
+		Form	c( "Divorce Papers", 0, 60, 20);
+		Form	d( "New Law", 0, 25, 2);
 		//Form	e( "aa", -1, -1); //Form grade too high exception.
 		//Form	e( "aa", 151, 1511); //Form grade too low exception.
 
@@ -17,11 +17,11 @@ try {
 
 		a.signForm( c ); // Outputs that the form has already been signed.
 
-		d.beSigned( b ); // Form grade too high exception.
+		//d.beSigned( b ); // Form grade too high exception.
 		std::cout << "/////////////////////////" << std::endl;
 
-//		d.beSigned( a );
-//		d.beSigned( a );
+		d.beSigned( a );
+		d.beSigned( a );
 
 	}
 	catch (Bureaucrat::GradeTooLowException &e ) {

@@ -18,10 +18,9 @@ int main(void)
 	std::string str;
 	Phonebook	phonebook;
 
-	while (1)
+	std::cout << "USER : ";
+	while (getline(std::cin, str))
 	{
-		//std::cout << "USER : ";
-		getline(std::cin, str);
 		if (!str.compare("EXIT"))
 			break ;
 		else if (!str.compare("ADD"))
@@ -29,6 +28,7 @@ int main(void)
 		else if (!str.compare("SEARCH"))
 			phonebook.search_contact();
 		str.clear();
+		std::cout << "USER : ";
 	}
 	return (0);
 }

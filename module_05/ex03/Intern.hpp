@@ -7,14 +7,16 @@
 
 class Intern
 {
-	Intern(void);
-	~Intern(void);
+	public:
+	
+		Intern(void);
+		~Intern(void);
 
 
-	PresidentialPardon makePresidentialPardon(std::string target);
-	RobotForm makeRobotRequest(std::string target);
-	AsciiTree makeTreeForm(std::string target);
-	Form	*makeForm(std::string name, std::string target);
+		Form 	*makePresidentialPardon(std::string target);
+		Form	*makeRobotRequest(std::string target);
+		Form	*makeTreeForm(std::string target);
+		Form	*makeForm(std::string name, std::string target);
 
 	class NotExistingForm : public std::exception
 		{

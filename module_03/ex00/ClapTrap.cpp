@@ -1,6 +1,6 @@
 #include "ClapTrap.hpp"
 
-/*	BASIC SHIT */
+/*	BASIC STUFF */
 Clap_trap::Clap_trap (void) : _name("Generic claptrap"), _hp(HP), _energy(ENERGY), _ad(AD) {
 	std::cout << "Default constructor called" << std::endl;
 }

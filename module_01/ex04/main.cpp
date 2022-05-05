@@ -23,7 +23,7 @@ std::string	write_file(std::fstream	&file, const std::string s1, const std::stri
 	}
 	buffer.pop_back();
 	return (buffer);
-}	
+}
 
 int	open_file(const char *filename, const std::string s1, const std::string s2)
 {

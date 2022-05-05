@@ -25,6 +25,6 @@ Diamond_trap::~Diamond_trap (void) {
 	std::cout << "Diamond_trap Destructor called" << std::endl;
 }
 
-Diamond_trap::void whoAmI(void) {
+void	Diamond_trap::whoAmI(void) {
 	std::cout << this->get_name() << std::endl;
 }

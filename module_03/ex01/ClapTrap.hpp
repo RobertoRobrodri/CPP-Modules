@@ -22,14 +22,13 @@ class Clap_trap {
 		int			get_energy(void) const;
 		void		set_hp(int ammount);
 
-	//	Clap_trap	operator+(int	ammount) const; TO DO REVISAR XQ COJONES NO TIRA ESTO
-	//	Clap_trap	operator-(int	ammount) const;
 
 		void attack(std::string const & target);
 		void takeDamage(unsigned int amount);
 		void beRepaired(unsigned int amount);
 
 	protected :
+
 		std::string	_name;
 		int			_hp;
 		int			_energy;

@@ -5,7 +5,7 @@
 # define FRAG_AD 30
 # include "ClapTrap.hpp"
 
-class Frag_trap : virtual Clap_trap {
+class Frag_trap : virtual public Clap_trap {
 	public:
 
 		Frag_trap(void);

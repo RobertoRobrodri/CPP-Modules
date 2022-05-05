@@ -11,7 +11,7 @@ class Brain {
 		std::string ideas[100];
 
 		Brain(void);
-		virtual ~Brain(void);
+		~Brain(void);
 
 };
 #endif

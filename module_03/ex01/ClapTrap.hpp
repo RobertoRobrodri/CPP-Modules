@@ -15,6 +15,7 @@ class Clap_trap {
 		Clap_trap(std::string name);
 		Clap_trap(const Clap_trap &trap);
 		~Clap_trap(void);
+		Clap_trap & operator=(Clap_trap const &cp);
 
 		std::string get_name(void) const ;
 		int			get_hp(void) const;

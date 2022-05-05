@@ -11,7 +11,7 @@ class Cat : public Animal {
 		Cat(const Cat &Cat);
 		virtual ~Cat(void);
 
-		virtual void	makeSound(void) const;
+		void	makeSound(void) const;
 
 };
 #endif

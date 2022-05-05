@@ -56,3 +56,11 @@ void Clap_trap::beRepaired(unsigned int amount) {
 	this->set_hp(this->get_hp() + amount);
 	std::cout << this->get_name() << " Current HP " << this->get_hp() << std::endl;
 }
+
+Clap_trap & Clap_trap::operator=(Clap_trap const &cp) {
+	this->_name = cp._name;
+	this->_hp = cp._hp;
+	this->_ad = cp._ad;
+	this->_energy = cp._energy;
+	return *this;
+}

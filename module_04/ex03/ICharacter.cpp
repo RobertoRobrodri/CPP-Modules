@@ -56,7 +56,7 @@ Character & Character::operator=(Character const &pnj) {
 	this->_name = pnj.getName();
 	for (int i = 0; i < 4; i++) {
 		if (pnj._inventory[i] != NULL) {
-			this->_inventory[i] = pnj._inventory[i].clone();
+			this->_inventory[i] = pnj._inventory[i]->clone();
 		}
 		else
 			this->_inventory[i] = NULL;

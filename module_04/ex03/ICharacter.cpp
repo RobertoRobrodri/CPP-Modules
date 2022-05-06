@@ -13,7 +13,11 @@ Character::Character(std::string name) : _name(name) {
 }
 
 Character::~Character(void) {
-	delete [] this->_inventory;
+	for (int i = 0; i < 4; i++) {
+		if (this->_inventory[i] == NULL) {
+			delete this->_inventory[i];
+		}
+	}
 }
 
 Character::Character(const Character &pnj) {
@@ -26,7 +30,7 @@ std::string const & Character::getName() const {
 
 void	Character::equip(AMateria *m) {
 	for (int i = 0; i < 4; i++) {
-		if (this->_inventory[i] = NULL) {
+		if (this->_inventory[i] == NULL) {
 			this->_inventory[i] = m;
 			return ;
 		}
@@ -61,4 +65,5 @@ Character & Character::operator=(Character const &pnj) {
 		else
 			this->_inventory[i] = NULL;
 	}
+	return *this;
 }

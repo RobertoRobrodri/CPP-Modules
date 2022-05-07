@@ -49,7 +49,10 @@ void	Character::unequip(int idx) {
 
 void	Character::use(int idx, ICharacter& target) {
 	if (idx < 0 || idx > 3)
+	{
 		std::cout << "Slot does not exits" << std::endl;
+		return ;
+	}
 	if (this->_inventory[idx] != NULL)
 		this->_inventory[idx]->use(target);
 	else

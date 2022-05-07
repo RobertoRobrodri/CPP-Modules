@@ -23,6 +23,7 @@ class MateriaSource : public IMateriaSource {
 	public:
 
 		MateriaSource(void);
+		MateriaSource(MateriaSource const &mater);
 		virtual ~MateriaSource();
 
 		void learnMateria(AMateria* mater);

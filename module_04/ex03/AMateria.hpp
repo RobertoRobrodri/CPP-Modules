@@ -31,7 +31,7 @@ class Ice : public AMateria {
 	public:
 
 		Ice(void);
-		Ice(std::string const &type);
+	//	Ice(std::string const &type);
 		Ice(Ice const &ice);
 		virtual ~Ice(void);
 
@@ -44,7 +44,7 @@ class Cure : public AMateria {
 	public:
 
 		Cure(void);
-		Cure(std::string const &type);
+	//	Cure(std::string const &type);
 		Cure(Cure const &potion);
 		virtual ~Cure(void);
 

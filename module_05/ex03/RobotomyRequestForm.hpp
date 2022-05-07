@@ -13,8 +13,8 @@ class RobotForm : public Form
 		RobotForm(std::string target);
 		~RobotForm(void);
 
-		std::string getTarget(void) const;
 		virtual void execute(Bureaucrat const & executor) const;
+		std::string const & getTarget(void) const;
 
 };
 

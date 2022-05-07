@@ -20,7 +20,7 @@ Bureaucrat::~Bureaucrat(void) {
 		std::cout << "Burro destructor called" << std::endl;
 }
 
-std::string Bureaucrat::getName(void) const {
+std::string const & Bureaucrat::getName(void) const {
 	return this->_name;
 }
 
@@ -31,7 +31,7 @@ void	Bureaucrat::check_exceptions(int gradation) const {
 		throw Bureaucrat::GradeTooHighException();
 }
 
-int	Bureaucrat::getGrade(void) const {
+int	const & Bureaucrat::getGrade(void) const {
 	return this->_grade;
 }
 

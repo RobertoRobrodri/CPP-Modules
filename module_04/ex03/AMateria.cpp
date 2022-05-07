@@ -35,9 +35,9 @@ Ice::Ice(void) {
 	this->_type = "ice";
 }
 
-Ice::Ice(std::string const &type) {
+/*Ice::Ice(std::string const &type) {
 	this->_type = type;
-}
+}*/
 
 Ice::Ice(Ice const &ice) {
 	*this = ice;
@@ -47,7 +47,7 @@ Ice::~Ice(void) {
 }
 
 AMateria* Ice::clone() const {
-	Ice *cube = new Ice("ice");
+	Ice *cube = new Ice();
 	return cube;
 }
 
@@ -61,9 +61,9 @@ Cure::Cure(void) {
 	this->_type = "cure";
 }
 
-Cure::Cure(std::string const &type) {
+/*Cure::Cure(std::string const &type) {
 	this->_type = type;
-}
+}*/
 
 Cure::Cure(Cure const &potion) {
 	*this = potion;
@@ -73,7 +73,7 @@ Cure::~Cure(void) {
 }
 
 AMateria* Cure::clone() const {
-	Cure *potion = new Cure("cure");
+	Cure *potion = new Cure();
 	return potion;
 }
 

@@ -20,8 +20,12 @@ Bureaucrat::~Bureaucrat(void) {
 		std::cout << "Burro destructor called" << std::endl;
 }
 
-std::string Bureaucrat::getName(void) const {
+std::string const &Bureaucrat::getName(void) const {
 	return this->_name;
+}
+
+int	const &Bureaucrat::getGrade(void) const {
+	return this->_grade;
 }
 
 void	Bureaucrat::check_exceptions(int gradation) const {
@@ -29,10 +33,6 @@ void	Bureaucrat::check_exceptions(int gradation) const {
 		throw Bureaucrat::GradeTooLowException();
 	else if (gradation < 1)
 		throw Bureaucrat::GradeTooHighException();
-}
-
-int	Bureaucrat::getGrade(void) const {
-	return this->_grade;
 }
 
 void	Bureaucrat::IncrementGrade(void) {
@@ -59,7 +59,7 @@ Bureaucrat & Bureaucrat::operator=(Bureaucrat const &bur) {
 void	Bureaucrat::signForm(Form &form) const {
 	if (form.getSigned() == 1)
 		std::cout << "Already signed" << std::endl;
-	else if (this->getGrade() < form.getGrade())
+	else if (this->getGrade() <= form.getGrade())
 	{
 		form.beSigned(*this);
 		std::cout << this->getName() << " signs " << form.getName() << std::endl;

@@ -1,7 +1,6 @@
 #include "PresidentialPardonForm.hpp"
 
-PresidentialPardon::PresidentialPardon(std::string target) : Form("Presidential Pardon", 0, 25, 5) {
-	this->_target = target;
+PresidentialPardon::PresidentialPardon(std::string target) : Form("Presidential Pardon", 0, 25, 5), _target(target) {
 	std::cout << "Presidential Pardon default constructor called" << std::endl;
 }
 
@@ -9,7 +8,7 @@ PresidentialPardon::~PresidentialPardon(void) {
 	std::cout << "Presidential Pardon destructor called" << std::endl;
 }
 
-std::string	PresidentialPardon::getTarget(void) const {
+std::string	const & PresidentialPardon::getTarget(void) const {
 	return this->_target;
 }
 

@@ -17,6 +17,8 @@ class Bureaucrat
 		std::string	_name;
 		int			_grade;
 
+		void	check_exceptions(int grade) const;
+
 	public:
 
 		class GradeTooHighException : public std::exception
@@ -44,13 +46,12 @@ class Bureaucrat
 		Bureaucrat(Bureaucrat const &bur);
 		~Bureaucrat(void);
 
-		std::string getName(void) const;
-		int	getGrade(void) const;
+		std::string const & getName(void) const;
+		int	const & getGrade(void) const;
 
 		void	IncrementGrade(void);
 		void	DecrementGrade(void);
 
-		void	check_exceptions(int grade) const;
 		void	signForm(Form &form) const;
 		void	executeForm(Form const & form) const;
 

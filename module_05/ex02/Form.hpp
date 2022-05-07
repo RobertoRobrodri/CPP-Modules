@@ -12,6 +12,8 @@ class Form {
 		int			const	_required_grade;
 		int			const	_execute_grade;
 
+		void	check_exceptions(int gradation) const;
+		
 	public:
 
 		class GradeTooHighException : public std::exception
@@ -46,18 +48,18 @@ class Form {
 		Form(Form const &f);
 		~Form(void);
 
-		std::string getName(void) const;
-		int	getGrade(void) const;
-		int	getExecGrade(void) const;
-		bool	getSigned(void) const;
+		std::string const &getName(void) const;
+		int	const &getGrade(void) const;
+		int	const &getExecGrade(void) const;
+		bool	const &getSigned(void) const;
 
-		void	check_exceptions(int gradation) const;
 		void	beSigned(Bureaucrat const &bur);
-
-		virtual void execute(Bureaucrat const & executor) const = 0;
 		void	can_sign(Bureaucrat const &bur) const;
 		void	can_exec(Bureaucrat const &bur) const;
 		void	is_signed(void) const;
+
+
+		virtual void execute(Bureaucrat const & executor) const = 0;
 };
 std::ostream	& operator<<(std::ostream &os, const Form &form);
 

@@ -20,19 +20,19 @@ Form::~Form(void){
 }
 
 //Getters
-std::string	Form::getName(void) const {
+std::string	const &Form::getName(void) const {
 	return this->_name;
 }
 
-int	Form::getGrade(void) const {
+int	const &Form::getGrade(void) const {
 	return this->_required_grade;
 }
 
-bool	Form::getSigned(void) const {
+bool	const &Form::getSigned(void) const {
 	return  this->_signed;
 }
 
-int	Form::getExecGrade(void) const {
+int	const &Form::getExecGrade(void) const {
 	return this->_execute_grade;
 }
 

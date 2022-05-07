@@ -14,7 +14,6 @@ class AsciiTree : public Form
 		~AsciiTree(void);
 
 		virtual void execute(Bureaucrat const & executor) const;
-
 		std::string	getTarget(void) const;
 };
 

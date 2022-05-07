@@ -1,8 +1,7 @@
 #include "ShrubberyCreationForm.hpp"
 #include <fstream>
 
-AsciiTree::AsciiTree(std::string target) : Form("Weird word for a bunch of trees", 0, 145, 137) {
-	this->_target = target;
+AsciiTree::AsciiTree(std::string target) : Form("Shrubbery", 0, 145, 137), _target(target) {
 	std::cout << "Shrubbery Creation default constructor called" << std::endl;
 }
 

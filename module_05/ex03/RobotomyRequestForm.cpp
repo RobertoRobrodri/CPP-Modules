@@ -1,7 +1,6 @@
 # include "RobotomyRequestForm.hpp"
 
-RobotForm::RobotForm(std::string target) : Form("Roboto", 0, 72, 45) {
-	this->_target = target;
+RobotForm::RobotForm(std::string target) : Form("Roboto", 0, 72, 45), _target(target) {
 	std::cout << "Robot Form default constructor called" << std::endl;
 }
 
@@ -9,7 +8,7 @@ RobotForm::~RobotForm(void) {
 	std::cout << "Robot Form destructor called" << std::endl;
 }
 
-std::string RobotForm::getTarget(void) const {
+std::string const & RobotForm::getTarget(void) const {
 	return this->_target;
 }
 

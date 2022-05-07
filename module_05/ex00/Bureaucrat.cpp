@@ -12,11 +12,6 @@ Bureaucrat::Bureaucrat(std::string const &name, int const &grade){
 	std::cout << "Burro parameter constructor called" << std::endl;
 }
 
-Bureaucrat & Bureaucrat::operator=(Bureaucrat const &bur) {
-	this->_name = bur._name;
-	this->_grade = bur._grade;
-	return *this;
-}
 
 Bureaucrat::Bureaucrat(Bureaucrat const &bur) {
 	std::cout << "Burro copy constructor called" << std::endl;
@@ -27,8 +22,12 @@ Bureaucrat::~Bureaucrat(void) {
 		std::cout << "Burro destructor called" << std::endl;
 }
 
-std::string Bureaucrat::getName(void) const {
+std::string const &Bureaucrat::getName(void) const {
 	return this->_name;
+}
+
+int	const &Bureaucrat::getGrade(void) const {
+	return this->_grade;
 }
 
 void	Bureaucrat::check_exceptions(int gradation) const {
@@ -36,10 +35,6 @@ void	Bureaucrat::check_exceptions(int gradation) const {
 		throw Bureaucrat::GradeTooLowException();
 	else if (gradation < 1)
 		throw Bureaucrat::GradeTooHighException();
-}
-
-int	Bureaucrat::getGrade(void) const {
-	return this->_grade;
 }
 
 void	Bureaucrat::IncrementGrade(void) {
@@ -55,4 +50,10 @@ void	Bureaucrat::DecrementGrade(void) {
 std::ostream	& operator<<(std::ostream &os, const Bureaucrat &bur) {
 	os << bur.getName() << " | " << bur.getGrade();
 	return os;
+}
+
+Bureaucrat & Bureaucrat::operator=(Bureaucrat const &bur) {
+	this->_name = bur._name;
+	this->_grade = bur._grade;
+	return *this;
 }

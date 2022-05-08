@@ -27,8 +27,8 @@ int main(void)
 			phonebook.add_contact();
 		else if (!str.compare("SEARCH"))
 			phonebook.search_contact();
+		std::cout << "USER: ";
 		str.clear();
-		std::cout << "USER : ";
 	}
 	return (0);
 }

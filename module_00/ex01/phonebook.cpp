@@ -45,6 +45,7 @@ void	Phonebook::display_columns(void)
 void	Phonebook::search_contact(void)
 {
 	int	index;
+	std::string buffer;
 
 	index = 0;
 	if (!this->_max)
@@ -55,7 +56,14 @@ void	Phonebook::search_contact(void)
 		for (int i = this->_max - 1; i >= 0; i--)
 			this->_contact[i].display_available_contacts(i);
 		std::cout << "Input desired index: ";
-		std::cin >> index;
+		std::cin >> buffer;
+		if (buffer.find_first_not_of("0123456789") != std::string::npos)
+		{
+			std::cout << "Invalid index" << std::endl;
+			return ;
+		}
+		else
+			index = std::atoi(buffer.c_str());
 		if ((index < MAX_CONTACT && index >= 0) && index < _max)
 			this->_contact[index].display_info();
 		else

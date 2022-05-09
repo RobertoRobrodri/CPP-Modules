@@ -21,13 +21,14 @@ int main(void)
 	std::cout << "USER : ";
 	while (getline(std::cin, str))
 	{
+		std::cout << "El str" << str << std::endl;
 		if (!str.compare("EXIT"))
 			break ;
 		else if (!str.compare("ADD"))
 			phonebook.add_contact();
 		else if (!str.compare("SEARCH"))
 			phonebook.search_contact();
-		std::cout << "USER: ";
+		std::cout << "USER : ";
 		str.clear();
 	}
 	return (0);

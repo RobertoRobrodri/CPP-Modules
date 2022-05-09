@@ -56,7 +56,7 @@ void	Phonebook::search_contact(void)
 		for (int i = this->_max - 1; i >= 0; i--)
 			this->_contact[i].display_available_contacts(i);
 		std::cout << "Input desired index: ";
-		std::cin >> buffer;
+		getline(std::cin, buffer);
 		if (buffer.find_first_not_of("0123456789") != std::string::npos)
 		{
 			std::cout << "Invalid index" << std::endl;

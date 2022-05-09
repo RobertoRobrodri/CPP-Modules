@@ -1,5 +1,18 @@
 #include "conversion.hpp"
 
+void	check_exceptions(char *argv)
+{
+	std::string	str;
+	std::string comparisons[] {"-inff", "+inff", "nanf", "-inf", "+inf", "nan"};
+	str.assign(argv);
+	for (int i = 0; i < 6; i++) {
+		if (!str.compare(comparisons[i]))
+		{
+			
+		}
+	};
+}
+
 int main (int argc, char **argv)
 {
 	if (argc == 2)
@@ -32,26 +45,7 @@ int main (int argc, char **argv)
 		std::cout << conv.getNumberFloat() << " && " << conv.getNumberDouble() <<std::endl;*/
 
 		//REAL PROGRAM
-		std::string	str;
-		str.assign(argv[1]);
-		if (str.length() > 1)
-		{
-			// Double n float
-		}
-		else
-		{
-			if (std::isalpha(str[0]))
-			{
-				conversion conv(str[0]);
-				conv.charcase();
-			}
-			else
-			{
-				int i = std::atoi(argv[1]);
-				conversion conv(i);
-				conv.intcase();
-			}
-		}
+		check_exceptions(argv[1]);
 	}
 	return 0;
 }

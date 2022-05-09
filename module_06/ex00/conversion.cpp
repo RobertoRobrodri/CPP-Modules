@@ -51,7 +51,7 @@ char const & conversion::getChar(void) const {
 
 //Other stuff
 
-void	conversion::charcase(void) {
+void	conversion::char_case(void) {
 	if (std::isprint(this->getChar()) == 0)
 		std::cout << "Char: Non displayable" << std::endl;
 	else
@@ -61,7 +61,7 @@ void	conversion::charcase(void) {
 	std::cout << "Double: " << this->getNumberDouble() << std::endl;
 }
 
-void	conversion::intcase(void) {
+void	conversion::int_case(void) {
 	if (std::isprint(this->getChar()) == 0)
 		std::cout << "Char: Non displayable" << std::endl;
 	else

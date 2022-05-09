@@ -14,6 +14,7 @@ class conversion
 		char	_c;
 
 	public:
+
 		explicit conversion(double d);
 		explicit conversion(float f);
 		explicit conversion(int i);
@@ -25,8 +26,8 @@ class conversion
 		double	const & getNumberDouble(void) const;
 		char const & getChar(void) const;
 
-		void	charcase(void);
-		void	intcase(void);
+		void	char_case(void);
+		void	int_case(void);
 };
 
 #endif

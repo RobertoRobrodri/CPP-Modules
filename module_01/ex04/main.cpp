@@ -2,7 +2,15 @@
 #include <string>
 #include <fstream>
 
-std::string	write_file(std::fstream	&file, const std::string s1, const std::string s2)
+std::string	return_name(const char **filename)
+{
+	std::string	name(*filename);
+	
+	name.append("_replace.txt");
+	return name;
+}
+
+std::string	write_file(std::ifstream &file, const std::string s1, const std::string s2)
 {
 	std::string					read;
 	std::string					buffer;
@@ -27,7 +35,7 @@ std::string	write_file(std::fstream	&file, const std::string s1, const std::stri
 
 int	open_file(const char *filename, const std::string s1, const std::string s2)
 {
-	std::fstream	file;
+	std::ifstream	file;
 	std::string		buffer;
 
 	file.open(filename, std::ios::in);
@@ -40,9 +48,9 @@ int	open_file(const char *filename, const std::string s1, const std::string s2)
 	{
 		buffer = write_file(file, s1, s2);
 		file.close();
-		file.open(filename, std::ios::out);
-		file << buffer;
-		file.close();
+		std::ofstream	output(return_name(&filename));
+		output << buffer;
+		output.close();
 		return (1);
 	}
 }

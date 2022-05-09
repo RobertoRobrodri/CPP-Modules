@@ -27,10 +27,31 @@ int main (int argc, char **argv)
 		std::cout << conv.getNumberFloat() << " && " << conv.getNumberDouble() <<std::endl;*/
 
 		//CHAR CASE
-		conversion conv(argv[1][0]);
+	/*	conversion conv(argv[1][0]);
 		std::cout << conv.getChar() << " && " << conv.getNumberInt() << std::endl;
-		std::cout << conv.getNumberFloat() << " && " << conv.getNumberDouble() <<std::endl;
+		std::cout << conv.getNumberFloat() << " && " << conv.getNumberDouble() <<std::endl;*/
 
+		//REAL PROGRAM
+		std::string	str;
+		str.assign(argv[1]);
+		if (str.length() > 1)
+		{
+			// Double n float
+		}
+		else
+		{
+			if (std::isalpha(str[0]))
+			{
+				conversion conv(str[0]);
+				conv.charcase();
+			}
+			else
+			{
+				int i = std::atoi(argv[1]);
+				conversion conv(i);
+				conv.intcase();
+			}
+		}
 	}
 	return 0;
 }

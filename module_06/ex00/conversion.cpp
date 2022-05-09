@@ -1,5 +1,6 @@
 #include "conversion.hpp"
 
+//Constructor + casting
 conversion::conversion(float f) {
 	this->_i = static_cast<int>(f);
 	this->_d = static_cast<double>(f);
@@ -30,6 +31,8 @@ conversion::conversion(char c) {
 
 conversion::~conversion() {}
 
+
+// Getters
 float	const & conversion::getNumberFloat(void) const {
 	return this->_f;
 }
@@ -44,4 +47,26 @@ double	const & conversion::getNumberDouble(void) const {
 
 char const & conversion::getChar(void) const {
 	return this->_c;
+}
+
+//Other stuff
+
+void	conversion::charcase(void) {
+	if (std::isprint(this->getChar()) == 0)
+		std::cout << "Char: Non displayable" << std::endl;
+	else
+		std::cout << "Char: " << this->getChar() << std::endl;
+	std::cout << "Int: " << this->getNumberInt() << std::endl;
+	std::cout << "Float: " << this->getNumberFloat() << std::endl;
+	std::cout << "Double: " << this->getNumberDouble() << std::endl;
+}
+
+void	conversion::intcase(void) {
+	if (std::isprint(this->getChar()) == 0)
+		std::cout << "Char: Non displayable" << std::endl;
+	else
+		std::cout << "Char: " << this->getChar() << std::endl;
+	std::cout << "Int: " << this->getNumberInt() << std::endl;
+	std::cout << "Float: " << this->getNumberFloat() << std::endl;
+	std::cout << "Double: " << this->getNumberDouble() << std::endl;
 }

@@ -24,6 +24,9 @@ class conversion
 		int	const & getNumberInt(void) const;
 		double	const & getNumberDouble(void) const;
 		char const & getChar(void) const;
+
+		void	charcase(void);
+		void	intcase(void);
 };
 
 #endif

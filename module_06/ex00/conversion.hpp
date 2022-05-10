@@ -15,6 +15,10 @@ class conversion
 		char	_c;
 
 		std::string	literal;
+		bool		flag;
+
+		void	cast_exceptions(int i) const;
+		void	print_casting(void) const;
 
 
 	public:
@@ -34,14 +38,13 @@ class conversion
 		double	const & getNumberDouble(void) const;
 		char const & getChar(void) const;
 		std::string	const & getLiteral(void) const;
+		bool const & getFlag(void) const;
 
 		void	char_case(void) const;
 		void	int_case(void) const;
 		void	float_case(void) const;
 		void	double_case(void) const;
 		void	check_exceptions(void) const;
-
-		void	print_casting(void) const;
 };
 
 #endif

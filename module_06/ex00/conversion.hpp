@@ -2,7 +2,8 @@
 #define CONVERSION_HPP
 #include <iostream>
 #include <string>
-#include <climits>
+#include <limits>
+#include <cmath>
 
 class conversion
 {
@@ -13,21 +14,34 @@ class conversion
 		int		_i;
 		char	_c;
 
+		std::string	literal;
+
+
 	public:
+
+		conversion(void);
+		conversion(std::string str);
+	//	conversion(conversion const & conv);
+		~conversion();
 
 		explicit conversion(double d);
 		explicit conversion(float f);
 		explicit conversion(int i);
 		explicit conversion(char c);
-		~conversion();
 
 		float	const & getNumberFloat(void) const;
 		int	const & getNumberInt(void) const;
 		double	const & getNumberDouble(void) const;
 		char const & getChar(void) const;
+		std::string	const & getLiteral(void) const;
 
-		void	char_case(void);
-		void	int_case(void);
+		void	char_case(void) const;
+		void	int_case(void) const;
+		void	float_case(void) const;
+		void	double_case(void) const;
+		void	check_exceptions(void) const;
+
+		void	print_casting(void) const;
 };
 
 #endif

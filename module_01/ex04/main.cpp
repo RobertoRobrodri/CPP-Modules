@@ -29,7 +29,6 @@ std::string	write_file(std::ifstream &file, const std::string s1, const std::str
 		buffer.append(read);
 		buffer.append("\n");
 	}
-	buffer.pop_back();
 	return (buffer);
 }
 

@@ -23,6 +23,16 @@ class conversion
 
 	public:
 
+		class WrongInput : public std::exception
+		{
+			public:
+				virtual const char* what() const throw()
+				{
+					return ("Wrong Input");
+				}
+
+		};
+
 		conversion(void);
 		conversion(std::string str);
 	//	conversion(conversion const & conv);
@@ -40,11 +50,13 @@ class conversion
 		std::string	const & getLiteral(void) const;
 		bool const & getFlag(void) const;
 
-		void	char_case(void) const;
-		void	int_case(void) const;
-		void	float_case(void) const;
-		void	double_case(void) const;
-		void	check_exceptions(void) const;
+		void	try_cases(void) const;
+
+		bool	char_case(void) const;
+		bool	int_case(void) const;
+		bool	float_case(void) const;
+		bool	double_case(void) const;
+		bool	check_exceptions(void) const;
 };
 
 #endif

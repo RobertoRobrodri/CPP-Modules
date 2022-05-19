@@ -65,6 +65,18 @@ bool const & conversion::getFlag(void) const {
 
 //Other stuff
 
+void	conversion::try_cases(void) const {
+	bool (conversion::*func[]) () const= {&conversion::check_exceptions, &conversion::int_case, &conversion::char_case, 
+		&conversion::float_case, &conversion::double_case};
+
+	for (int i = 0; i < 5; i++)
+	{
+		if ((this->*func[i])() == true)
+			return ;
+	}
+	throw conversion::WrongInput();
+}
+
 void	conversion::cast_exceptions(int i) const {
 
 	if (i == 1)
@@ -99,14 +111,15 @@ void	conversion::cast_exceptions(int i) const {
 	}
 }
 
-void	conversion::check_exceptions(void) const {
+bool	conversion::check_exceptions(void) const {
 	std::string comparisons[] {"-inff", "+inff", "nanf", "-inf", "+inf", "nan"};
 	for (int i = 0; i < 6; i++) {
 		if (comparisons[i].compare(this->getLiteral()) == 0) {
 			cast_exceptions(i + 1);
-			return ;
+			return true;
 		}
 	};
+	return false;
 }
 
 void	conversion::print_casting(void) const {
@@ -125,25 +138,29 @@ void	conversion::print_casting(void) const {
 	std::cout << "f" << std::endl;
 }
 
-void	conversion::char_case(void) const {
+bool	conversion::char_case(void) const {
 	if (this->literal.length() == 1 && std::isalpha(this->literal[0]))
 	{
 		char	aux = this->literal[0];
 		conversion char_case(aux);
 		char_case.print_casting();
+		return true;
 	};
+	return false;
 }
 
-void	conversion::int_case(void) const {
+bool	conversion::int_case(void) const {
 	if (this->literal.find_first_not_of("0123456789") == std::string::npos)
 	{
 		int	aux = std::atoi(this->literal.c_str());
 		conversion int_case(aux);
 		int_case.print_casting();
+		return true;
 	};
+	return false;
 }
 
-void	conversion::float_case(void) const {
+bool	conversion::float_case(void) const {
 	if (this->literal.find_first_not_of("0123456789.f") == std::string::npos
 		&& this->literal.find("f", this->literal.length() - 1) != std::string::npos)
 	{
@@ -152,10 +169,12 @@ void	conversion::float_case(void) const {
 		if (this->literal.rfind(".0f") != std::string::npos)
 			float_case.flag = 1;
 		float_case.print_casting();
+		return true ;
 	};
+	return false;
 }
 
-void	conversion::double_case(void) const {
+bool	conversion::double_case(void) const {
 	if (this->literal.find_first_not_of("0123456789.") == std::string::npos
 		&& this->literal.find(".") != std::string::npos)
 	{
@@ -164,5 +183,7 @@ void	conversion::double_case(void) const {
 		if (this->literal.rfind(".0") != std::string::npos)
 			double_case.flag = 1;
 		double_case.print_casting();
+		return true;
 	};
+	return false;
 }

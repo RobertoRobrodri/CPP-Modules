@@ -7,11 +7,14 @@ int main (int argc, char **argv)
 		std::string	str;
 		str.assign(argv[1]);
 		conversion conv(str);
-		conv.check_exceptions();
-		conv.char_case();
-		conv.int_case();
-		conv.float_case();
-		conv.double_case();
+		try 
+		{
+			conv.try_cases();
+		}
+		catch (conversion::WrongInput &e)
+		{
+			std::cout << e.what() << std::endl;
+		}
 	}
 	return 0;
 }

@@ -179,7 +179,8 @@ bool	conversion::int_case(void) const {
 
 bool	conversion::float_case(void) const {
 	if (this->literal.find_first_not_of("0123456789.f") == std::string::npos
-		&& this->literal.find("f", this->literal.length() - 1) != std::string::npos)
+		&& this->literal.find("f", this->literal.length() - 1) != std::string::npos
+		&& this->dot_counter('.') == 1 && this->dot_counter('f') == 1)
 	{
 		float aux = std::atof(this->literal.c_str());
 		conversion float_case(aux);
@@ -193,7 +194,8 @@ bool	conversion::float_case(void) const {
 
 bool	conversion::double_case(void) const {
 	if (this->literal.find_first_not_of("0123456789.") == std::string::npos
-		&& this->literal.find(".") != std::string::npos)
+		&& this->literal.find(".") != std::string::npos
+		&& this->dot_counter('.') == 1)
 	{
 		double aux = std::strtod(this->literal.c_str(), NULL);
 		conversion double_case(aux);
@@ -203,4 +205,15 @@ bool	conversion::double_case(void) const {
 		return true;
 	};
 	return false;
+}
+
+int	conversion::dot_counter(char to_find) const {
+	int count = 0;
+	size_t npos = this->literal.find(to_find);
+	while(npos != std::string::npos)
+    {
+        count++;
+        npos = this->literal.find(to_find, npos + 1);
+    }
+	return count;
 }

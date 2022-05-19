@@ -20,6 +20,7 @@ class conversion
 
 		void	cast_exceptions(int i) const;
 		void	print_casting(void) const;
+		int		dot_counter(char to_find) const;
 
 
 	public:

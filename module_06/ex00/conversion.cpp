@@ -6,6 +6,10 @@ conversion::conversion(void) : literal(""), _i(0), _d(0), _f(0), _c(0), flag(0) 
 conversion::conversion(std::string str) : literal(str), _i(0), _d(0), _f(0), _c(0), flag(0) {
 }
 
+conversion::conversion(conversion const & conv) {
+	*this = conv;
+}
+
 //Constructor + casting
 conversion::conversion(float f) : flag(0) {
 	this->_i = static_cast<int>(f);
@@ -61,6 +65,19 @@ std::string	const & conversion::getLiteral(void) const {
 
 bool const & conversion::getFlag(void) const {
 	return this->flag;
+}
+
+
+//Overloading
+conversion & conversion::operator=(conversion const & conv) {
+	this->literal = conv.literal;
+	this->flag = conv.flag;
+	this->_i = conv._i;
+	this->_d = conv._d;
+	this->_c = conv._c;
+	this->_f = conv._f;
+	
+	return *this;
 }
 
 //Other stuff

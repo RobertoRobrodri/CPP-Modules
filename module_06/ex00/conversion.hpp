@@ -4,6 +4,7 @@
 #include <string>
 #include <limits>
 #include <cmath>
+#include <exception>
 
 class conversion
 {
@@ -35,7 +36,7 @@ class conversion
 
 		conversion(void);
 		conversion(std::string str);
-	//	conversion(conversion const & conv);
+		conversion(conversion const & conv);
 		~conversion();
 
 		explicit conversion(double d);
@@ -57,6 +58,8 @@ class conversion
 		bool	float_case(void) const;
 		bool	double_case(void) const;
 		bool	check_exceptions(void) const;
+
+		conversion	& operator=(conversion const & conv);
 };
 
 #endif

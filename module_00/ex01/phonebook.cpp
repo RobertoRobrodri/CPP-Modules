@@ -25,8 +25,9 @@ void	Phonebook::add_contact(void)
 	if (_max == MAX_CONTACT)
 	{
 		std::cout << "WARNING: Oldest contact will be Overwritten" << std::endl;
-		for (int i = 0; i < MAX_CONTACT - 2; i++)
+		for (int i = 0; i < MAX_CONTACT - 1; i++) {
 			this->_contact[i] = this->_contact[i + 1];
+		};
 		this->_contact[this->_max - 1].fill_names();
 	}
 	else
@@ -53,7 +54,7 @@ void	Phonebook::search_contact(void)
 	else
 	{
 		this->display_columns();
-		for (int i = this->_max - 1; i >= 0; i--)
+		for (int i = 0; i < this->_max; i++)
 			this->_contact[i].display_available_contacts(i);
 		std::cout << "Input desired index: ";
 		getline(std::cin, buffer);

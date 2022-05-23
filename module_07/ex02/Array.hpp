@@ -21,7 +21,8 @@ class	Array {
 			*this = var;
 		}
 		~Array ( void ) {
-			delete[] this->array;
+			if (this->array != NULL)
+				delete[] this->array;
 		}
 
 		Array & operator=(Array const &ar) {

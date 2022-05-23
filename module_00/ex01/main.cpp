@@ -21,7 +21,6 @@ int main(void)
 	std::cout << "USER : ";
 	while (getline(std::cin, str))
 	{
-		std::cout << "El str" << str << std::endl;
 		if (!str.compare("EXIT"))
 			break ;
 		else if (!str.compare("ADD"))

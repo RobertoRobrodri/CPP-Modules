@@ -6,7 +6,7 @@ int main (void)
 
 	rand_class = generate();
 	identify(rand_class);
-//	identify(*rand_class);
+	identify(*rand_class);
 	delete rand_class;
 	return 0;
 }

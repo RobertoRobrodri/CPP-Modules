@@ -12,13 +12,15 @@
 
 NAME = hi_this_is_brain
 
-CXXFLAGS = -Wall -Werror -Wextra
+CXXFLAGS = -Wall -Werror -Wextra $(VERSION)
+
+VERSION = --std=c++98
 
 SRCS = main.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 
-CXX = clang++
+CXX = g++
 
 all: $(NAME)
 

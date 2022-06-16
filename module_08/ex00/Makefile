@@ -5,14 +5,16 @@
 #                                                     +:+ +:+         +:+      #
 #    By: robrodri <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/12/07 16:23:34 by robrodri          #+#    #+#              #
-#    Updated: 2021/12/07 16:24:38 by robrodri         ###   ########.fr        #
+#    Created: 2021/12/07 16:09:20 by robrodri          #+#    #+#              #
+#    Updated: 2021/12/07 16:09:52 by robrodri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = replace
+NAME = easyfind
 
-CXXFLAGS = -Wall -Werror -Wextra
+CXXFLAGS = -Wall -Werror -Wextra $(VERSION)
+
+VERSION = --std=c++98
 
 SRCS = main.cpp
 

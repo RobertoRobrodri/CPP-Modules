@@ -6,18 +6,12 @@
 #include <algorithm>
 
 template < typename T >
-int	easyfind( T const &var, int const &i )
+int	easyfind( T &var, int const &i )
 {
-	typename std::vector<T>::iterator iter;
+	typename T::iterator iter;
 
-	
 	iter = std::find(var.begin(), var.end(), i);
-/*	for (int j = 0; j < var.size(); j++)
-	{
-		if ( var[j] == i)
-			return var[j];
-	}*/
-	return 1;
+	return *iter;
 }
 
 #endif

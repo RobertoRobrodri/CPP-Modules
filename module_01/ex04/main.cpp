@@ -6,7 +6,7 @@ std::string	return_name(const char **filename)
 {
 	std::string	name(*filename);
 	
-	name.append("_replace.txt");
+	name.append(".replace");
 	return name;
 }
 

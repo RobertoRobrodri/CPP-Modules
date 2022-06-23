@@ -12,13 +12,15 @@
 
 NAME = Fixed
 
-CXXFLAGS = -Wall -Werror -Wextra
+VERSION = --std=c++98
+
+CXXFLAGS = -Wall -Werror -Wextra $(VERSION)
 
 SRCS = main.cpp Fixed.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 
-CXX = clang++
+CXX = g++
 
 all: $(NAME)
 

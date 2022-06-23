@@ -47,6 +47,7 @@ class	Fixed {
 		float toFloat( void ) const;
 		int toInt( void ) const;
 		static Fixed const & max(Fixed const &a, Fixed const &b);
+		static Fixed const & min(Fixed const &a, Fixed const &b);
 };
 std::ostream	& operator<<(std::ostream &os, const Fixed &f);
 

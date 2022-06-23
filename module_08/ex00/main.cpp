@@ -6,5 +6,5 @@ int main (void)
 	for (int i = 0; i < 100; i++) {
 		v.push_back(i);
 	};
-	std::cout << easyfind<std::vector<int> >(v, 42) << std::endl;
+	std::cout << easyfind<std::vector<int> >(v, 100) << std::endl;
 }

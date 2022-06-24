@@ -20,12 +20,12 @@ Point::Point( const Point & var ) {
 
 Point::~Point( void ) {}
 
-Fixed Point::getX( void ) const {
-  return this->x;
+float Point::getX( void ) const {
+  return this->x.toFloat();
 }
 
-Fixed Point::getY( void ) const {
-  return this->y;
+float Point::getY( void ) const {
+  return this->y.toFloat();
 }
 
 

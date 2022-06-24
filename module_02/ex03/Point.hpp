@@ -16,8 +16,8 @@ class	Point {
 		Point ( const Point & var );
 		~Point ( void );
 
-		Fixed getX( void ) const;
-		Fixed getY( void ) const;
+		float getX( void ) const;
+		float getY( void ) const;
 
 		Point & operator=( Point const &p);
 		bool operator==(Point const &p) const;

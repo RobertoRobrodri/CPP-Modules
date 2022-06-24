@@ -19,7 +19,7 @@ Fixed::Fixed(int const i) {
 }
 
 Fixed::Fixed(float const f) {
-	this->_fixed_point = (int)(f * (1 << this->_f_bits));
+	this->_fixed_point = roundf((f * (1 << this->_f_bits)));
 	std::cout << "Float constructor called" << std::endl;
 }
 

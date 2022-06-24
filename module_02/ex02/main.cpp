@@ -11,5 +11,10 @@ int main( void )
 	std::cout << a << std::endl;
 	std::cout << b << std::endl;
 	std::cout << Fixed::max( a, b ) << std::endl;
+
+	Fixed c(4);
+	Fixed d(10);
+	std::cout << Fixed::max(d, c) << std::endl;
+	std::cout << Fixed::min(d, c) << std::endl;
 	return 0;
 }

@@ -8,9 +8,8 @@ Scav_trap::Scav_trap (void) {
 	std::cout << "Scav_trap Default constructor called" << std::endl;
 }
 
-Scav_trap::Scav_trap (std::string name) {
+Scav_trap::Scav_trap (std::string name) : Clap_trap(name) {
 	std::cout << "Scav_trap Parameter constructor called" << std::endl;
-	this->_name = name;
 	this->_hp = SCAV_HP;
 	this->_energy = SCAV_ENERGY;
 	this->_ad = SCAV_AD;

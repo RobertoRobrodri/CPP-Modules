@@ -24,3 +24,15 @@ Scav_trap::Scav_trap (const Scav_trap &trap) {
 Scav_trap::~Scav_trap (void) {
 	std::cout << "Scav_trap Destructor called" << std::endl;
 }
+
+void Scav_trap::guardGate() {
+	std::cout << this->get_name() << " entered gate keeper mode" << std::endl;
+}
+
+Scav_trap & Scav_trap::operator=(const Scav_trap &other) {
+	this->_name = other._name;
+	this->_hp = other._hp;
+	this->_energy = other._energy;
+	this->_ad = other._ad;
+	return *this;
+}

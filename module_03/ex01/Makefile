@@ -12,13 +12,15 @@
 
 NAME = ScavTrap
 
-CXXFLAGS = -Wall -Werror -Wextra
+VERSION = --std=c++98
+
+CXXFLAGS = -Wall -Werror -Wextra $(VERSION)
 
 SRCS = ClapTrap.cpp main.cpp ScavTrap.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 
-CXX = clang++
+CXX = c++
 
 all: $(NAME)
 

@@ -11,7 +11,10 @@ class Frag_trap : public Clap_trap {
 		Frag_trap(void);
 		Frag_trap(std::string name);
 		Frag_trap(const Frag_trap &scav);
-		~Frag_trap(void);
+		virtual ~Frag_trap(void);
+
+		Frag_trap &operator=(const Frag_trap &other);
+		void highFivesGuys(void);
 };
 
 #endif

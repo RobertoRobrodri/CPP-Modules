@@ -11,7 +11,10 @@ class Scav_trap : public Clap_trap {
 		Scav_trap(void);
 		Scav_trap(std::string name);
 		Scav_trap(const Scav_trap &scav);
-		~Scav_trap(void);
+		virtual ~Scav_trap(void);
+
+		void guardGate();
+		Scav_trap &operator=(const Scav_trap &other);
 };
 
 #endif

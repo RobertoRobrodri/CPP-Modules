@@ -24,3 +24,15 @@ Frag_trap::Frag_trap (const Frag_trap &trap) {
 Frag_trap::~Frag_trap (void) {
 	std::cout << "Frag_trap Destructor called" << std::endl;
 }
+
+Frag_trap & Frag_trap::operator=(const Frag_trap &other) {
+	this->_name = other._name;
+	this->_hp = other._hp;
+	this->_energy = other._energy;
+	this->_ad = other._ad;
+	return *this;
+}
+
+void Frag_trap::highFivesGuys(void) {
+	std::cout << "High five request accepted " << std::endl;
+}

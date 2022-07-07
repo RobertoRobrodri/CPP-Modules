@@ -15,5 +15,17 @@ int main(void)
 	joseto.attack("Jhonny");
 	joseto.takeDamage(5);
 	joseto.beRepaired(4);
+
+	/* Copy constructor works*/
+	Clap_trap yusepe(joseto);
+	std::cout << yusepe.get_hp() << std::endl;
+	std::cout << yusepe.get_name() << std::endl;
+
+	yusepe.takeDamage(100);
+	yusepe.beRepaired(-100);
+	paco.guardGate();
+
+	Scav_trap guille(paco);
+	std::cout << guille.get_name() << std::endl;
 	return (0);
 }

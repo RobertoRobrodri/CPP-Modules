@@ -13,51 +13,51 @@
 #include "ClapTrap.hpp"
 
 /*	BASIC STUFF */
-Clap_trap::Clap_trap (void) : _name("Generic claptrap"), _hp(HP), _energy(ENERGY), _ad(AD) {
+ClapTrap::ClapTrap (void) : _name("Generic claptrap"), _hp(HP), _energy(ENERGY), _ad(AD) {
 	std::cout << "Claptrap Default constructor called" << std::endl;
 }
 
-Clap_trap::Clap_trap (std::string name) : _name(name), _hp(HP), _energy(ENERGY), _ad(AD) {
+ClapTrap::ClapTrap (std::string name) : _name(name), _hp(HP), _energy(ENERGY), _ad(AD) {
 	std::cout << "Claptrap Parameter constructor called" << std::endl;
 }
 
-Clap_trap::Clap_trap (const Clap_trap &trap) {
+ClapTrap::ClapTrap (const ClapTrap &trap) {
 	std::cout << "Claptrap Copy constructor called" << std::endl;
 	*this = trap;
 }
 
-Clap_trap::~Clap_trap (void) {
+ClapTrap::~ClapTrap (void) {
 	std::cout << "Claptrap Destructor called" << std::endl;
 }
 
 /* GETTERS && SETTERS */
 
-std::string Clap_trap::get_name(void) const {
+std::string ClapTrap::get_name(void) const {
 	return (this->_name);
 }
 
-unsigned int	Clap_trap::get_hp(void) const {
+unsigned int	ClapTrap::get_hp(void) const {
 	return (this->_hp);
 }
 
-unsigned int	Clap_trap::get_ad(void) const {
+unsigned int	ClapTrap::get_ad(void) const {
 	return (this->_ad);
 }
 
-unsigned int	Clap_trap::get_energy(void) const {
+unsigned int	ClapTrap::get_energy(void) const {
 	return (this->_energy);
 }
 
-void	Clap_trap::set_hp(int ammount) {
+void	ClapTrap::set_hp(int ammount) {
 	this->_hp = ammount;
 }
 
 /*	ACTION FUNCTIONS  */
-void Clap_trap::attack(std::string const & target) {
+void ClapTrap::attack(std::string const & target) {
 	std::cout << this->get_name() << " attacks " << target << " causing " << this->get_ad() << std::endl;
 }
 
-void Clap_trap::takeDamage(unsigned int amount) {
+void ClapTrap::takeDamage(unsigned int amount) {
 	std::cout << this->get_name() << " takes " << amount << " of damage " << std::endl;
 	if ((int)this->get_hp() - (int)amount >= 0)
 		this->set_hp(this->get_hp() - amount);
@@ -66,14 +66,14 @@ void Clap_trap::takeDamage(unsigned int amount) {
 	std::cout << this->get_name() << " Current HP " << this->get_hp() << std::endl;
 }
 
-void Clap_trap::beRepaired(unsigned int amount) {
+void ClapTrap::beRepaired(unsigned int amount) {
 	std::cout << this->get_name() << " heals " << amount << " HP " << std::endl;
 	this->set_hp(this->get_hp() + amount);
 	std::cout << this->get_name() << " Current HP " << this->get_hp() << std::endl;
 }
 
 /*OVERLOADING*/
-Clap_trap & Clap_trap::operator=(Clap_trap const &cp) {
+ClapTrap & ClapTrap::operator=(ClapTrap const &cp) {
 	this->_name = cp._name;
 	this->_hp = cp._hp;
 	this->_ad = cp._ad;

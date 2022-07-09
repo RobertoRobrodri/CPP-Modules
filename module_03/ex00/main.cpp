@@ -14,7 +14,7 @@
 
 int main(void)
 {
-	Clap_trap paco("Paco");
+	ClapTrap paco("Paco");
 
 	paco.takeDamage(0);
 	paco.attack("Jhonny");
@@ -22,7 +22,7 @@ int main(void)
 	paco.beRepaired(4);
 	paco.takeDamage(20);
 
-	Clap_trap pepe;
+	ClapTrap pepe;
 	pepe.takeDamage(0);
 	pepe.attack("Papo");
 	pepe.takeDamage(5);

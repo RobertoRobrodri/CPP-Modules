@@ -17,15 +17,16 @@
 # define FRAG_AD 30
 # include "ClapTrap.hpp"
 
-class Frag_trap : public Clap_trap {
+class FragTrap : public ClapTrap {
 	public:
 
-		Frag_trap(void);
-		Frag_trap(std::string name);
-		Frag_trap(const Frag_trap &scav);
-		virtual ~Frag_trap(void);
+		FragTrap(void);
+		FragTrap(std::string name);
+		FragTrap(const FragTrap &scav);
+		virtual ~FragTrap(void);
 
-		Frag_trap &operator=(const Frag_trap &other);
+		void	attack(std::string const &target);
+		FragTrap &operator=(const FragTrap &other);
 		void highFivesGuys(void);
 };
 

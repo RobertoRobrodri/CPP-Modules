@@ -19,15 +19,15 @@
 # define AD 0
 
 
-class Clap_trap {
+class ClapTrap {
 
 	public :
 
-		Clap_trap(void);
-		Clap_trap(std::string name);
-		Clap_trap(const Clap_trap &trap);
-		~Clap_trap(void);
-		Clap_trap & operator=(Clap_trap const &cp);
+		ClapTrap(void);
+		ClapTrap(std::string name);
+		ClapTrap(const ClapTrap &trap);
+		~ClapTrap(void);
+		ClapTrap & operator=(ClapTrap const &cp);
 
 		std::string get_name(void) const ;
 		unsigned int			get_hp(void) const;

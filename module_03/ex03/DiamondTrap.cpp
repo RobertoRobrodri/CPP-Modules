@@ -12,7 +12,7 @@
 
 # include "DiamondTrap.hpp"
 
-Diamond_trap::Diamond_trap (void) : Clap_trap("Generic Diamond_Trap_clap_trap"), Scav_trap("Generic Diamond_Trap_clap_trap"), Frag_trap("Generic Diamond_Trap_clap_trap") {
+DiamondTrap::DiamondTrap (void) : ClapTrap("Generic Diamond_Trap_clap_name"), ScavTrap("Generic Diamond_Trap_clap_name"), FragTrap("Generic Diamond_Trap_clap_name") {
 	std::cout << "Diamond_trap Default constructor called" << std::endl;
 	this->Name = "Generic Diamond_Trap";
 	this->_hp = FRAG_HP;
@@ -20,7 +20,7 @@ Diamond_trap::Diamond_trap (void) : Clap_trap("Generic Diamond_Trap_clap_trap"),
 	this->_ad = FRAG_AD;
 }
 
-Diamond_trap::Diamond_trap (std::string name) : Clap_trap(name + "_clap_trap"), Scav_trap(name), Frag_trap(name) {
+DiamondTrap::DiamondTrap (std::string name) : ClapTrap(name + "_clap_name"), ScavTrap(name), FragTrap(name) {
 	std::cout << "Diamond_trap Parameter constructor called" << std::endl;
 	this->Name = name;
 	this->_hp = FRAG_HP;
@@ -28,25 +28,29 @@ Diamond_trap::Diamond_trap (std::string name) : Clap_trap(name + "_clap_trap"), 
 	this->_ad = FRAG_AD;
 }
 
-Diamond_trap::Diamond_trap (const Diamond_trap &trap) {
+DiamondTrap::DiamondTrap (const DiamondTrap &trap) {
 	std::cout << "Diamond_trap Copy constructor called" << std::endl;
 	*this = trap;
 }
 
-Diamond_trap::~Diamond_trap (void) {
+DiamondTrap::~DiamondTrap (void) {
 	std::cout << "Diamond_trap Destructor called" << std::endl;
 }
 
-void	Diamond_trap::whoAmI(void) {
+void	DiamondTrap::whoAmI(void) {
 	std::cout << this->Name << std::endl;
-	std::cout << this->Clap_trap::_name << std::endl;
+	std::cout << this->ClapTrap::_name << std::endl;
 }
 
-Diamond_trap & Diamond_trap::operator=(const Diamond_trap &other) {
+DiamondTrap & DiamondTrap::operator=(const DiamondTrap &other) {
 	this->_name = other._name;
 	this->Name = other.Name;
 	this->_hp = other._hp;
 	this->_energy = other._energy;
 	this->_ad = other._ad;
 	return *this;
+}
+
+void	DiamondTrap::attack(std::string const &target) {
+	ScavTrap::attack(target);
 }

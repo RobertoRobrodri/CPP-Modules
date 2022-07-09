@@ -17,21 +17,21 @@
 
 int main(void)
 {
-	/*Scav_trap paco("Paco");
+	/*ScavTrap paco("Paco");
 
 	paco.takeDamage(0);
 	paco.attack("Jhonny");
 	paco.takeDamage(5);
 	paco.beRepaired(4);
 
-	Clap_trap joseto("joseto");
+	ClapTrap joseto("joseto");
 	joseto.takeDamage(0);
 	joseto.attack("Jhonny");
 	joseto.takeDamage(5);
 	joseto.beRepaired(4);
 
 
-	Clap_trap yusepe(joseto);
+	ClapTrap yusepe(joseto);
 	std::cout << yusepe.get_hp() << std::endl;
 	std::cout << yusepe.get_name() << std::endl;
 
@@ -39,21 +39,22 @@ int main(void)
 	yusepe.beRepaired(-100);
 	paco.guardGate();
 
-	Scav_trap guille(paco);
+	ScavTrap guille(paco);
 	std::cout << guille.get_name() << std::endl;
 
-	Frag_trap leroy("Leroy");
+	FragTrap leroy("Leroy");
 	leroy.takeDamage(0);*/
 
-	Diamond_trap aberration("ABERRATION");
+	DiamondTrap aberration("ABERRATION");
 	aberration.guardGate();
 	aberration.highFivesGuys();
 	aberration.whoAmI();
 
-	Diamond_trap pollo;
+	DiamondTrap pollo;
 	pollo.whoAmI();
 
 	pollo = aberration;
 	pollo.whoAmI();
+	pollo.attack("Yusepe");
 	return (0);
 }

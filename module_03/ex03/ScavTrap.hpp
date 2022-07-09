@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: robrodri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/07 12:28:02 by robrodri          #+#    #+#             */
-/*   Updated: 2022/07/07 12:28:04 by robrodri         ###   ########.fr       */
+/*   Created: 2022/07/07 12:26:28 by robrodri          #+#    #+#             */
+/*   Updated: 2022/07/07 12:26:29 by robrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,17 @@
 # define SCAV_AD 20
 # include "ClapTrap.hpp"
 
-class Scav_trap : virtual public Clap_trap {
+class ScavTrap : virtual public ClapTrap {
 	public:
 
-		Scav_trap(void);
-		Scav_trap(std::string name);
-		Scav_trap(const Scav_trap &scav);
-		virtual ~Scav_trap(void);
+		ScavTrap(void);
+		ScavTrap(std::string name);
+		ScavTrap(const ScavTrap &scav);
+		virtual ~ScavTrap(void);
 
-		void guardGate();
-		Scav_trap &operator=(const Scav_trap &other);
+		void	attack(std::string target);
+		void	guardGate();
+		ScavTrap &operator=(const ScavTrap &other);
 };
 
 #endif

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: robrodri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/07 12:28:16 by robrodri          #+#    #+#             */
-/*   Updated: 2022/07/07 12:28:18 by robrodri         ###   ########.fr       */
+/*   Created: 2022/07/07 12:27:37 by robrodri          #+#    #+#             */
+/*   Updated: 2022/07/07 12:27:38 by robrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,16 @@
 # define FRAG_AD 30
 # include "ClapTrap.hpp"
 
-class Frag_trap : virtual public Clap_trap {
+class FragTrap : virtual public ClapTrap {
 	public:
 
-		Frag_trap(void);
-		Frag_trap(std::string name);
-		Frag_trap(const Frag_trap &scav);
-		virtual ~Frag_trap(void);
+		FragTrap(void);
+		FragTrap(std::string name);
+		FragTrap(const FragTrap &scav);
+		virtual ~FragTrap(void);
 
-		Frag_trap &operator=(const Frag_trap &other);
+		void	attack(std::string const &target);
+		FragTrap &operator=(const FragTrap &other);
 		void highFivesGuys(void);
 };
 

@@ -16,16 +16,17 @@
 # include "ScavTrap.hpp"
 # include "FragTrap.hpp"
 
-class Diamond_trap : public Scav_trap, public Frag_trap {
+class DiamondTrap : public ScavTrap, public FragTrap {
 	public:
 
-		Diamond_trap(void);
-		Diamond_trap(std::string name);
-		Diamond_trap(const Diamond_trap &diamond);
-		virtual ~Diamond_trap(void);
+		DiamondTrap(void);
+		DiamondTrap(std::string name);
+		DiamondTrap(const DiamondTrap &diamond);
+		virtual ~DiamondTrap(void);
 
 		void whoAmI(void);
-		Diamond_trap &operator=(const Diamond_trap &other);
+		void attack(std::string const &target);
+		DiamondTrap &operator=(const DiamondTrap &other);
 
 	private:
 

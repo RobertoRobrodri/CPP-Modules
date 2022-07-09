@@ -17,16 +17,17 @@
 # define SCAV_AD 20
 # include "ClapTrap.hpp"
 
-class Scav_trap : public Clap_trap {
+class ScavTrap : public ClapTrap {
 	public:
 
-		Scav_trap(void);
-		Scav_trap(std::string name);
-		Scav_trap(const Scav_trap &scav);
-		virtual ~Scav_trap(void);
+		ScavTrap(void);
+		ScavTrap(std::string name);
+		ScavTrap(const ScavTrap &scav);
+		virtual ~ScavTrap(void);
 
-		void guardGate();
-		Scav_trap &operator=(const Scav_trap &other);
+		void	attack(std::string const &target);
+		void	guardGate();
+		ScavTrap &operator=(const ScavTrap &other);
 };
 
 #endif

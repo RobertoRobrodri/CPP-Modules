@@ -17,15 +17,10 @@ Dog::Dog(void) : Animal("Dog") {
 	std::cout << &this->_brain << std::endl;
 }
 
-Dog::Dog(std::string type) : Animal("Dog") {
-	type = "Dog";
-	std::cout << "Parameter Dog constructor called" << std::endl;
-}
-
-Dog::Dog(const Dog &pug) {
+Dog::Dog(const Dog &pug) : Animal("Dog") {
 	std::cout << "Copy constructor called" << std::endl;
-	std::cout << &this->_brain << std::endl;
 	*this = pug;
+	std::cout << &this->_brain << std::endl;
 }
 
 void	Dog::makeSound(void) const {

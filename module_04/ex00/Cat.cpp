@@ -4,13 +4,8 @@ Cat::Cat(void) : Animal("Cat") {
 	std::cout << "Default Cat constructor called" << std::endl;
 }
 
-Cat::Cat(std::string type) : Animal("Cat") {
-	type = "cat";
-	std::cout << "Parameter Cat constructor called" << std::endl;
-}
-
-Cat::Cat(const Cat &Cat) {
-	std::cout << "Copy constructor called" << std::endl;
+Cat::Cat(const Cat &Cat) : Animal("Cat") {
+	std::cout << "Cat Copy constructor called" << std::endl;
 	*this = Cat;
 }
 
@@ -33,13 +28,8 @@ WrongCat::WrongCat(void) : WrongAnimal("WrongCat") {
 	std::cout << "Default WrongCat constructor called" << std::endl;
 }
 
-WrongCat::WrongCat(std::string type) : WrongAnimal("WrongCat") {
-	type = "Wrongcat";
-	std::cout << "Parameter WrongCat constructor called" << std::endl;
-}
-
-WrongCat::WrongCat(const WrongCat &Cat) {
-	std::cout << "Copy constructor called" << std::endl;
+WrongCat::WrongCat(const WrongCat &Cat) : WrongAnimal("Cat") {
+	std::cout << "WrongCat Copy constructor called" << std::endl;
 	*this = Cat;
 }
 

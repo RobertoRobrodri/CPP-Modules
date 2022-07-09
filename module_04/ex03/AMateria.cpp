@@ -23,7 +23,6 @@ void AMateria::use(ICharacter& target) {
 	std::cout << "Random bullshit, go! " << target.getName() << std::endl;
 }
 
-//TODO Doesnt make sense, later
 AMateria & AMateria::operator=(AMateria const &mater) {
 	this->_type = mater._type;
 	return *this;
@@ -35,11 +34,7 @@ Ice::Ice(void) {
 	this->_type = "ice";
 }
 
-/*Ice::Ice(std::string const &type) {
-	this->_type = type;
-}*/
-
-Ice::Ice(Ice const &ice) {
+Ice::Ice(Ice const &ice) : AMateria("Ice") {
 	*this = ice;
 }
 
@@ -55,17 +50,18 @@ void	Ice::use(ICharacter& target) {
 	std::cout << "Shoots ice bolt at " << target.getName() << std::endl;
 }
 
+Ice & Ice::operator=(Ice const &mater) {
+	this->_type = mater._type;
+	return *this;
+}
+
 // CURE THINGY
 
 Cure::Cure(void) {
 	this->_type = "cure";
 }
 
-/*Cure::Cure(std::string const &type) {
-	this->_type = type;
-}*/
-
-Cure::Cure(Cure const &potion) {
+Cure::Cure(Cure const &potion) : AMateria("Cure") {
 	*this = potion;
 }
 
@@ -79,4 +75,9 @@ AMateria* Cure::clone() const {
 
 void	Cure::use(ICharacter& target) {
 	std::cout << "Heals " << target.getName() << " wounds" << std::endl;
+}
+
+Cure & Cure::operator=(Cure const &mater) {
+	this->_type = mater._type;
+	return *this;
 }

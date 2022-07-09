@@ -7,7 +7,6 @@ class Cat : public Animal {
 	public:
 
 		Cat(void);
-		Cat(std::string type);
 		Cat(const Cat &Cat);
 		virtual ~Cat(void);
 
@@ -21,7 +20,6 @@ class WrongCat : public WrongAnimal {
 	public:
 
 		WrongCat(void);
-		WrongCat(std::string type);
 		WrongCat(const WrongCat &Cat);
 		virtual ~WrongCat(void);
 

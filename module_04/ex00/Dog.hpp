@@ -7,7 +7,6 @@ class Dog : public Animal {
 	public:
 
 		Dog(void);
-		Dog(std::string type);
 		Dog(const Dog &pug);
 		virtual ~Dog(void);
 

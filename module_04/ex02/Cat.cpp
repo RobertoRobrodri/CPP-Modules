@@ -16,12 +16,7 @@ Cat::Cat(void) : Animal("Cat"){
 	std::cout << "Default Cat constructor called" << std::endl;
 }
 
-Cat::Cat(std::string type) : Animal("Cat") {
-	this->_type = type;
-	std::cout << "Parameter Cat constructor called" << std::endl;
-}
-
-Cat::Cat(const Cat &Cat) {
+Cat::Cat(const Cat &Cat) : Animal("Cat") {
 	std::cout << "Copy constructor called" << std::endl;
 	*this = Cat;
 }

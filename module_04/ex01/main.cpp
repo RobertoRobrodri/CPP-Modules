@@ -16,5 +16,5 @@ int main()
 	delete dog_2;
 	delete cat_1;
 	delete cat_2;
-	system("leaks Brain");
+//	system("leaks Brain");
 }

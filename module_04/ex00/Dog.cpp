@@ -4,13 +4,8 @@ Dog::Dog(void) : Animal("Dog"){
 	std::cout << "Default Dog constructor called" << std::endl;
 }
 
-Dog::Dog(std::string type) : Animal("Dog") {
-	type = "Dog";
-	std::cout << "Parameter Dog constructor called" << std::endl;
-}
-
-Dog::Dog(const Dog &pug) {
-	std::cout << "Copy constructor called" << std::endl;
+Dog::Dog(const Dog &pug) : Animal("Dog") {
+	std::cout << "Dog Copy constructor called" << std::endl;
 	*this = pug;
 }
 

@@ -31,12 +31,13 @@ class Ice : public AMateria {
 	public:
 
 		Ice(void);
-	//	Ice(std::string const &type);
 		Ice(Ice const &ice);
 		virtual ~Ice(void);
 
 		AMateria* 	clone() const;
 		void		use(ICharacter& target);
+
+		Ice & operator=(Ice const &mater);
 };
 
 class Cure : public AMateria {
@@ -44,12 +45,13 @@ class Cure : public AMateria {
 	public:
 
 		Cure(void);
-	//	Cure(std::string const &type);
 		Cure(Cure const &potion);
 		virtual ~Cure(void);
 
 		AMateria* 	clone() const;
 		void		use(ICharacter& target);
+
+		Cure & operator=(Cure const &mater);
 };
 
 #endif

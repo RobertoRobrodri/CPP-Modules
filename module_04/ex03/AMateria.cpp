@@ -34,7 +34,7 @@ Ice::Ice(void) {
 	this->_type = "ice";
 }
 
-Ice::Ice(Ice const &ice) : AMateria("Ice") {
+Ice::Ice(Ice const &ice) : AMateria("ice") {
 	*this = ice;
 }
 
@@ -61,7 +61,7 @@ Cure::Cure(void) {
 	this->_type = "cure";
 }
 
-Cure::Cure(Cure const &potion) : AMateria("Cure") {
+Cure::Cure(Cure const &potion) : AMateria("cure") {
 	*this = potion;
 }
 

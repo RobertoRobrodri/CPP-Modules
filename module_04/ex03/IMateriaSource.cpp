@@ -8,7 +8,7 @@ MateriaSource::MateriaSource(void) {
 
 MateriaSource::~MateriaSource(void) {
 	for (int i = 0; i < 4; i++) {
-		if (this->_storage[i] == NULL) {
+		if (this->_storage[i] != NULL) {
 			delete this->_storage[i];
 		}
 	}
@@ -21,7 +21,7 @@ MateriaSource::MateriaSource(MateriaSource const &mater) {
 void MateriaSource::learnMateria(AMateria* mater) {
 	for (int i = 0; i < 4; i++) {
 		if (this->_storage[i] == NULL) {
-			this->_storage[i] = mater->clone();
+			this->_storage[i] = mater;
 			return ;
 		}
 	}

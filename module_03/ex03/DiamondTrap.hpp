@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   DiamondTrap.hpp                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: robrodri <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/07 10:44:12 by robrodri          #+#    #+#             */
+/*   Updated: 2022/07/07 10:44:14 by robrodri         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef DIAMONDTRAP_HPP
 # define DIAMONDTRAP_HPP
 # include "ClapTrap.hpp"
@@ -14,11 +26,10 @@ class Diamond_trap : public Scav_trap, public Frag_trap {
 
 		void whoAmI(void);
 		Diamond_trap &operator=(const Diamond_trap &other);
-		std::string	getDiamondName(void);
 
 	private:
 
-		std::string _diamond_name;
+		std::string	Name;
 };
 
 #endif

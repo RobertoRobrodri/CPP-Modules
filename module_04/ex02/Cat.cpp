@@ -2,17 +2,21 @@
 
 Cat & Cat::operator=(Cat const &nyan_cat) {
 	this->_type = nyan_cat.getType();
+	if (this->_brain)
+		delete this->_brain;
 	this->_brain = new Brain();
+	for (int i = 0; i < 100; i++) {
+		this->_brain->ideas[i] = nyan_cat._brain->ideas[i];
+	}
 	return *this;
 }
 
-Cat::Cat(void) {
-	this->_type = "Cat";
+Cat::Cat(void) : Animal("Cat"){
 	this->_brain = new Brain();
 	std::cout << "Default Cat constructor called" << std::endl;
 }
 
-Cat::Cat(std::string type) {
+Cat::Cat(std::string type) : Animal("Cat") {
 	this->_type = type;
 	std::cout << "Parameter Cat constructor called" << std::endl;
 }

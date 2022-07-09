@@ -1,12 +1,11 @@
 # include "Dog.hpp"
 
-Dog::Dog(void) {
-	this->_type = "Dog";
+Dog::Dog(void) : Animal("Dog"){
 	std::cout << "Default Dog constructor called" << std::endl;
 }
 
-Dog::Dog(std::string type) {
-	this->_type = type;
+Dog::Dog(std::string type) : Animal("Dog") {
+	type = "Dog";
 	std::cout << "Parameter Dog constructor called" << std::endl;
 }
 
@@ -21,4 +20,9 @@ Dog::~Dog(void) {
 
 void	Dog::makeSound(void) const {
 	std::cout << "Por favor no tiren cuetes" << std::endl;
+}
+
+Dog & Dog::operator=(Dog const &pug) {
+	this->_type = pug._type;
+	return *this;
 }

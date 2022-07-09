@@ -19,6 +19,5 @@ class Dog : public Animal {
 		Dog & operator=(Dog const &pug);
 
 		void	makeSound(void) const;
-
 };
 #endif

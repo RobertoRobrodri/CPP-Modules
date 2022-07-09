@@ -12,7 +12,9 @@
 
 NAME = Abstract
 
-CXXFLAGS = -Wall -Werror -Wextra
+VERSION = --std=c++98
+
+CXXFLAGS = -Wall -Werror -Wextra $(VERSION)
 
 SRCS = Animal.cpp Dog.cpp Cat.cpp main.cpp Brain.cpp
 

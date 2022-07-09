@@ -14,4 +14,10 @@ int main()
 	delete meta;
 	delete j;
 	delete i;
+	const WrongAnimal* paco = new WrongAnimal();
+	const WrongAnimal* pepe = new WrongCat();
+	paco->makeSound();
+	pepe->makeSound();
+	delete paco;
+	delete pepe;
 }

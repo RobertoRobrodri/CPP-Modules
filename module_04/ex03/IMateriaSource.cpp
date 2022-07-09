@@ -19,6 +19,8 @@ MateriaSource::MateriaSource(MateriaSource const &mater) {
 }
 
 void MateriaSource::learnMateria(AMateria* mater) {
+	if (mater == NULL)
+		return ;
 	for (int i = 0; i < 4; i++) {
 		if (this->_storage[i] == NULL) {
 			this->_storage[i] = mater;

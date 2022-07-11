@@ -18,6 +18,7 @@ Dog::Dog(void) : Animal("Dog") {
 }
 
 Dog::Dog(const Dog &pug) : Animal("Dog") {
+	this->_brain = NULL;
 	std::cout << "Copy constructor called" << std::endl;
 	*this = pug;
 	std::cout << &this->_brain << std::endl;

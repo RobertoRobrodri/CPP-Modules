@@ -6,7 +6,7 @@ Bureaucrat::Bureaucrat(void) : _name("Hermes"), _grade(150) {
 
 Bureaucrat::Bureaucrat(std::string const &name, int const &grade){
 	this->check_exceptions(grade);
-	this->_name = name;
+	const_cast<std::string &> (this->_name) = name;
 	this->_grade = grade;
 	std::cout << "Burro parameter constructor called" << std::endl;
 }
@@ -51,7 +51,7 @@ std::ostream	& operator<<(std::ostream &os, const Bureaucrat &bur) {
 }
 
 Bureaucrat & Bureaucrat::operator=(Bureaucrat const &bur) {
-	this->_name = bur._name;
+	const_cast<std::string &> (this->_name) = bur._name;
 	this->_grade = bur._grade;
 	return *this;
 }

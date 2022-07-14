@@ -18,4 +18,31 @@ int main()
 	{
 		std::cerr << e.what() << std::endl;
 	}
+	try
+	{
+		Bureaucrat _default;
+		Bureaucrat pepe("Pepe", 200);
+	}
+	catch (const std::exception &e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+	try
+	{
+		Bureaucrat	yusepe("Yusepe", 1);
+		yusepe.IncrementGrade();
+	}
+	catch (const std::exception &e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+	try
+	{
+		Bureaucrat	jacinto("Jacinto", 150);
+		jacinto.DecrementGrade();
+	}
+	catch (const std::exception &e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
 }

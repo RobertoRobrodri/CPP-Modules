@@ -1,7 +1,11 @@
 # include "RobotomyRequestForm.hpp"
 
-RobotForm::RobotForm(std::string target) : Form("Roboto", 0, 72, 45), _target(target) {
+RobotForm::RobotForm(void) : Form("Roboto", 0, 72, 45), _target("Bender") {
 	std::cout << "Robot Form default constructor called" << std::endl;
+}
+
+RobotForm::RobotForm(std::string target) : Form("Roboto", 0, 72, 45), _target(target) {
+	std::cout << "Robot Form parameter constructor called" << std::endl;
 }
 
 RobotForm::~RobotForm(void) {

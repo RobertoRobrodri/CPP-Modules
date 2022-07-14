@@ -55,10 +55,7 @@ std::ostream	& operator<<(std::ostream &os, const Form &form) {
 //Other functions
 void	Form::beSigned(Bureaucrat const &bur) {
 	if (this->_signed == 1)
-	{
-		std::cout << "Already signed" << std::endl;
-		return ;
-	}
+		throw Bureaucrat::AlreadySignedException();
 	this->can_sign(bur);
 	this->_signed = 1;
 }

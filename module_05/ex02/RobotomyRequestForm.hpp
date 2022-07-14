@@ -10,11 +10,13 @@ class RobotForm : public Form
 
 	public:
 
+		RobotForm(void);
 		RobotForm(std::string target);
 		~RobotForm(void);
 		virtual void execute(Bureaucrat const & executor) const;
 
 		std::string const &getTarget(void) const;
+		RobotForm & operator=(RobotForm const &rr);
 
 };
 

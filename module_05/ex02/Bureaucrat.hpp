@@ -41,6 +41,24 @@ class Bureaucrat
 
 		};
 
+		class AlreadySignedException : public std::exception
+		{
+			public:
+				virtual const char* what() const throw()
+				{
+					return ("Already signed");
+				}
+		};
+
+		class CannotSignException : public std::exception
+		{
+			public:
+				virtual const char* what() const throw()
+				{
+					return ("Cannot sign");
+				}
+		};
+
 		Bureaucrat(void);
 		Bureaucrat(std::string const &name, int const &grade);
 		Bureaucrat(Bureaucrat const &bur);

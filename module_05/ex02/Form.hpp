@@ -13,7 +13,7 @@ class Form {
 		int			const	_execute_grade;
 
 		void	check_exceptions(int gradation) const;
-		
+
 	public:
 
 		class GradeTooHighException : public std::exception
@@ -60,6 +60,7 @@ class Form {
 
 
 		virtual void execute(Bureaucrat const & executor) const = 0;
+		Form & operator=(Form const &f);
 };
 std::ostream	& operator<<(std::ostream &os, const Form &form);
 

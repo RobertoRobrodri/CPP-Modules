@@ -50,14 +50,14 @@ void	Bureaucrat::DecrementGrade(void) {
 
 void	Bureaucrat::signForm(Form &form) const {
 	if (form.getSigned() == 1)
-		std::cout << "Already signed" << std::endl;
+		throw Bureaucrat::AlreadySignedException();
 	else if (this->getGrade() <= form.getGrade())
 	{
 		form.beSigned(*this);
 		std::cout << this->getName() << "  signs " << form.getName() << std::endl;
 	}
 	else
-		std::cout << this->getName() << "  cannot sign " << form.getName() << std::endl;
+		throw Bureaucrat::CannotSignException();
 }
 
 //OVERLOADING

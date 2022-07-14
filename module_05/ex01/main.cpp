@@ -4,39 +4,50 @@ int main() {
 
 	try {
 
-		Bureaucrat a( "Judge", 20);
-		Bureaucrat b( "Councilman", 50);
-
-		Form	c( "Divorce Papers", 0, 60, 20);
-		Form	d( "New Law", 0, 25, 2);
-		//Form	e( "aa", -1, -1); //Form grade too high exception.
-		//Form	e( "aa", 151, 1511); //Form grade too low exception.
-
-		b.signForm( c ); // Should output that c cannot be signed by b.
-		a.signForm( c );
-
-		a.signForm( c ); // Outputs that the form has already been signed.
-
-		//d.beSigned( b ); // Form grade too high exception.
-		std::cout << "/////////////////////////" << std::endl;
-
-		d.beSigned( a );
-		d.beSigned( a );
-
+		Form form_1;
+		std::cout << form_1 << std::endl;
+		Bureaucrat hermes;
+		std::cout << hermes << std::endl;
+		hermes.signForm(form_1);
 	}
-	catch (Bureaucrat::GradeTooLowException &e ) {
+	catch (const std::exception &e ) {
 
 		std::cout << e.what() << std::endl;
 	}
-	catch (Bureaucrat::GradeTooHighException &e ) {
+	std::cout << "--------------------------------" << std::endl;
+	try {
+		Form form_1("Divorce papers", 0, 1, 1);
+		std::cout << form_1 << std::endl;
+		Bureaucrat hermes;
+		std::cout << hermes << std::endl;
+		hermes.signForm(form_1);
+	}
+	catch (const std::exception &e ) {
 
 		std::cout << e.what() << std::endl;
 	}
-	catch (Form::GradeTooLowException &e ) {
+	std::cout << "--------------------------------" << std::endl;
+	try {
+		Form form_1("Divorce papers", 0, 1, 1);
+		std::cout << form_1 << std::endl;
+		Bureaucrat hermes("Hermes", 2);
+		hermes.IncrementGrade();
+		std::cout << hermes << std::endl;
+		hermes.signForm(form_1);
+	}
+	catch (const std::exception &e ) {
 
 		std::cout << e.what() << std::endl;
 	}
-	catch (Form::GradeTooHighException &e ) {
+	std::cout << "--------------------------------" << std::endl;
+	try {
+		Form form_1("Divorce papers", 0, 1, 1);
+		std::cout << form_1 << std::endl;
+		Bureaucrat hermes;
+		std::cout << hermes << std::endl;
+		form_1.beSigned(hermes);
+	}
+	catch (const std::exception &e ) {
 
 		std::cout << e.what() << std::endl;
 	}

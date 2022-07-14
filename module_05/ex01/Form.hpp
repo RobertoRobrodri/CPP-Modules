@@ -46,6 +46,7 @@ class Form {
 		bool	const &getSigned(void) const;
 
 		void	beSigned(Bureaucrat const &bur);
+		Form & operator=(Form const &f);
 
 };
 std::ostream	& operator<<(std::ostream &os, const Form &form);

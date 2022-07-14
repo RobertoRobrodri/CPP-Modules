@@ -11,8 +11,9 @@ Form::Form(std::string const &name, bool const &is_signed, int const &grade, int
 	std::cout << "Form parameter constructor called" << std::endl;
 }
 
-Form::Form(Form const &f) : _name(f._name), _signed(f._signed), _required_grade(f._required_grade), _execute_grade(f._execute_grade) {
+Form::Form(Form const &f) : _required_grade(f.getGrade()), _execute_grade(f.getExecGrade()) {
 	std::cout << "Form copy constructor called" << std::endl;
+	*this = f;
 }
 
 Form::~Form(void){
@@ -42,6 +43,15 @@ std::ostream	& operator<<(std::ostream &os, const Form &form) {
 	return os;
 }
 
+Form & Form::operator=(Form const &f) {
+	const_cast<std::string &>(this->_name) = f.getName();
+	this->_signed = f.getSigned();
+	const_cast<int &>(this->_execute_grade) = f.getExecGrade();
+	const_cast<int &>(this->_required_grade) = f.getGrade();
+	return *this;
+}
+
+//Other functions
 void	Form::beSigned(Bureaucrat const &bur) {
 	if (this->_signed == 1)
 		std::cout << "Already signed" << std::endl;

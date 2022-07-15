@@ -12,6 +12,7 @@ class AsciiTree : public Form
 
 		AsciiTree(void);
 		AsciiTree(std::string target);
+		AsciiTree(AsciiTree const & tree);
 		~AsciiTree(void);
 
 		virtual void execute(Bureaucrat const & executor) const;

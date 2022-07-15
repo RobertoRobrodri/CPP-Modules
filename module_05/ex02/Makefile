@@ -22,7 +22,7 @@ OBJS = $(SRCS:.cpp=.o)
 
 all: $(NAME)
 
-CXX = clang++
+CXX = g++
 
 $(NAME): $(OBJS)
 	$(CXX) $(CFLAGS) $(OBJS) -o $(NAME)

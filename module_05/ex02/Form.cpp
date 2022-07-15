@@ -12,8 +12,8 @@ Form::Form(std::string const &name, bool const &is_signed, int const &grade, int
 }
 
 Form::Form(Form const &f) : _required_grade(f._required_grade), _execute_grade(f._execute_grade) {
-	std::cout << "Form copy constructor called" << std::endl;
 	*this = f;
+	std::cout << "Form copy constructor called" << std::endl;
 }
 
 Form::~Form(void){
@@ -55,7 +55,7 @@ std::ostream	& operator<<(std::ostream &os, const Form &form) {
 //Other functions
 void	Form::beSigned(Bureaucrat const &bur) {
 	if (this->_signed == 1)
-		throw Bureaucrat::AlreadySignedException();
+		throw Form::AlreadySignedException();
 	this->can_sign(bur);
 	this->_signed = 1;
 }
@@ -69,12 +69,12 @@ void	Form::check_exceptions(int gradation) const {
 
 void	Form::can_sign(Bureaucrat const &bur) const {
 	if (bur.getGrade() > this->getGrade())
-		throw Form::GradeTooLowException();
+		throw Bureaucrat::GradeTooLowException();
 }
 
 void	Form::can_exec(Bureaucrat const &bur) const {
 	if (bur.getGrade() > this->getExecGrade())
-		throw Form::GradeTooLowException();
+		throw Bureaucrat::GradeTooLowException();
 }
 
 void	Form::is_signed(void) const {

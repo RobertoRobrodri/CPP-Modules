@@ -1,5 +1,6 @@
 # include "Bureaucrat.hpp"
 
+//DEFAULT STUFF
 Bureaucrat::Bureaucrat(void) : _name("Hermes"), _grade(150) {
 	std::cout << "Burro default constructor called" << std::endl;
 }
@@ -20,19 +21,21 @@ Bureaucrat::~Bureaucrat(void) {
 		std::cout << "Burro destructor called" << std::endl;
 }
 
-std::string const & Bureaucrat::getName(void) const {
+//GETTERS
+std::string const &Bureaucrat::getName(void) const {
 	return this->_name;
 }
 
+int	const &Bureaucrat::getGrade(void) const {
+	return this->_grade;
+}
+
+//OTHER FUNCTIONS
 void	Bureaucrat::check_exceptions(int gradation) const {
 	if (gradation > 150)
 		throw Bureaucrat::GradeTooLowException();
 	else if (gradation < 1)
 		throw Bureaucrat::GradeTooHighException();
-}
-
-int	const & Bureaucrat::getGrade(void) const {
-	return this->_grade;
 }
 
 void	Bureaucrat::IncrementGrade(void) {
@@ -45,6 +48,29 @@ void	Bureaucrat::DecrementGrade(void) {
 	this->_grade += 1;
 }
 
+void	Bureaucrat::signForm(Form &form) const {
+	if (form.getSigned() == 1)
+		throw Form::AlreadySignedException();
+	else if (this->getGrade() <= form.getGrade())
+	{
+		form.beSigned(*this);
+		std::cout << this->getName() << " signs " << form.getName() << std::endl;
+	}
+	else
+		throw Bureaucrat::CannotSignException();
+}
+
+void	Bureaucrat::executeForm(Form const & form) const {
+	if (this->getGrade() > form.getExecGrade())
+		throw Bureaucrat::GradeTooLowException();
+	else
+	{
+		form.execute(*this);
+		std::cout << this->getName() << " executed " << form.getName() << " successfully" << std::endl;
+	}
+}
+
+//OVERLOADING
 std::ostream	& operator<<(std::ostream &os, const Bureaucrat &bur) {
 	os << bur.getName() << " | " << bur.getGrade();
 	return os;
@@ -56,24 +82,3 @@ Bureaucrat & Bureaucrat::operator=(Bureaucrat const &bur) {
 	return *this;
 }
 
-void	Bureaucrat::signForm(Form &form) const {
-	if (form.getSigned() == 1)
-		std::cout << "Already signed" << std::endl;
-	else if (this->getGrade() < form.getGrade())
-	{
-		form.beSigned(*this);
-		std::cout << this->getName() << " signs " << form.getName() << std::endl;
-	}
-	else
-		std::cout << this->getName() << " cannot sign " << form.getName() << std::endl;
-}
-
-void	Bureaucrat::executeForm(Form const & form) const {
-	if (this->getGrade() > form.getExecGrade())
-		std::cout << "Cannot execute, grade too low" << std::endl;
-	else
-	{
-		form.execute(*this);
-		std::cout << this->getName() << " executed " << form.getName() << " successfully" << std::endl;
-	}
-}

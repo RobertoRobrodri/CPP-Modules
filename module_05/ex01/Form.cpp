@@ -54,7 +54,7 @@ Form & Form::operator=(Form const &f) {
 //Other functions
 void	Form::beSigned(Bureaucrat const &bur) {
 	if (this->_signed == 1)
-		std::cout << "Already signed" << std::endl;
+		throw Form::AlreadySignedException();
 	else if (bur.getGrade() > this->getGrade())
 		throw Form::GradeTooLowException();
 	else

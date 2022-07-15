@@ -26,7 +26,7 @@ class Bureaucrat
 			public:
 				virtual const char* what() const throw()
 				{
-					return ("Grade too high");
+					return ("Bureaucrat Grade too high");
 				}
 
 		};
@@ -36,9 +36,18 @@ class Bureaucrat
 			public:
 				virtual const char* what() const throw()
 				{
-					return ("Grade too low");
+					return ("Bureaucrat Grade too low");
 				}
 
+		};
+
+		class CannotSignException : public std::exception
+		{
+			public:
+				virtual const char* what() const throw()
+				{
+					return ("Cannot sign");
+				}
 		};
 
 		Bureaucrat(void);
@@ -46,8 +55,8 @@ class Bureaucrat
 		Bureaucrat(Bureaucrat const &bur);
 		~Bureaucrat(void);
 
-		std::string const & getName(void) const;
-		int	const & getGrade(void) const;
+		std::string const &getName(void) const;
+		int			const &getGrade(void) const;
 
 		void	IncrementGrade(void);
 		void	DecrementGrade(void);

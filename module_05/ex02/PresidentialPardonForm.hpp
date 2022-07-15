@@ -12,6 +12,7 @@ class PresidentialPardon : public Form
 
 		PresidentialPardon(void);
 		PresidentialPardon(std::string target);
+		PresidentialPardon(PresidentialPardon const & pp);
 		~PresidentialPardon(void);
 		virtual void execute(Bureaucrat const & executor) const;
 

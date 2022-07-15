@@ -50,11 +50,11 @@ void	Bureaucrat::DecrementGrade(void) {
 
 void	Bureaucrat::signForm(Form &form) const {
 	if (form.getSigned() == 1)
-		throw Bureaucrat::AlreadySignedException();
+		throw Form::AlreadySignedException();
 	else if (this->getGrade() <= form.getGrade())
 	{
 		form.beSigned(*this);
-		std::cout << this->getName() << "  signs " << form.getName() << std::endl;
+		std::cout << this->getName() << " signs " << form.getName() << std::endl;
 	}
 	else
 		throw Bureaucrat::CannotSignException();

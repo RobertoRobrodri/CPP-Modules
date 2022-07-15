@@ -9,12 +9,15 @@ class AsciiTree : public Form
 		std::string	_target;
 
 	public:
-	
+
+		AsciiTree(void);
 		AsciiTree(std::string target);
+		AsciiTree(AsciiTree const & tree);
 		~AsciiTree(void);
 
 		virtual void execute(Bureaucrat const & executor) const;
 		std::string	getTarget(void) const;
+		AsciiTree & operator=(AsciiTree const &tree);
 };
 
 #endif

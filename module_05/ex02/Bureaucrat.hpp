@@ -26,7 +26,7 @@ class Bureaucrat
 			public:
 				virtual const char* what() const throw()
 				{
-					return ("Grade too high");
+					return ("Bureaucrat Grade too high");
 				}
 
 		};
@@ -36,18 +36,9 @@ class Bureaucrat
 			public:
 				virtual const char* what() const throw()
 				{
-					return ("Grade too low");
+					return ("Bureaucrat Grade too low");
 				}
 
-		};
-
-		class AlreadySignedException : public std::exception
-		{
-			public:
-				virtual const char* what() const throw()
-				{
-					return ("Already signed");
-				}
 		};
 
 		class CannotSignException : public std::exception

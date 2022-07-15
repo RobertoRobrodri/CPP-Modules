@@ -1,6 +1,7 @@
 #ifndef ROBOTOMYREQUESTFORM_HPP
 # define ROBOTOMYREQUESTFORM_HPP
 # include "Bureaucrat.hpp"
+# include <stdlib.h>
 
 class RobotForm : public Form
 {
@@ -12,6 +13,7 @@ class RobotForm : public Form
 
 		RobotForm(void);
 		RobotForm(std::string target);
+		RobotForm(RobotForm const &rr);
 		~RobotForm(void);
 		virtual void execute(Bureaucrat const & executor) const;
 

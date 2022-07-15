@@ -16,13 +16,13 @@ VERSION = --std=c++98
 
 CXXFLAGS = -Wall -Werror -Wextra $(VERSION)
 
-SRCS = Bureaucrat.cpp main.cpp Form.cpp PresidentialPardonForm.cpp RobotomyRequestForm.cpp ShrubberyCreationForm.cpp
+SRCS = Bureaucrat.cpp main.cpp Form.cpp PresidentialPardonForm.cpp RobotomyRequestForm.cpp ShrubberyCreationForm.cpp Intern.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 
 all: $(NAME)
 
-CXX = clang++
+CXX = g++
 
 $(NAME): $(OBJS)
 	$(CXX) $(CFLAGS) $(OBJS) -o $(NAME)

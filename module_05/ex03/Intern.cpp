@@ -29,7 +29,7 @@ Form *Intern::makeTreeForm(std::string target) {
 Form	*Intern::makeForm(std::string name, std::string target) {
 	Form *(Intern::*func[])(std::string) = {&Intern::makePresidentialPardon,
 		&Intern::makeRobotRequest, &Intern::makeTreeForm};
-	std::string	form_types[3] = {"robotomy request", "shrubbery creation", "presidential pardon"};
+	std::string	form_types[3] = {"presidential pardon", "robotomy request", "shrubbery creation"};
 	for (int i = 0; i < 3; i++)
 		if (name.compare(form_types[i]) == 0)
 		{

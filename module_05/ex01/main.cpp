@@ -41,8 +41,12 @@ int main() {
 	}
 	std::cout << "--------------------------------" << std::endl;
 	try {
+		Form copy;
 		Form form_1("Divorce papers", 0, 1, 1);
 		std::cout << form_1 << std::endl;
+		std::cout << copy << std::endl;
+		copy = form_1;
+		std::cout << copy << std::endl;
 		Bureaucrat hermes;
 		std::cout << hermes << std::endl;
 		form_1.beSigned(hermes);

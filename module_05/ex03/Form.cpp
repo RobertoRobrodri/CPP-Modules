@@ -11,7 +11,8 @@ Form::Form(std::string const &name, bool const &is_signed, int const &grade, int
 	std::cout << "Form parameter constructor called" << std::endl;
 }
 
-Form::Form(Form const &f) : _name(f._name), _signed(f._signed), _required_grade(f._required_grade), _execute_grade(f._execute_grade) {
+Form::Form(Form const &f) : _required_grade(f._required_grade), _execute_grade(f._execute_grade) {
+	*this = f;
 	std::cout << "Form copy constructor called" << std::endl;
 }
 
@@ -20,20 +21,29 @@ Form::~Form(void){
 }
 
 //Getters
-std::string	const & Form::getName(void) const {
+std::string	const &Form::getName(void) const {
 	return this->_name;
 }
 
-int	const & Form::getGrade(void) const {
+int	const &Form::getGrade(void) const {
 	return this->_required_grade;
 }
 
-bool	const & Form::getSigned(void) const {
+bool	const &Form::getSigned(void) const {
 	return  this->_signed;
 }
 
-int	const & Form::getExecGrade(void) const {
+int	const &Form::getExecGrade(void) const {
 	return this->_execute_grade;
+}
+
+// Overloading
+Form & Form::operator=(Form const &f) {
+	const_cast<std::string &>(this->_name) = f.getName();
+	this->_signed = f.getSigned();
+	const_cast<int &>(this->_execute_grade) = f.getExecGrade();
+	const_cast<int &>(this->_required_grade) = f.getGrade();
+	return *this;
 }
 
 std::ostream	& operator<<(std::ostream &os, const Form &form) {
@@ -41,12 +51,11 @@ std::ostream	& operator<<(std::ostream &os, const Form &form) {
 	return os;
 }
 
+
+//Other functions
 void	Form::beSigned(Bureaucrat const &bur) {
 	if (this->_signed == 1)
-	{
-		std::cout << "Already signed" << std::endl;
-		return ;
-	}
+		throw Form::AlreadySignedException();
 	this->can_sign(bur);
 	this->_signed = 1;
 }
@@ -60,12 +69,12 @@ void	Form::check_exceptions(int gradation) const {
 
 void	Form::can_sign(Bureaucrat const &bur) const {
 	if (bur.getGrade() > this->getGrade())
-		throw Form::GradeTooLowException();
+		throw Bureaucrat::GradeTooLowException();
 }
 
 void	Form::can_exec(Bureaucrat const &bur) const {
 	if (bur.getGrade() > this->getExecGrade())
-		throw Form::GradeTooLowException();
+		throw Bureaucrat::GradeTooLowException();
 }
 
 void	Form::is_signed(void) const {

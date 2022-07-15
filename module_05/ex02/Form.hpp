@@ -5,7 +5,7 @@
 class Bureaucrat;
 class Form {
 
-	private:
+	protected:
 
 		std::string	const	_name;
 		bool				_signed;
@@ -21,7 +21,7 @@ class Form {
 			public:
 				virtual const char* what() const throw()
 				{
-					return ("Grade too high");
+					return ("Form Grade too high");
 				}
 		};
 
@@ -30,7 +30,7 @@ class Form {
 			public:
 				virtual const char* what() const throw()
 				{
-					return ("Grade too low");
+					return ("Form Grade too low");
 				}
 		};
 
@@ -40,6 +40,15 @@ class Form {
 				virtual const char* what() const throw()
 				{
 					return ("Cannot execute unsigned form");
+				}
+		};
+
+		class AlreadySignedException : public std::exception
+		{
+			public:
+				virtual const char* what() const throw()
+				{
+					return ("Already signed");
 				}
 		};
 

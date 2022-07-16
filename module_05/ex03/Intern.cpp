@@ -17,12 +17,12 @@ Form *Intern::makePresidentialPardon(std::string target) {
 }
 
 Form *Intern::makeRobotRequest(std::string target) {
-	Form *Roboto = new RobotForm(target);
+	Form *Roboto = new RobotomyRequestForm(target);
 	return Roboto;
 }
 
 Form *Intern::makeTreeForm(std::string target) {
-	Form *Tree = new AsciiTree(target);
+	Form *Tree = new ShrubberyCreationForm(target);
 	return Tree;
 }
 

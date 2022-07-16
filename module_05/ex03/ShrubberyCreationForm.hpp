@@ -2,7 +2,7 @@
 # define SHRUBBERYCREATIONFORM_HPP
 # include "Bureaucrat.hpp"
 
-class AsciiTree : public Form
+class ShrubberyCreationForm : public Form
 {
 	private:
 
@@ -10,14 +10,14 @@ class AsciiTree : public Form
 
 	public:
 
-		AsciiTree(void);
-		AsciiTree(std::string target);
-		AsciiTree(AsciiTree const & tree);
-		~AsciiTree(void);
+		ShrubberyCreationForm(void);
+		ShrubberyCreationForm(std::string target);
+		ShrubberyCreationForm(ShrubberyCreationForm const & tree);
+		~ShrubberyCreationForm(void);
 
 		virtual void execute(Bureaucrat const & executor) const;
 		std::string	getTarget(void) const;
-		AsciiTree & operator=(AsciiTree const &tree);
+		ShrubberyCreationForm & operator=(ShrubberyCreationForm const &tree);
 };
 
 #endif

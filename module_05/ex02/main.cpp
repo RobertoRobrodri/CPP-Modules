@@ -10,8 +10,8 @@
 int main() {
 	try {
 		PresidentialPardon pp;
-		AsciiTree tree;
-		RobotForm robot;
+		ShrubberyCreationForm tree;
+		RobotomyRequestForm robot;
 
 		std::cout << pp << " "<< pp.getTarget() <<std::endl;
 		std::cout << tree << " "<< tree.getTarget() << std::endl;
@@ -67,7 +67,7 @@ int main() {
 	}
 		std::cout << "---------------------------------------" << std::endl;
 	try {
-		RobotForm pp;
+		RobotomyRequestForm pp;
 		Bureaucrat perro_xanxe("PerroXanxe", 1);
 		perro_xanxe.signForm(pp);
 		pp.execute(perro_xanxe);
@@ -77,7 +77,7 @@ int main() {
 		std::cout << e.what() << std::endl;
 	}
 	try {
-		AsciiTree pp("Home");
+		ShrubberyCreationForm pp("Home");
 		Bureaucrat perro_xanxe("PerroXanxe", 1);
 		perro_xanxe.signForm(pp);
 		pp.execute(perro_xanxe);

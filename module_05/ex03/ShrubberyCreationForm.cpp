@@ -1,28 +1,28 @@
 #include "ShrubberyCreationForm.hpp"
 #include <fstream>
 
-AsciiTree::AsciiTree(void) : Form("Shrubbery", 0, 145, 137), _target("Default_target") {
+ShrubberyCreationForm::ShrubberyCreationForm(void) : Form("Shrubbery", 0, 145, 137), _target("Default_target") {
 	std::cout << "Shrubbery Creation default constructor called" << std::endl;
 }
 
-AsciiTree::AsciiTree(std::string target) : Form("Shrubbery", 0, 145, 137), _target(target) {
+ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : Form("Shrubbery", 0, 145, 137), _target(target) {
 	std::cout << "Shrubbery Creation parameter constructor called" << std::endl;
 }
 
-AsciiTree::AsciiTree(AsciiTree const &tree) : Form() {
+ShrubberyCreationForm::ShrubberyCreationForm(ShrubberyCreationForm const &tree) : Form() {
 	*this = tree;
 	std::cout << "Shrubbery Creation copy constructor called" << std::endl;
 }
 
-AsciiTree::~AsciiTree(void) {
+ShrubberyCreationForm::~ShrubberyCreationForm(void) {
 	std::cout << "Shrubbery Creation destructor called" << std::endl;
 }
 
-std::string	AsciiTree::getTarget(void) const {
+std::string	ShrubberyCreationForm::getTarget(void) const {
 	return this->_target;
 }
 
-void AsciiTree::execute(Bureaucrat const & executor) const {
+void ShrubberyCreationForm::execute(Bureaucrat const & executor) const {
 	this->can_exec(executor);
 	this->is_signed();
 	std::string name = this->getTarget() + "_shrubbery";
@@ -55,7 +55,7 @@ void AsciiTree::execute(Bureaucrat const & executor) const {
 	tree_file.close();
 }
 
-AsciiTree & AsciiTree::operator=(AsciiTree const &tree) {
+ShrubberyCreationForm & ShrubberyCreationForm::operator=(ShrubberyCreationForm const &tree) {
 	const_cast<std::string &>(this->_name) = tree.getName();
 	this->_signed = tree.getSigned();
 	const_cast<int &>(this->_execute_grade) = tree.getExecGrade();

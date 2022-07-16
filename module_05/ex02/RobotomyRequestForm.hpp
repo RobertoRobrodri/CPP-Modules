@@ -3,7 +3,7 @@
 # include "Bureaucrat.hpp"
 # include <stdlib.h>
 
-class RobotForm : public Form
+class RobotomyRequestForm : public Form
 {
 	private:
 
@@ -11,14 +11,14 @@ class RobotForm : public Form
 
 	public:
 
-		RobotForm(void);
-		RobotForm(std::string target);
-		RobotForm(RobotForm const &rr);
-		~RobotForm(void);
+		RobotomyRequestForm(void);
+		RobotomyRequestForm(std::string target);
+		RobotomyRequestForm(RobotomyRequestForm const &rr);
+		~RobotomyRequestForm(void);
 		virtual void execute(Bureaucrat const & executor) const;
 
 		std::string const &getTarget(void) const;
-		RobotForm & operator=(RobotForm const &rr);
+		RobotomyRequestForm & operator=(RobotomyRequestForm const &rr);
 
 };
 

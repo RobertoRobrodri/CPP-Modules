@@ -1,9 +1,9 @@
 #include "conversion.hpp"
 
-conversion::conversion(void) : literal(""), _i(0), _d(0), _f(0), _c(0), flag(0) {
+conversion::conversion(void) : _i(0), _d(0), _f(0), _c(0), flag(0), literal("") {
 }
 
-conversion::conversion(std::string str) : literal(str), _i(0), _d(0), _f(0), _c(0), flag(0) {
+conversion::conversion(std::string str) : _i(0), _d(0), _f(0), _c(0), flag(0), literal(str) {
 }
 
 conversion::conversion(conversion const & conv) {
@@ -76,14 +76,14 @@ conversion & conversion::operator=(conversion const & conv) {
 	this->_d = conv._d;
 	this->_c = conv._c;
 	this->_f = conv._f;
-	
+
 	return *this;
 }
 
 //Other stuff
 
 void	conversion::try_cases(void) const {
-	bool (conversion::*func[]) () const= {&conversion::check_exceptions, &conversion::int_case, &conversion::char_case, 
+	bool (conversion::*func[]) () const= {&conversion::check_exceptions, &conversion::int_case, &conversion::char_case,
 		&conversion::float_case, &conversion::double_case};
 
 	for (int i = 0; i < 5; i++)
@@ -101,12 +101,12 @@ void	conversion::cast_exceptions(int i) const {
 		conversion excep_case(std::numeric_limits<float>::min());
 		excep_case.print_casting();
 	}
-	else if (i == 2) 
+	else if (i == 2)
 	{
 		conversion excep_case(std::numeric_limits<float>::max());
 		excep_case.print_casting();
 	}
-	else if (i == 3) 
+	else if (i == 3)
 	{
 		conversion excep_case(nanf(""));
 		excep_case.print_casting();
@@ -129,7 +129,7 @@ void	conversion::cast_exceptions(int i) const {
 }
 
 bool	conversion::check_exceptions(void) const {
-	std::string comparisons[] {"-inff", "+inff", "nanf", "-inf", "+inf", "nan"};
+	std::string comparisons[] = {"-inff", "+inff", "nanf", "-inf", "+inf", "nan"};
 	for (int i = 0; i < 6; i++) {
 		if (comparisons[i].compare(this->getLiteral()) == 0) {
 			cast_exceptions(i + 1);

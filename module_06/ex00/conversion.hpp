@@ -10,13 +10,13 @@ class conversion
 {
 	private:
 
+		int		_i;
 		double	_d;
 		float	_f;
-		int		_i;
 		char	_c;
 
-		std::string	literal;
 		bool		flag;
+		std::string	literal;
 
 		void	cast_exceptions(int i) const;
 		void	print_casting(void) const;

@@ -17,7 +17,7 @@ class	Array {
 		Array ( unsigned int n ) : _size(n) {
 			this->array = new T[n];
 		};
-		Array ( const Array & var ) : array(NULL) {	
+		Array ( const Array & var ) : array(NULL) {
 			*this = var;
 		}
 		~Array ( void ) {
@@ -32,14 +32,14 @@ class	Array {
 				if (this->array != NULL)
 					delete[] this->array;
 				this->array = new T[ar._size];
-				for (int i = 0; i < this->_size; i++)
+				for (size_t i = 0; i < this->_size; i++)
 					this->array[i] = ar.array[i];
 			}
 			return *this;
 		}
 
 		T & operator[](int index) {
-			if (index >= this->size() || index < 0)
+			if (static_cast <size_t> (index) >= this->size() || index < 0)
 				throw std::exception();
 			return this->array[index];
 		}

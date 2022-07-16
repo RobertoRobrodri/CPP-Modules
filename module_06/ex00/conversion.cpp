@@ -83,7 +83,7 @@ conversion & conversion::operator=(conversion const & conv) {
 //Other stuff
 
 void	conversion::try_cases(void) const {
-	bool (conversion::*func[]) () const= {&conversion::check_exceptions, &conversion::int_case, &conversion::char_case,
+	bool (conversion::*func[]) () const = {&conversion::check_exceptions, &conversion::int_case, &conversion::char_case,
 		&conversion::float_case, &conversion::double_case};
 
 	for (int i = 0; i < 5; i++)

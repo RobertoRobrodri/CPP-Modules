@@ -1,10 +1,10 @@
-NAME = base
+NAME = iter
 
 VERSION = --std=c++98
 
 CXXFLAGS = -Wall -Werror -Wextra $(VERSION)
 
-SRCS = Base.cpp main.cpp
+SRCS = main.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 

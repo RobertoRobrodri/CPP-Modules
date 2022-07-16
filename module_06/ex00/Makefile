@@ -12,7 +12,9 @@
 
 NAME = conversion
 
-CXXFLAGS = -Wall -Werror -Wextra
+VERSION = --std=c++98
+
+CXXFLAGS = -Wall -Werror -Wextra $(VERSION)
 
 SRCS = conversion.cpp main.cpp
 

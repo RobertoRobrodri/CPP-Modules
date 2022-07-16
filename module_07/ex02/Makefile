@@ -1,8 +1,10 @@
-NAME = 
+NAME = array
 
-CXXFLAGS = -Wall -Werror -Wextra
+VERSION = --std=c++98
 
-SRCS = 
+CXXFLAGS = -Wall -Werror -Wextra $(VERSION)
+
+SRCS = main.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 

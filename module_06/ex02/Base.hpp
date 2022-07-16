@@ -18,21 +18,21 @@ class	A : public Base {
 
 	public:
 
-	//	virtual ~A ( void );
+		virtual ~A ( void ) {};
 };
 
 class	B : public Base {
 
 	public:
 
-	//	virtual ~B ( void );
+		virtual ~B ( void ) {} ;
 };
 
 class	C : public Base {
 
 	public:
 
-	//	virtual ~C ( void );
+		virtual ~C ( void ) {} ;
 };
 Base * generate(void);
 void identify(Base* p);

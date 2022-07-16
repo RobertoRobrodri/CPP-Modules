@@ -108,6 +108,7 @@ void	conversion::cast_exceptions(int i) const {
 	}
 	else if (i == 3)
 	{
+		std::cout << nanf("") << std::endl;
 		conversion excep_case(nanf(""));
 		excep_case.print_casting();
 	}
@@ -123,6 +124,7 @@ void	conversion::cast_exceptions(int i) const {
 	}
 	else if (i == 6)
 	{
+		std::cout << nan("") << std::endl;
 		conversion excep_case(nan(""));
 		excep_case.print_casting();
 	}
@@ -167,7 +169,7 @@ bool	conversion::char_case(void) const {
 }
 
 bool	conversion::int_case(void) const {
-	if (this->literal.find_first_not_of("0123456789") == std::string::npos)
+	if (this->literal.find_first_not_of("0123456789-") == std::string::npos && this->dot_counter('-') <= 1)
 	{
 		int	aux = std::atoi(this->literal.c_str());
 		conversion int_case(aux);
@@ -178,9 +180,9 @@ bool	conversion::int_case(void) const {
 }
 
 bool	conversion::float_case(void) const {
-	if (this->literal.find_first_not_of("0123456789.f") == std::string::npos
+	if (this->literal.find_first_not_of("0123456789-.f") == std::string::npos
 		&& this->literal.find("f", this->literal.length() - 1) != std::string::npos
-		&& this->dot_counter('.') == 1 && this->dot_counter('f') == 1)
+		&& this->dot_counter('.') == 1 && this->dot_counter('f') == 1 && this->dot_counter('-') <= 1)
 	{
 		float aux = std::atof(this->literal.c_str());
 		conversion float_case(aux);
@@ -193,9 +195,10 @@ bool	conversion::float_case(void) const {
 }
 
 bool	conversion::double_case(void) const {
-	if (this->literal.find_first_not_of("0123456789.") == std::string::npos
+	if (this->literal.find_first_not_of("0123456789.-") == std::string::npos
 		&& this->literal.find(".") != std::string::npos
-		&& this->dot_counter('.') == 1)
+		&& this->dot_counter('.') == 1
+		&& this->dot_counter('-') <= 1)
 	{
 		double aux = std::strtod(this->literal.c_str(), NULL);
 		conversion double_case(aux);

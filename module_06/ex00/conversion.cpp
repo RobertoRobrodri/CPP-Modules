@@ -98,12 +98,12 @@ void	conversion::cast_exceptions(int i) const {
 
 	if (i == 1)
 	{
-		conversion excep_case(std::numeric_limits<float>::min());
+		conversion excep_case(std::numeric_limits<float>::infinity() * -1);
 		excep_case.print_casting();
 	}
 	else if (i == 2)
 	{
-		conversion excep_case(std::numeric_limits<float>::max());
+		conversion excep_case(std::numeric_limits<float>::infinity());
 		excep_case.print_casting();
 	}
 	else if (i == 3)
@@ -114,12 +114,12 @@ void	conversion::cast_exceptions(int i) const {
 	}
 	else if (i == 4)
 	{
-		conversion excep_case(std::numeric_limits<int>::min());
+		conversion excep_case(std::numeric_limits<float>::infinity() * - 1);
 		excep_case.print_casting();
 	}
 	else if (i == 5)
 	{
-		conversion excep_case(std::numeric_limits<int>::max());
+		conversion excep_case(std::numeric_limits<float>::infinity());
 		excep_case.print_casting();
 	}
 	else if (i == 6)
@@ -173,7 +173,7 @@ bool	conversion::int_case(void) const {
 		&& this->dot_counter('-') <= 1
 		&& (this->literal.find('-') == 0 || this->literal.find('-') == std::string::npos))
 	{
-		int	aux = std::atoi(this->literal.c_str());
+		int	aux = atoi(this->literal.c_str());
 		conversion int_case(aux);
 		int_case.print_casting();
 		return true;
@@ -187,7 +187,7 @@ bool	conversion::float_case(void) const {
 		&& this->dot_counter('.') == 1 && this->dot_counter('f') == 1 && this->dot_counter('-') <= 1
 		&& (this->literal.find('-') == 0 || this->literal.find('-') == std::string::npos))
 	{
-		float aux = std::atof(this->literal.c_str());
+		float aux = atof(this->literal.c_str());
 		conversion float_case(aux);
 		if (this->literal.rfind(".0f") != std::string::npos)
 			float_case.flag = 1;
@@ -204,7 +204,7 @@ bool	conversion::double_case(void) const {
 		&& this->dot_counter('-') <= 1
 		&& (this->literal.find('-') == 0 || this->literal.find('-') == std::string::npos))
 	{
-		double aux = std::strtod(this->literal.c_str(), NULL);
+		double aux = strtod(this->literal.c_str(), NULL);
 		conversion double_case(aux);
 		if (this->literal.rfind(".0") != std::string::npos)
 			double_case.flag = 1;

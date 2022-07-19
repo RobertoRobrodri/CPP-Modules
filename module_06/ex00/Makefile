@@ -20,7 +20,7 @@ SRCS = conversion.cpp main.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 
-CXX = clang++
+CXX = g++
 
 all: $(NAME)
 

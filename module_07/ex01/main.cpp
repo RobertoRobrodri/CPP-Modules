@@ -1,23 +1,23 @@
 #include "iter.hpp"
 #include <string.h>
 
-void	add(int &i)
+class Awesome
 {
-	i++;
-}
+	public:
+		Awesome( void ) : _n( 42 ) { return; }
+		int get( void ) const { return this->_n; }
+	private:
+		int _n;
+};
+std::ostream & operator<<( std::ostream & o, Awesome const & rhs ) { o << rhs.get(); return o; }
 
-int main (void)
-{
-	int i[5] = {0, 1, 2, 3, 4};
+template< typename T >
+void print( T const & x ) { std::cout << x << std::endl; return; }
 
-	iter <int> (i, 5, print<int>);
-	iter <int> (i, 5, add);
-	iter <int> (i, 5, print<int>);
-
-	char *quote = strdup("GALIO DESCIENDE LOS CIELOS");
-	iter <char> (quote, strlen(quote), print<char>);
-	free(quote);
-
-	std::string more_quotes[3] = {"HOLA", "CARA", "COLA"};
-	iter <std::string> (more_quotes, 3, print);
+int main() {
+	int tab[] = { 0, 1, 2, 3, 4 }; // <--- Qué sentido tiene no poder escribir int[] tab. No sería más simple??
+	Awesome tab2[5];
+	iter( tab, 5, print );
+	iter( tab2, 5, print );
+	return 0;
 }

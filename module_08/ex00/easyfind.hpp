@@ -6,16 +6,15 @@
 #include <algorithm>
 
 template < typename T >
-int	easyfind( T &var, int const &i )
+long int	easyfind( T &var, int const &i )
 {
 	typename T::iterator iter;
 
-	try {
-		iter = std::find(var.begin(), var.end(), i);
-		std::cout << "iterator " << *iter << std::endl;
-		}
-	catch (std::out_of_range& bc) {}
-	return *iter;
+	iter = std::find(var.begin(), var.end(), i);
+	if (*iter == i)
+		return *iter;
+	else
+		return 4294967295;
 }
 
 #endif

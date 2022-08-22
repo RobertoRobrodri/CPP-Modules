@@ -10,8 +10,8 @@ class	span {
 
 	private:
 
-		std::vector <int> _N;
 		unsigned int	i;
+		std::vector <int> _N;
 
 	public:
 

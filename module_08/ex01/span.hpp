@@ -11,6 +11,7 @@ class	span {
 	private:
 
 		unsigned int	i;
+		unsigned int	max_size;
 		std::vector <int> _N;
 
 	public:
@@ -24,7 +25,12 @@ class	span {
 		int		shortestSpan( void );
 		int		longestSpan( void );
 
-		span & operator=(const span &s);
+		std::vector <int> get_vector(void) const;
+
+		span	& operator=(const span &s);
+		void	add_number_by_iterator(std::vector<int>::iterator begin, std::vector<int>::iterator end);
 };
+std::ostream&	operator<<(std::ostream& os, const span& obj);
+
 
 #endif

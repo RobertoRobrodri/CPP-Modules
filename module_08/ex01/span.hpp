@@ -16,6 +16,26 @@ class	span {
 
 	public:
 
+		class not_enough_num : public std::exception
+		{
+			public:
+				virtual const char* what() const throw()
+				{
+					return ("Not enough numbers");
+				}
+
+		};
+
+		class not_enough_space : public std::exception
+		{
+			public:
+				virtual const char* what() const throw()
+				{
+					return ("Not enough space");
+				}
+
+		};
+
 		span ( void );
 		span ( unsigned int N );
 		span ( const span & var );

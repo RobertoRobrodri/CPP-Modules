@@ -47,34 +47,39 @@ int  span::shortestSpan( void )
 	std::vector<int>::iterator	it;
 	std::vector<int>::iterator	it_next;
 
-  if (this->i < 2)
-  {
-    std::cout << "Not enough numbers " << std::endl;
-    return 0;
-  }
-  for (it = this->_N.begin(); it != this->_N.end(); it++)
+	try
 	{
-		it_next = it + 1;
-		while (it_next != this->_N.end())
+		if (this->i < 2)
+			throw span::not_enough_num();
+		for (it = this->_N.begin(); it != this->_N.end(); it++)
 		{
-			if (std::abs(*it - *it_next) < diff)
-				diff = std::abs(*it - *it_next);
-			it_next++;
+			it_next = it + 1;
+			while (it_next != this->_N.end())
+			{
+				if (std::abs(*it - *it_next) < diff)
+					diff = std::abs(*it - *it_next);
+				it_next++;
+			}
 		}
 	}
+	catch(const std::exception& e) {
+		std::cout << e.what() << std::endl;
+		return 0;}
 	return diff;
 }
 
 int  span::longestSpan( void )
 {
-	if (this->i < 2)
+	try
 	{
-		std::cout << "Not enough numbers " << std::endl;
-		return 0;
+		if (this->i < 2)
+			throw span::not_enough_num();
+		int max = *std::max_element(this->_N.begin(), this->_N.end());
+		int min = *std::min_element(this->_N.begin(), this->_N.end());
+		return std::abs(max - min);
 	}
-	int max = *std::max_element(this->_N.begin(), this->_N.end());
-	int min = *std::min_element(this->_N.begin(), this->_N.end());
-	return std::abs(max - min);
+	catch(const std::exception& e) { std::cout << e.what() << std::endl; }
+	return 0;
 }
 
 span & span::operator=(const span &s){
@@ -85,14 +90,16 @@ span & span::operator=(const span &s){
 }
 
 void	span::add_number_by_iterator(std::vector<int>::iterator begin, std::vector<int>::iterator end) {
+
 	std::vector<int> tmp(begin, end);
 
-	if ((this->max_size - this->i) < tmp.size())
+	try
 	{
-		std::cout << "No cabe" << std::endl;
-		return ;
+		if ((this->max_size - this->i) < tmp.size())
+			throw span::not_enough_space();
+		copy(tmp.begin(), tmp.end(), back_inserter(this->_N));
 	}
-	copy(tmp.begin(), tmp.end(), back_inserter(this->_N));
+	catch(const std::exception& e) { std::cout << e.what() << std::endl; }
 }
 
 std::vector <int> span::get_vector(void) const {

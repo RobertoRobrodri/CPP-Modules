@@ -62,9 +62,9 @@ void	BitcoinExchange::read_file			(std::string file) {
   	std::fstream bitcoin_csv("data.csv");
 	if (!bitcoin_csv)
 		throw std::runtime_error("Could not open file");
-    values 	 = this->load_values(input_val, '|');
+  values 	 = this->load_values(input_val, '|');
 	exchange = this->load_values(bitcoin_csv, ',');
-	this->get_values(values, exchange);
+	//this->get_values(values, exchange);
   }
   catch (std::exception &ex) {
     std::cout << ex.what() << std::endl;
@@ -77,6 +77,7 @@ std::multimap<std::string, int>	BitcoinExchange::load_values			(std::fstream &va
   std::string key;
   std::string value;
   std::size_t pos;
+  struct tm time;
 
   while (getline(values, buffer))
   {
@@ -84,16 +85,18 @@ std::multimap<std::string, int>	BitcoinExchange::load_values			(std::fstream &va
     pos = buffer.find(separator);
     // Try, catch?
     key = buffer.substr(0, pos);
+    strptime(key.c_str(), "%y-%m-%u", &time);
+    //mktime
     value = buffer.substr(pos + 1, buffer.length());
     mp.insert(std::pair<std::string, int>(key, atoi(value.c_str())));
   }
     // std::multimap<std::string,int>::iterator it;
     // for (it=mp.begin(); it!=mp.end(); ++it)
     //   std::cout << (*it).first << " => " << (*it).second << '\n';
-	// return mp;
+	return mp;
 }
 
-void	get_values(std::multimap<std::string, int> values, std::multimap<std::string, int> exchange) {
+// void	get_values(std::multimap<std::string, int> values, std::multimap<std::string, int> exchange) {
 
 
-}
+// }

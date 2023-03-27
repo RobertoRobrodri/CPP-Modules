@@ -24,9 +24,9 @@ class	BitcoinExchange {
 		~BitcoinExchange			( void );
 		BitcoinExchange &operator=	(const BitcoinExchange &tmp);
 
-		//void	get_values(std::multimap<std::string, int> values, std::multimap<std::string, int> exchange);
+		void	get_values( void );
 };
-std::fstream										read_file			(std::string file);
+std::fstream										&read_file			(std::string file);
 std::multimap<std::string, int>	load_values			(std::fstream &values, char separator);
 std::ostream &operator<<(std::ostream& os, const BitcoinExchange &tmp);
 

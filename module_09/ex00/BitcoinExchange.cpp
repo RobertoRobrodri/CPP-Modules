@@ -7,12 +7,9 @@ BitcoinExchange::BitcoinExchange( void ) {
   return ;
 }
 
-BitcoinExchange::BitcoinExchange( std::string str ) {
-
-  (void) str;
+BitcoinExchange::BitcoinExchange( std::multimap<std::string, int> data, std::multimap<std::string, int> values ) : _data(data), _values(values) {
   std::cout << "Parameter constructor called" << std::endl;
-  return ;
-  
+  return ;  
 }
 
 BitcoinExchange::BitcoinExchange( const BitcoinExchange & var ) {
@@ -50,34 +47,29 @@ std::ostream &operator<<(std::ostream& os, const BitcoinExchange &tmp) {
 
 // FUNCTIONS
 
-void	BitcoinExchange::read_file			(std::string file) {
+std::fstream	read_file			(std::string file) {
   std::fstream input_val;
-  std::multimap<std::string, int> values;
-  std::multimap<std::string, int> exchange;
+
   try 
   {
     input_val.open(file);
     if (!input_val)
       throw std::runtime_error("Could not open file");
-  	std::fstream bitcoin_csv("data.csv");
-	if (!bitcoin_csv)
-		throw std::runtime_error("Could not open file");
-  values 	 = this->load_values(input_val, '|');
-	exchange = this->load_values(bitcoin_csv, ',');
-	//this->get_values(values, exchange);
   }
   catch (std::exception &ex) {
     std::cout << ex.what() << std::endl;
   }
+  return input_val;
 }
 
-std::multimap<std::string, int>	BitcoinExchange::load_values			(std::fstream &values, char separator) {
+std::multimap<std::string, int>	load_values			(std::fstream &values, char separator) {
   std::multimap<std::string, int> mp;
   std::string buffer;
   std::string key;
   std::string value;
   std::size_t pos;
   struct tm time;
+  time_t  time_result;
 
   while (getline(values, buffer))
   {
@@ -86,7 +78,8 @@ std::multimap<std::string, int>	BitcoinExchange::load_values			(std::fstream &va
     // Try, catch?
     key = buffer.substr(0, pos);
     strptime(key.c_str(), "%y-%m-%u", &time);
-    //mktime
+    time_result = mktime(&time);
+    //std::cout << time_result << std::endl;
     value = buffer.substr(pos + 1, buffer.length());
     mp.insert(std::pair<std::string, int>(key, atoi(value.c_str())));
   }

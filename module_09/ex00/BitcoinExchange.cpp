@@ -7,7 +7,7 @@ BitcoinExchange::BitcoinExchange( void ) {
   return ;
 }
 
-BitcoinExchange::BitcoinExchange( std::multimap<std::string, int> data, std::multimap<std::string, int> values ) : _data(data), _values(values) {
+BitcoinExchange::BitcoinExchange( std::map<std::tm, int> data, std::map<std::tm, int> values ) : _data(data), _values(values) {
   std::cout << "Parameter constructor called" << std::endl;
   return ;  
 }
@@ -62,14 +62,13 @@ std::fstream	&read_file			(std::string file) {
   return *input_val;
 }
 
-std::multimap<std::string, int>	load_values			(std::fstream &values, char separator) {
-  std::multimap<std::string, int> mp;
+std::map<std::tm, int>	load_values			(std::fstream &values, char separator) {
+  std::map<std::tm, int> mp;
   std::string buffer;
   std::string key;
   std::string value;
   std::size_t pos;
-  //struct tm time;
-  //time_t  time_result;
+  struct tm time;
 
   while (getline(values, buffer))
   {
@@ -77,21 +76,26 @@ std::multimap<std::string, int>	load_values			(std::fstream &values, char separa
     pos = buffer.find(separator);
     // Try, catch?
     key = buffer.substr(0, pos);
-    //strptime(key.c_str(), "%y-%m-%u", &time);
-    //time_result = mktime(&time);
-    //std::cout << time_result << std::endl;
+    strptime(key.c_str(), "%y-%m-%u", &time);
     value = buffer.substr(pos + 1, buffer.length());
-    mp.insert(std::pair<std::string, int>(key, atoi(value.c_str())));
+    mp.insert(std::pair<std::tm, int>(time, atoi(value.c_str())));
   }
-    // std::multimap<std::string,int>::iterator it;
+    // std::map<std::string,int>::iterator it;
     // for (it=mp.begin(); it!=mp.end(); ++it)
     //   std::cout << (*it).first << " => " << (*it).second << '\n';
 	return mp;
 }
 
-void	BitcoinExchange::get_values( void ) {
-  std::multimap<std::string,int>::iterator it;
-  std::multimap<std::string,int>::iterator tmp;
+std::time_t BitcoinExchange::get_unix_date (std::tm time) const {
+	std::time_t time_unix;
+
+	time_unix = std::mktime(&time);
+	return (time_unix);
+}
+
+/*void	BitcoinExchange::get_values( void ) {
+  std::map<std::string,int>::iterator it;
+  std::map<std::string,int>::iterator tmp;
 
     for (it=this->_values.begin(); it!=this->_values.end(); ++it)
     {
@@ -100,4 +104,4 @@ void	BitcoinExchange::get_values( void ) {
 		std::cout << (*it).second * *(tmp).second << std::endl;
     }
 
-}
+}*/

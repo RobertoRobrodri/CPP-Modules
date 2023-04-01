@@ -7,7 +7,7 @@ BitcoinExchange::BitcoinExchange( void ) {
   return ;
 }
 
-BitcoinExchange::BitcoinExchange( std::map<std::tm, int> data, std::map<std::tm, int> values ) : _data(data), _values(values) {
+BitcoinExchange::BitcoinExchange( std::multimap<time_t, int> data, std::multimap<time_t, int> values ) : _data(data), _values(values) {
   std::cout << "Parameter constructor called" << std::endl;
   return ;  
 }
@@ -38,70 +38,71 @@ BitcoinExchange & BitcoinExchange::operator=(const BitcoinExchange &tmp) {
 }
 
 std::ostream &operator<<(std::ostream& os, const BitcoinExchange &tmp) {
-
-  (void) tmp;
-	os << std::endl << "Operator output called" << std::endl;
+	std::multimap<time_t,int>::const_iterator it;
+	
+	std::cout << "Printing values... " << std::endl;
+	for (it=tmp._values.begin(); it!=tmp._values.end(); ++it)
+		os << (*it).first << " => " << (*it).second << '\n';
+	std::cout << "Printing data csv... " << std::endl;
+	for (it=tmp._data.begin(); it!=tmp._data.end(); ++it)
+		os << (*it).first << " => " << (*it).second << '\n';
 	return (os);
-  
 }
 
 // FUNCTIONS
 
 std::fstream	&read_file			(std::string file) {
-  std::fstream *input_val = new std::fstream;
+	std::fstream *input_val = new std::fstream;
 
-  try 
-  {
-    input_val->open(file);
-    if (!input_val)
-      throw std::runtime_error("Could not open file");
-  }
-  catch (std::exception &ex) {
-    std::cout << ex.what() << std::endl;
-  }
-  return *input_val;
+	try 
+	{
+		input_val->open(file);
+		if (!input_val)
+    		throw std::runtime_error("Could not open file");
+	}
+	catch (std::exception &ex) {
+		std::cout << ex.what() << std::endl;
+	}
+	return *input_val;
 }
 
-std::map<std::tm, int>	load_values			(std::fstream &values, char separator) {
-  std::map<std::tm, int> mp;
-  std::string buffer;
-  std::string key;
-  std::string value;
-  std::size_t pos;
-  struct tm time;
+std::multimap<time_t, int>	load_values			(std::fstream &values, char separator) {
+	std::multimap<time_t, int> mp;
+	std::string buffer;
+	std::string key;
+	std::string value;
+	std::size_t pos;
+	time_t time;
+	std::tm time_struct = {};
 
-  while (getline(values, buffer))
-  {
-    // TODO Qué pasa si no lo encuentra????
-    pos = buffer.find(separator);
-    // Try, catch?
-    key = buffer.substr(0, pos);
-    strptime(key.c_str(), "%y-%m-%u", &time);
-    value = buffer.substr(pos + 1, buffer.length());
-    mp.insert(std::pair<std::tm, int>(time, atoi(value.c_str())));
-  }
-    // std::map<std::string,int>::iterator it;
-    // for (it=mp.begin(); it!=mp.end(); ++it)
-    //   std::cout << (*it).first << " => " << (*it).second << '\n';
+	while (getline(values, buffer))
+	{
+		pos 	= buffer.find(separator);
+		key 	= buffer.substr(0, pos);
+		try {
+			if (strptime(key.c_str(), "%Y-%m-%d", &time_struct) == NULL)
+			{
+				std::cout << key << std::endl;
+				// TO DO Excepciones personalizadas
+				throw std::runtime_error("Error Date");
+			}
+			time 	= std::mktime(&time_struct);
+			value 	= buffer.substr(pos + 1, buffer.length());
+			mp.insert(std::pair<time_t, int>(time, atoi(value.c_str())));
+		}
+		catch (std::exception &ex) {
+			std::cout << ex.what() << std::endl;
+		}
+	}
 	return mp;
 }
-
-std::time_t BitcoinExchange::get_unix_date (std::tm time) const {
-	std::time_t time_unix;
-
-	time_unix = std::mktime(&time);
-	return (time_unix);
+void	BitcoinExchange::get_values( void ) {
+	std::multimap<time_t,int>::iterator it;
+	std::multimap<time_t,int>::iterator finder;
+	
+	for (it=this->_values.begin(); it!=this->_values.end(); ++it)
+	{
+		finder = this->_data.find((*it).first);
+		std::cout << (*it).second * (*finder).second << std::endl;
+	}	
 }
-
-/*void	BitcoinExchange::get_values( void ) {
-  std::map<std::string,int>::iterator it;
-  std::map<std::string,int>::iterator tmp;
-
-    for (it=this->_values.begin(); it!=this->_values.end(); ++it)
-    {
-		//std::cout << (*it).first << " => " << (*it).second << '\n';
-		tmp = this->_data.find((*it).first);
-		std::cout << (*it).second * *(tmp).second << std::endl;
-    }
-
-}*/

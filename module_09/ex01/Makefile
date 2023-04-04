@@ -1,10 +1,10 @@
-NAME = 
+NAME = RPN
 
 VERSION = --std=c++98
 
 CXXFLAGS = -Wall -Werror -Wextra $(VERSION)
 
-SRCS = 
+SRCS = RPN.cpp main.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 

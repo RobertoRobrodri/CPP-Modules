@@ -39,8 +39,51 @@ PmergeMe & PmergeMe::operator=(const PmergeMe &tmp) {
 
 std::ostream &operator<<(std::ostream& os, const PmergeMe &tmp) {
 
-  (void) tmp;
-	os << std::endl << "Operator output called" << std::endl;
+	std::list<int>::const_iterator it;
+	std::deque<int>::const_iterator d_it;
+
+	os << "Printing list..." << std::endl;
+	for (it = tmp._list.begin(); it != tmp._list.end(); it++)
+		os << *it << " ";
+	os << std::endl;
+	os << "Printing deque... " << std::endl;
+	for (d_it = tmp._deck.begin(); d_it != tmp._deck.end(); d_it++)
+		os << *d_it << " ";
 	return (os);
-  
+}
+
+// FUNCTIONS
+
+std::list<int>  sort_list( std::list<int> list ) {
+	std::list<int> tmp;
+	size_t size = list.size() / 2;
+	std::list<int>::iterator half = list.begin();
+
+	std::advance(half, size);
+
+	// Separar la lista en dos y ordenar cada una
+	tmp.splice(tmp.begin(), list, half, list.end());
+	if (list.size() > 1)
+		list = sort_list(list);
+	if (tmp.size() > 1)
+		tmp = sort_list(tmp);
+	list.merge(tmp);
+	return list;
+}
+
+std::deque<int> sort_deck( std::deque<int> deck ) {
+	std::deque<int> tmp;
+	std::deque<int> ret;
+	size_t size = deck.size() / 2;
+	for (size_t i = 0; i < size; i++)
+	{
+		tmp.push_front(deck.front());
+		deck.pop_front();
+	}
+	if (deck.size() > 1)
+		deck = sort_deck(deck);
+	if (tmp.size() > 1)
+		tmp = sort_deck(tmp);
+	std::merge(deck.begin(), deck.end(), tmp.begin(), tmp.end(), std::back_inserter(ret));
+	return (ret);
 }

@@ -6,9 +6,8 @@ PmergeMe::PmergeMe( void ) {
   return ;
 }
 
-PmergeMe::PmergeMe( std::string str ) {
+PmergeMe::PmergeMe( std::list<int> list, std::deque<int> deck ) : _list(list), _deck(deck) {
 
-  (void) str;
   std::cout << "Parameter constructor called" << std::endl;
   return ;
   
@@ -31,8 +30,9 @@ PmergeMe::~PmergeMe( void ) {
 
 PmergeMe & PmergeMe::operator=(const PmergeMe &tmp) {
 
-  (void) tmp;
   std::cout << "Operator equalizer called" << std::endl;
+  this->_list = tmp._list;
+  this->_deck = tmp._deck;
   return (*this);
   
 }

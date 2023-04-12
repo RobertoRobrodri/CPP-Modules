@@ -17,7 +17,7 @@ class	RPN {
 		char			operation_type;
 
 		RPN 			( void );
-	//	RPN 			( std::string str );
+		RPN 			( std::stack<int> stk, char op );
 		RPN 			( const RPN & var );
 		~RPN			( void );
 		RPN &operator=	(const RPN &tmp);

@@ -7,7 +7,7 @@ BitcoinExchange::BitcoinExchange( void ) {
   return ;
 }
 
-BitcoinExchange::BitcoinExchange( std::multimap<time_t, int> data, std::multimap<time_t, int> values ) : _data(data), _values(values) {
+BitcoinExchange::BitcoinExchange( std::multimap<time_t, float> data, std::multimap<time_t, float> values ) : _data(data), _values(values) {
   std::cout << "Parameter constructor called" << std::endl;
   return ;  
 }
@@ -38,7 +38,7 @@ BitcoinExchange & BitcoinExchange::operator=(const BitcoinExchange &tmp) {
 }
 
 std::ostream &operator<<(std::ostream& os, const BitcoinExchange &tmp) {
-	std::multimap<time_t,int>::const_iterator it;
+	std::multimap<time_t, float>::const_iterator it;
 	
 	std::cout << "Printing values... " << std::endl;
 	for (it=tmp._values.begin(); it!=tmp._values.end(); ++it)
@@ -54,20 +54,12 @@ std::ostream &operator<<(std::ostream& os, const BitcoinExchange &tmp) {
 std::fstream	&read_file			(std::string file) {
 	std::fstream *input_val = new std::fstream;
 
-	try 
-	{
-		input_val->open(file);
-		if (!input_val)
-    		throw std::runtime_error("Could not open file");
-	}
-	catch (std::exception &ex) {
-		std::cout << ex.what() << std::endl;
-	}
+	input_val->open(file);
 	return *input_val;
 }
 
-std::multimap<time_t, int>	load_values			(std::fstream &values, char separator) {
-	std::multimap<time_t, int> mp;
+std::multimap<time_t, float>	load_values			(std::fstream &values, char separator) {
+	std::multimap<time_t, float> mp;
 	std::string buffer;
 	std::string key;
 	std::string value;
@@ -88,7 +80,7 @@ std::multimap<time_t, int>	load_values			(std::fstream &values, char separator) 
 			}
 			time 	= std::mktime(&time_struct);
 			value 	= buffer.substr(pos + 1, buffer.length());
-			mp.insert(std::pair<time_t, int>(time, atoi(value.c_str())));
+			mp.insert(std::pair<time_t, float>(time, std::stof(value)));
 		}
 		catch (std::exception &ex) {
 			std::cout << ex.what() << std::endl;
@@ -97,12 +89,21 @@ std::multimap<time_t, int>	load_values			(std::fstream &values, char separator) 
 	return mp;
 }
 void	BitcoinExchange::get_values( void ) {
-	std::multimap<time_t,int>::iterator it;
-	std::multimap<time_t,int>::iterator finder;
+	std::multimap<time_t,float>::iterator it;
+	std::multimap<time_t,float>::iterator finder;
 	
 	for (it=this->_values.begin(); it!=this->_values.end(); ++it)
 	{
 		finder = this->_data.find((*it).first);
-		std::cout << (*it).second * (*finder).second << std::endl;
-	}	
+		if (finder != this->_data.end()) {
+			std::cout << (*it).second * (*finder).second << std::endl;
+		}
+		else
+		{
+			finder = this->_data.lower_bound((*it).first);
+			if (finder == this->_data.end())
+				finder--;
+			std::cout << (*it).second * (*finder).second << std::endl;
+		}
+	}
 }

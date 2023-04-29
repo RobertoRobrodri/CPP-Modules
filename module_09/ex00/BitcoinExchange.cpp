@@ -58,14 +58,15 @@ std::fstream	&read_file			(std::string file) {
 	return *input_val;
 }
 
-std::multimap<time_t, float>	load_values			(std::fstream &values, char separator) {
+std::multimap<time_t, float>	load_values			(std::fstream &values, char separator, bool error) {
 	std::multimap<time_t, float> mp;
 	std::string buffer;
 	std::string key;
 	std::string value;
 	std::size_t pos;
-	time_t time;
-	std::tm time_struct = {};
+	time_t 		time;
+	std::tm 	time_struct = {};
+	float		f;
 
 	while (getline(values, buffer))
 	{
@@ -74,13 +75,19 @@ std::multimap<time_t, float>	load_values			(std::fstream &values, char separator
 		try {
 			if (strptime(key.c_str(), "%Y-%m-%d", &time_struct) == NULL)
 			{
-				std::cout << key << std::endl;
-				// TO DO Excepciones personalizadas
+				std::cout << key << " ----> ";
 				throw std::runtime_error("Error Date");
 			}
 			time 	= std::mktime(&time_struct);
 			value 	= buffer.substr(pos + 1, buffer.length());
-			mp.insert(std::pair<time_t, float>(time, std::stof(value)));
+			if (value.empty())
+				throw std::runtime_error("No value provided");
+			f = std::stof(value);
+			if ((f < 0 || f > 1000) && error) {
+				std::cout << value << " ----> ";
+				throw std::runtime_error("Not valid value");
+			}
+			mp.insert(std::pair<time_t, float>(time, f));
 		}
 		catch (std::exception &ex) {
 			std::cout << ex.what() << std::endl;
@@ -91,11 +98,16 @@ std::multimap<time_t, float>	load_values			(std::fstream &values, char separator
 void	BitcoinExchange::get_values( void ) {
 	std::multimap<time_t,float>::iterator it;
 	std::multimap<time_t,float>::iterator finder;
+	struct tm 							  *timeinfo;
+	char								  buffer[20];
 	
 	for (it=this->_values.begin(); it!=this->_values.end(); ++it)
 	{
 		finder = this->_data.find((*it).first);
 		if (finder != this->_data.end()) {
+			timeinfo = localtime(&(*it).first);
+			strftime(buffer, 20, "%Y-%m-%d", timeinfo);
+			std::cout << buffer << " ==> " << (*it).second << " = ";
 			std::cout << (*it).second * (*finder).second << std::endl;
 		}
 		else
@@ -103,6 +115,9 @@ void	BitcoinExchange::get_values( void ) {
 			finder = this->_data.lower_bound((*it).first);
 			if (finder == this->_data.end())
 				finder--;
+			timeinfo = localtime(&(*it).first);
+			strftime(buffer, 20, "%Y-%m-%d", timeinfo);
+			std::cout << buffer << " ==> " << (*it).second << " = ";
 			std::cout << (*it).second * (*finder).second << std::endl;
 		}
 	}

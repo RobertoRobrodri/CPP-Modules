@@ -25,5 +25,6 @@ class	RPN {
 		void			calculate(std::string calculus);
 };
 std::ostream &operator<<(std::ostream& os, const RPN &tmp);
+bool is_numeric (std::string str);
 
 #endif

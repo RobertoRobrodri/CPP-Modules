@@ -1,19 +1,30 @@
 #include "PmergeMe.hpp"
 
-bool	is_positive_integer(char *&str)
-{
-	long int result = strtol(str, NULL, 10);
-	if ( result < 0L|| result > INT_MAX)
-		return 0;
+bool is_numeric (std::string str) {
+	for (std::size_t i = 0; i < str.length(); i++)
+	{
+		if (isdigit(str[i]) == 0)
+			return 0;
+	}
 	return 1;
 }
+
+// bool	is_positive_integer(char *&str)
+// {
+// 	long int result = strtol(str, NULL, 10);
+// 	if ( result < 0L|| result > INT_MAX)
+// 		return 0;
+// 	return 1;
+// }
 
 bool	parse_args(int argc, char **&argv)
 {
 	for (int i = argc - 1; i >= 1; i--)
 	{
-		if (is_positive_integer(argv[i]) == 0)
+		if (is_numeric(argv[i]) == 0)
 			return 0;
+		// if (is_positive_integer(argv[i]) == 0)
+		// 	return 0;
 	}
 	return 1;
 }
@@ -42,5 +53,7 @@ int main ( int argc, char **argv)
 		std::cout << "After sorting... " << std::endl;
 		std::cout << merge << std::endl;
 	}
+	else
+		std::cout <<  "Error" << std::endl;
 	return 0;
 }

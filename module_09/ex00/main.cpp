@@ -14,10 +14,10 @@ int main ( int argc, char** argv )
             throw std::ios_base::failure("Could not open file");
         }
         std::fstream &data    = read_file("data.csv");
-        BitcoinExchange btc(load_values(data, ','), load_values(values, '|'));
+        BitcoinExchange btc(load_values(data, ',', 0), load_values(values, '|', 1));
         delete &values;
         delete &data;
-        std::cout << btc << std::endl;
+//        std::cout << btc << std::endl;
         btc.get_values();
     }
     catch (const std::exception& e) {

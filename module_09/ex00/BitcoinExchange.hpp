@@ -5,13 +5,11 @@
 #include <fstream>
 #include <stdexcept>
 #include <map>
-#include <ctime> 
+#include <ctime>
 
 class	BitcoinExchange {
 
 	private:
-		// std::multimap<std::string, int> _data;
-		// std::multimap<std::string, int> _values;
 
 	public:
 
@@ -27,7 +25,7 @@ class	BitcoinExchange {
 		void	get_values( void );
 };
 std::fstream										&read_file			(std::string file);
-std::multimap<time_t, float>	load_values			(std::fstream &values, char separator);
+std::multimap<time_t, float>	load_values			(std::fstream &values, char separator, bool error);
 std::ostream &operator<<(std::ostream& os, const BitcoinExchange &tmp);
 
 #endif

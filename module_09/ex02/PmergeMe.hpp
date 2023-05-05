@@ -25,6 +25,8 @@ class	PmergeMe {
 
 };
 std::ostream &operator<<(std::ostream& os, const PmergeMe &tmp);
-std::list<int>				sort_list( std::list<int> list );
-std::deque<int>				sort_deck( std::deque<int> list );
+std::ostream &operator<<(std::ostream& os, const std::deque<int> &tmp);
+std::ostream &operator<<(std::ostream& os, const std::list<int> &tmp);
+void						sort_list( std::list<int> &list );
+void						sort_deck( std::deque<int> &deck );
 #endif

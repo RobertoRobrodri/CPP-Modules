@@ -45,10 +45,10 @@ int main ( int argc, char **argv)
 		std::cout << "Before sorting... " << std::endl;
 		std::cout << merge << std::endl;
 		timer = clock();
-		merge._list = sort_list(merge._list);
+		sort_list(merge._list);
 		std::cout << "Time wasted... " << static_cast<double>(timer) / CLOCKS_PER_SEC << std::endl;
 		timer = clock();
-		merge._deck = sort_deck(merge._deck);
+		sort_deck(merge._deck);
 		std::cout << "Time wasted... " << static_cast<double>(timer) / CLOCKS_PER_SEC << std::endl;
 		std::cout << "After sorting... " << std::endl;
 		std::cout << merge << std::endl;

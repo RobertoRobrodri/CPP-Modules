@@ -52,38 +52,93 @@ std::ostream &operator<<(std::ostream& os, const PmergeMe &tmp) {
 	return (os);
 }
 
-// FUNCTIONS
+std::ostream &operator<<(std::ostream& os, const std::deque<int> &tmp) {
+	std::deque<int>::const_iterator d_it;
 
-std::list<int>  sort_list( std::list<int> list ) {
-	std::list<int> tmp;
-	size_t size = list.size() / 2;
-	std::list<int>::iterator half = list.begin();
-
-	std::advance(half, size);
-
-	// Separar la lista en dos y ordenar cada una
-	tmp.splice(tmp.begin(), list, half, list.end());
-	if (list.size() > 1)
-		list = sort_list(list);
-	if (tmp.size() > 1)
-		tmp = sort_list(tmp);
-	list.merge(tmp);
-	return list;
+	for (d_it = tmp.begin(); d_it != tmp.end(); d_it++)
+		os << *d_it << " ";
+	return (os);
 }
 
-std::deque<int> sort_deck( std::deque<int> deck ) {
-	std::deque<int> tmp;
-	std::deque<int> ret;
+std::ostream &operator<<(std::ostream& os, const std::list<int> &tmp) {
+	std::list<int>::const_iterator d_it;
+
+	for (d_it = tmp.begin(); d_it != tmp.end(); d_it++)
+		os << *d_it << " ";
+	return (os);
+}
+
+// FUNCTIONS
+
+void  sort_list( std::list<int> &list ) {
+	if (list.size() <= 1)
+		return ;
+	size_t size = list.size() / 2;
+	std::list<int> left;
+	std::list<int> right = list;
+	std::list<int>::iterator half = right.begin();
+
+	std::advance(half, size);
+	left.splice(left.begin(), right, half, right.end());
+	sort_list(right);
+	sort_list(left);
+    std::list<int>::iterator j = left.begin();
+	std::list<int>::iterator k = right.begin();
+	std::list<int>::iterator i = list.begin();
+    while (j != left.end() && k != right.end()) 
+    {
+        if (*j < *k) {
+			list.insert(i, *j);
+			list.erase(i++);
+            j++;
+        }
+        else {
+            list.insert(i, *k);
+			list.erase(i++);
+            k++;
+        }
+    }
+    while (j != left.end()) {
+        list.insert(i, *j);
+		list.erase(i++);
+        j++;
+    }
+    while (k != right.end()) {
+        list.insert(i, *k);
+		list.erase(i++);
+        k++;
+    }
+}
+
+void sort_deck( std::deque<int> &deck ) {
+	if (deck.size() <= 1)
+		return ;
 	size_t size = deck.size() / 2;
-	for (size_t i = 0; i < size; i++)
-	{
-		tmp.push_front(deck.front());
-		deck.pop_front();
-	}
-	if (deck.size() > 1)
-		deck = sort_deck(deck);
-	if (tmp.size() > 1)
-		tmp = sort_deck(tmp);
-	std::merge(deck.begin(), deck.end(), tmp.begin(), tmp.end(), std::back_inserter(ret));
-	return (ret);
+	std::deque<int> right(deck.begin(), deck.end() - size);
+	std::deque<int> left(deck.end() - size, deck.end());
+	sort_deck(right);
+	sort_deck(left);
+	int L_size = left.size();
+    int R_size = right.size();
+    int i = 0, j = 0, k = 0;
+    while (j < L_size && k < R_size) 
+    {
+        if (left[j] < right[k]) {
+            deck[i] = left[j];
+            j++;
+        }
+        else {
+            deck[i] = right[k];
+            k++;
+        }
+        i++;
+    }
+    while (j < L_size) {
+        deck[i] = left[j];
+        j++; i++;
+    }
+    while (k < R_size) {
+        deck[i] = right[k];
+        k++; i++;
+    }
 }

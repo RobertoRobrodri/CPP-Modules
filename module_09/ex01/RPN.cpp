@@ -53,7 +53,6 @@ void			RPN::calculate(std::string calculus) {
 	std::size_t	sign_pos;
 	std::string	str;
 	std::string sub_str;
-	std::size_t	n_count = 0;
 
 	try {
 		while ((sign_pos = calculus.find_first_of("+-/*")) != std::string::npos)
@@ -70,14 +69,12 @@ void			RPN::calculate(std::string calculus) {
 					throw std::runtime_error("Error muerooo");
 				if (!sub_str.empty()) {
 					this->stack.push(atoi(sub_str.c_str()));
-					n_count++;
 				}
 			}
-			if (this->stack.size() < 2 || n_count > 2)
+			if (this->stack.size() < 2)
 				throw std::runtime_error("Error");
 			this->get_value();
 			calculus = calculus.substr(sign_pos + 1, calculus.length());
-			n_count = 0;
 		}
 		if (calculus.length() || this->stack.size() != 1)
 			throw std::runtime_error("Error");

@@ -48,17 +48,34 @@ std::ostream &operator<<(std::ostream& os, const RPN &tmp) {
 
 // FUNCTIONS
 
+std::string trim(const std::string& str) {
+    std::string trimmed = str;
+    
+    size_t start = 0;
+    while (start < trimmed.length() && std::isspace(trimmed[start])) {
+        start++;
+    }
+    trimmed.erase(0, start);
+    
+    size_t end = trimmed.length() - 1;
+    while (end > 0 && std::isspace(trimmed[end])) {
+        end--;
+    }
+    trimmed.erase(end + 1);
+
+    return trimmed;
+}
+
 void			RPN::calculate(std::string calculus) {
   
 	std::size_t	sign_pos;
 	std::string	str;
 	std::string sub_str;
 
+	calculus = trim(calculus);
 	try {
 		while ((sign_pos = calculus.find_first_of("+-/*")) != std::string::npos)
 		{
-			// while (isdigit(calculus[sign_pos + 1]))
-			// 	sign_pos = calculus.find_first_of("+-/*", sign_pos + 1);
 			str = calculus.substr(0, sign_pos);
 			this->operation_type = calculus[sign_pos];
 			
@@ -66,17 +83,19 @@ void			RPN::calculate(std::string calculus) {
 			while (getline(buffer, sub_str, ' '))
 			{
 				if (is_numeric(sub_str) == 0)
-					throw std::runtime_error("Error");
+					throw std::runtime_error("Error why");
 				if (!sub_str.empty()) {
 					this->stack.push(atoi(sub_str.c_str()));
 				}
 			}
 			if (this->stack.size() < 2)
-				throw std::runtime_error("Error");
+				throw std::runtime_error("Error weee");
+			if (this->get_value() == true)
+				throw std::runtime_error("Error dieee");
 			calculus = calculus.substr(sign_pos + 1, calculus.length());
 		}
 		if (calculus.length() || this->stack.size() != 1)
-			throw std::runtime_error("Error");
+			throw std::runtime_error("Error wii");
 		std::cout << "Result = " << this->stack.top() << std::endl;
 	}
 	catch (std::exception &ex) {
@@ -90,12 +109,13 @@ bool		RPN::get_value ( void ) {
 
 	tmp = this->stack.top();
 	this->stack.pop();
-	std::cout << tmp << this->operation_type << this->stack.top() <<std::endl;
+	std::cout << tmp << " " << this->operation_type << " " << this->stack.top() <<std::endl;
 	switch ( this->operation_type ) {
 		case '*':
 		{
-			if ( (tmp > 0 && this->stack.top() > std::numeric_limits< int >::max() / tmp) ) 
-				return 1 ;
+			if (tmp != 0 && (this->stack.top() > std::numeric_limits<int>::max() / tmp || 
+                this->stack.top() < std::numeric_limits<int>::min() / tmp))
+    			return 1;
 			result = this->stack.top() * tmp;
 			this->stack.pop();
 			this->stack.push(result);
@@ -104,7 +124,7 @@ bool		RPN::get_value ( void ) {
 		case '+':
 		{
 			if ( (tmp > 0 && this->stack.top() > std::numeric_limits< int >::max() - tmp) || \
-				(tmp < 0 && this->stack.top() < std::numeric_limits< int >::max() - tmp) )
+				(tmp < 0 && this->stack.top() < std::numeric_limits< int >::min() - tmp) )
 				return 1 ;
 			result = this->stack.top() + tmp;
 			this->stack.pop();
@@ -113,9 +133,8 @@ bool		RPN::get_value ( void ) {
 		}
 		case '-':
 		{
-			std::cout << tmp << " - " << this->stack.top() << std::endl;
 			if ( (tmp > 0 && this->stack.top() < std::numeric_limits< int >::min() + tmp) || \
-				(tmp < 0 && this->stack.top() > std::numeric_limits< int >::min() + tmp) )
+				(tmp < 0 && this->stack.top() > std::numeric_limits< int >::max() + tmp) )
 				return 1 ;
 			result = this->stack.top() - tmp;
 			this->stack.pop();
@@ -126,6 +145,10 @@ bool		RPN::get_value ( void ) {
 		{
 			if (tmp == 0)
 				return 1;
+			if (tmp == -1 && this->stack.top() == std::numeric_limits<int>::min())
+    			return 1; // Overflow detected (division by -1 with INT_MIN)
+			if (tmp != 0 && (this->stack.top() == std::numeric_limits<int>::min() && tmp == -1))
+    			return 1; // Overflow detected (division of INT_MIN by -1)
 			result = this->stack.top() / tmp;
 			this->stack.pop();
 			this->stack.push(result);

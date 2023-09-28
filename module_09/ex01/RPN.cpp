@@ -57,23 +57,22 @@ void			RPN::calculate(std::string calculus) {
 	try {
 		while ((sign_pos = calculus.find_first_of("+-/*")) != std::string::npos)
 		{
-			if (isdigit(calculus[sign_pos + 1]))
-				sign_pos = calculus.find_first_of("+-/*", sign_pos + 1);
+			// while (isdigit(calculus[sign_pos + 1]))
+			// 	sign_pos = calculus.find_first_of("+-/*", sign_pos + 1);
 			str = calculus.substr(0, sign_pos);
 			this->operation_type = calculus[sign_pos];
-
+			
 			std::stringstream buffer(str);
 			while (getline(buffer, sub_str, ' '))
 			{
 				if (is_numeric(sub_str) == 0)
-					throw std::runtime_error("Error muerooo");
+					throw std::runtime_error("Error");
 				if (!sub_str.empty()) {
 					this->stack.push(atoi(sub_str.c_str()));
 				}
 			}
 			if (this->stack.size() < 2)
 				throw std::runtime_error("Error");
-			this->get_value();
 			calculus = calculus.substr(sign_pos + 1, calculus.length());
 		}
 		if (calculus.length() || this->stack.size() != 1)
@@ -85,16 +84,18 @@ void			RPN::calculate(std::string calculus) {
 	}
 }
 
-void		RPN::get_value ( void ) {
+bool		RPN::get_value ( void ) {
 	int	tmp;
 	int result;
 
 	tmp = this->stack.top();
 	this->stack.pop();
-	//std::cout << tmp << this->operation_type << this->stack.top() <<std::endl;
+	std::cout << tmp << this->operation_type << this->stack.top() <<std::endl;
 	switch ( this->operation_type ) {
 		case '*':
 		{
+			if ( (tmp > 0 && this->stack.top() > std::numeric_limits< int >::max() / tmp) ) 
+				return 1 ;
 			result = this->stack.top() * tmp;
 			this->stack.pop();
 			this->stack.push(result);
@@ -102,6 +103,9 @@ void		RPN::get_value ( void ) {
 		}
 		case '+':
 		{
+			if ( (tmp > 0 && this->stack.top() > std::numeric_limits< int >::max() - tmp) || \
+				(tmp < 0 && this->stack.top() < std::numeric_limits< int >::max() - tmp) )
+				return 1 ;
 			result = this->stack.top() + tmp;
 			this->stack.pop();
 			this->stack.push(result);
@@ -109,6 +113,10 @@ void		RPN::get_value ( void ) {
 		}
 		case '-':
 		{
+			std::cout << tmp << " - " << this->stack.top() << std::endl;
+			if ( (tmp > 0 && this->stack.top() < std::numeric_limits< int >::min() + tmp) || \
+				(tmp < 0 && this->stack.top() > std::numeric_limits< int >::min() + tmp) )
+				return 1 ;
 			result = this->stack.top() - tmp;
 			this->stack.pop();
 			this->stack.push(result);
@@ -116,6 +124,8 @@ void		RPN::get_value ( void ) {
 		}
 		case '/':
 		{
+			if (tmp == 0)
+				return 1;
 			result = this->stack.top() / tmp;
 			this->stack.pop();
 			this->stack.push(result);
@@ -124,6 +134,7 @@ void		RPN::get_value ( void ) {
 		default:
 			std::cout << "Not able to calculate" << std::endl;
 	}
+	return 0;
 }
 
 bool is_numeric (std::string str) {

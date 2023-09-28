@@ -9,7 +9,7 @@ class	RPN {
 
 	private:
 
-		void		get_value(void);
+		bool		get_value(void);
 
 	public:
 

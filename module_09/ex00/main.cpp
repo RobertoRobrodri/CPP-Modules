@@ -8,12 +8,15 @@ int main ( int argc, char** argv )
         return 1;
     }
     std::fstream &values  = read_file(argv[1]);
+    std::fstream &data    = read_file("data.csv");
     try {
         if (values.rdstate() == std::fstream::failbit)
+            throw std::ios_base::failure("Could not open file");
+        if (data.rdstate() == std::fstream::failbit)
         {
+            delete &values;
             throw std::ios_base::failure("Could not open file");
         }
-        std::fstream &data    = read_file("data.csv");
         BitcoinExchange btc(load_values(data, ',', 0), load_values(values, '|', 1));
         delete &values;
         delete &data;

@@ -52,15 +52,13 @@ std::string trim(const std::string& str) {
     std::string trimmed = str;
     
     size_t start = 0;
-    while (start < trimmed.length() && std::isspace(trimmed[start])) {
+    while (start < trimmed.length() && std::isspace(trimmed[start]))
         start++;
-    }
     trimmed.erase(0, start);
-    
+
     size_t end = trimmed.length() - 1;
-    while (end > 0 && std::isspace(trimmed[end])) {
+    while (end > 0 && std::isspace(trimmed[end]))
         end--;
-    }
     trimmed.erase(end + 1);
 
     return trimmed;

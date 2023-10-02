@@ -7,7 +7,7 @@ BitcoinExchange::BitcoinExchange( void ) {
   return ;
 }
 
-BitcoinExchange::BitcoinExchange( std::multimap<time_t, float> data, std::multimap<time_t, float> values ) : _data(data), _values(values) {
+BitcoinExchange::BitcoinExchange( std::map<time_t, float> data, std::map<time_t, float> values ) : _data(data), _values(values) {
   std::cout << "Parameter constructor called" << std::endl;
   return ;  
 }
@@ -38,7 +38,7 @@ BitcoinExchange & BitcoinExchange::operator=(const BitcoinExchange &tmp) {
 }
 
 std::ostream &operator<<(std::ostream& os, const BitcoinExchange &tmp) {
-	std::multimap<time_t, float>::const_iterator it;
+	std::map<time_t, float>::const_iterator it;
 	
 	std::cout << "Printing values... " << std::endl;
 	for (it=tmp._values.begin(); it!=tmp._values.end(); ++it)
@@ -58,8 +58,8 @@ std::fstream	&read_file			(std::string file) {
 	return *input_val;
 }
 
-std::multimap<time_t, float>	load_values			(std::fstream &values, char separator, bool error) {
-	std::multimap<time_t, float> mp;
+std::map<time_t, float>	load_values			(std::fstream &values, char separator, bool error) {
+	std::map<time_t, float> mp;
 	std::string buffer;
 	std::string key;
 	std::string value;
@@ -96,8 +96,8 @@ std::multimap<time_t, float>	load_values			(std::fstream &values, char separator
 	return mp;
 }
 void	BitcoinExchange::get_values( void ) {
-	std::multimap<time_t,float>::iterator it;
-	std::multimap<time_t,float>::iterator finder;
+	std::map<time_t,float>::iterator it;
+	std::map<time_t,float>::iterator finder;
 	struct tm 							  *timeinfo;
 	char								  buffer[20];
 	

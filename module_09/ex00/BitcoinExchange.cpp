@@ -108,18 +108,19 @@ void	BitcoinExchange::get_values( void ) {
 			timeinfo = localtime(&(*it).first);
 			strftime(buffer, 20, "%Y-%m-%d", timeinfo);
 			std::cout << buffer << " ==> " << (*it).second << " = ";
+			std::cout << (*it).second << " * " << (*finder).second << std::endl;
 			std::cout << (*it).second * (*finder).second << std::endl;
 		}
 		else
 		{
 			finder = this->_data.lower_bound((*it).first);
-			if (finder == this->_data.end())
+			if (finder != this->_data.begin())
 				finder--;
 			timeinfo = localtime(&(*it).first);
 			strftime(buffer, 20, "%Y-%m-%d", timeinfo);
 			std::cout << buffer << " ==> " << (*it).second << " = ";
+			std::cout << (*it).second << " * " << (*finder).second << std::endl;			
 			std::cout << (*it).second * (*finder).second << std::endl;
 		}
-		// erase once found
 	}
 }

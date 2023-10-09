@@ -83,7 +83,10 @@ void			RPN::calculate(std::string calculus) {
 				if (is_numeric(sub_str) == 0)
 					throw std::runtime_error("Error why");
 				if (!sub_str.empty()) {
-					this->stack.push(atoi(sub_str.c_str()));
+					long int checker = atol(sub_str.c_str());
+					if (checker > std::numeric_limits<int>::max() || checker < std::numeric_limits<int>::min())
+						 throw std::runtime_error("Error te has pasao carmele");
+					this->stack.push(checker);
 				}
 			}
 			if (this->stack.size() < 2)
@@ -141,7 +144,7 @@ bool		RPN::get_value ( void ) {
 		}
 		case '/':
 		{
-			if (tmp == 0)
+			if (this->stack.top() == 0)
 				return 1;
 			if (tmp == -1 && this->stack.top() == std::numeric_limits<int>::min())
     			return 1; // Overflow detected (division by -1 with INT_MIN)
@@ -161,9 +164,7 @@ bool		RPN::get_value ( void ) {
 bool is_numeric (std::string str) {
 	for (std::size_t i = 0; i < str.length(); i++)
 	{
-		if (isdigit(str[i]) == 0 && str[i] != '-')
-			return 0;
-		if (str[i] == '-' && isdigit(str[++i]) == 0)
+		if (isdigit(str[i]) == 0)
 			return 0;
 	}
 	return 1;

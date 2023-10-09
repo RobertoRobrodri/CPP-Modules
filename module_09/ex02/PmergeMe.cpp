@@ -98,12 +98,14 @@ void  sort_list( std::list<int> &list ) {
             k++;
         }
     }
-    while (j != left.end()) {
+    while (j != left.end())
+    {
         list.insert(i, *j);
 		list.erase(i++);
         j++;
     }
-    while (k != right.end()) {
+    while (k != right.end())
+    {
         list.insert(i, *k);
 		list.erase(i++);
         k++;
